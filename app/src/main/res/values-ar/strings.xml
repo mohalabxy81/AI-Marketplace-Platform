@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">سوق الذكاء</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">الرئيسية</string>
+    <string name="nav_explore">استكشاف</string>
+    <string name="nav_search">بحث</string>
+    <string name="nav_saved">المحفوظات</string>
+    <string name="nav_notifications">الإشعارات</string>
+    <string name="nav_profile">الملف الشخصي</string>
+    <string name="nav_login">تسجيل الدخول</string>
+
+    <!-- Greeting -->
+    <string name="greeting_morning">صباح الخير!</string>
+    <string name="greeting_afternoon">مساء الخير!</string>
+    <string name="greeting_evening">مساء الخير!</string>
+    <string name="greeting_subtitle">ما الذي تبحث عنه اليوم؟</string>
+
+    <!-- Search -->
+    <string name="search_placeholder">ابحث عن منتجات، خدمات، أماكن…</string>
+    <string name="search_recent">عمليات البحث الأخيرة</string>
+    <string name="search_suggestions">اقتراحات</string>
+    <string name="search_no_results">لم يتم العثور على نتائج</string>
+    <string name="search_filter">تصفية</string>
+
+    <!-- Feed Sections -->
+    <string name="feed_recommended">موصى به لك</string>
+    <string name="feed_activity">بناءً على نشاطك</string>
+    <string name="feed_nearby">بالقرب منك</string>
+    <string name="feed_trending">الرائج الآن</string>
+    <string name="feed_discover">اكتشف</string>
+    <string name="feed_see_all">عرض الكل</string>
+    <string name="feed_smart_suggestions">اقتراحات ذكية</string>
+
+    <!-- Content Types -->
+    <string name="type_real_estate">عقارات</string>
+    <string name="type_product">منتجات</string>
+    <string name="type_service">خدمات</string>
+    <string name="type_local_offer">عروض محلية</string>
+    <string name="type_trending">رائج</string>
+    <string name="type_all">الكل</string>
+
+    <!-- Auth -->
+    <string name="auth_login">تسجيل الدخول</string>
+    <string name="auth_register">إنشاء حساب</string>
+    <string name="auth_forgot_password">نسيت كلمة المرور؟</string>
+    <string name="auth_email">البريد الإلكتروني</string>
+    <string name="auth_password">كلمة المرور</string>
+    <string name="auth_confirm_password">تأكيد كلمة المرور</string>
+    <string name="auth_full_name">الاسم الكامل</string>
+    <string name="auth_login_button">تسجيل الدخول</string>
+    <string name="auth_register_button">إنشاء حساب</string>
+    <string name="auth_reset_button">إرسال رابط إعادة التعيين</string>
+    <string name="auth_no_account">ليس لديك حساب؟</string>
+    <string name="auth_has_account">لديك حساب بالفعل؟</string>
+    <string name="auth_sign_up">سجّل الآن</string>
+    <string name="auth_sign_in">تسجيل الدخول</string>
+    <string name="auth_or">أو</string>
+    <string name="auth_continue_google">المتابعة مع جوجل</string>
+    <string name="auth_continue_apple">المتابعة مع آبل</string>
+    <string name="auth_terms">بإنشاء حساب، فإنك توافق على شروط الخدمة وسياسة الخصوصية</string>
+    <string name="auth_reset_success">تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني</string>
+    <string name="auth_reset_description">أدخل بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة المرور</string>
+    <string name="auth_back_to_login">العودة لتسجيل الدخول</string>
+    <string name="auth_welcome_back">مرحبًا بعودتك</string>
+    <string name="auth_welcome_back_subtitle">سجّل الدخول لمتابعة تجربتك المخصصة</string>
+    <string name="auth_join_us">انضم إلينا</string>
+    <string name="auth_join_us_subtitle">أنشئ حسابك وابدأ الاكتشاف</string>
+
+    <!-- Validation -->
+    <string name="validation_email_required">البريد الإلكتروني مطلوب</string>
+    <string name="validation_email_invalid">يرجى إدخال بريد إلكتروني صحيح</string>
+    <string name="validation_password_required">كلمة المرور مطلوبة</string>
+    <string name="validation_password_short">يجب أن تكون كلمة المرور ٨ أحرف على الأقل</string>
+    <string name="validation_password_mismatch">كلمات المرور غير متطابقة</string>
+    <string name="validation_name_required">الاسم مطلوب</string>
+
+    <!-- Listing -->
+    <string name="listing_save">حفظ</string>
+    <string name="listing_saved">محفوظ</string>
+    <string name="listing_share">مشاركة</string>
+    <string name="listing_contact_seller">التواصل مع البائع</string>
+    <string name="listing_similar">عناصر مشابهة</string>
+    <string name="listing_description">الوصف</string>
+    <string name="listing_location">الموقع</string>
+    <string name="listing_seller">البائع</string>
+    <string name="listing_rating">التقييم</string>
+
+    <!-- Saved -->
+    <string name="saved_title">العناصر المحفوظة</string>
+    <string name="saved_empty_title">لا توجد عناصر محفوظة</string>
+    <string name="saved_empty_subtitle">ستظهر العناصر التي تحفظها هنا</string>
+
+    <!-- Notifications -->
+    <string name="notifications_title">الإشعارات</string>
+    <string name="notifications_empty_title">لا توجد إشعارات</string>
+    <string name="notifications_empty_subtitle">أنت على اطلاع بكل شيء</string>
+
+    <!-- Profile -->
+    <string name="profile_title">الملف الشخصي</string>
+    <string name="profile_settings">الإعدادات</string>
+    <string name="profile_language">اللغة</string>
+    <string name="profile_theme">المظهر</string>
+    <string name="profile_notifications_setting">الإشعارات</string>
+    <string name="profile_about">حول التطبيق</string>
+    <string name="profile_logout">تسجيل الخروج</string>
+    <string name="profile_version">الإصدار %1$s</string>
+
+    <!-- Explore -->
+    <string name="explore_title">استكشاف</string>
+    <string name="explore_categories">الفئات</string>
+    <string name="explore_featured">مجموعات مميزة</string>
+
+    <!-- Common -->
+    <string name="retry">إعادة المحاولة</string>
+    <string name="loading">جاري التحميل…</string>
+    <string name="error_generic">حدث خطأ ما</string>
+    <string name="error_network">لا يوجد اتصال بالإنترنت</string>
+    <string name="pull_to_refresh">اسحب للتحديث</string>
+    <string name="cancel">إلغاء</string>
+    <string name="ok">حسنًا</string>
+    <string name="close">إغلاق</string>
+
+    <!-- Accessibility -->
+    <string name="cd_back">رجوع</string>
+    <string name="cd_search">بحث</string>
+    <string name="cd_clear">مسح</string>
+    <string name="cd_save_listing">حفظ الإعلان</string>
+    <string name="cd_remove_saved">إزالة من المحفوظات</string>
+    <string name="cd_listing_image">صورة الإعلان</string>
+    <string name="cd_profile_picture">صورة الملف الشخصي</string>
+    <string name="cd_notification">إشعار</string>
+</resources>

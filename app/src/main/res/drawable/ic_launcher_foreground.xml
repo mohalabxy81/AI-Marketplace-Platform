@@ -1,0 +1,10 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Gold 'M' letter for Marketplace -->
+    <path
+        android:fillColor="#CA8A04"
+        android:pathData="M36,72V36h6l12,18 12,-18h6v36h-6V47l-12,18 -12,-18v25z" />
+</vector>
