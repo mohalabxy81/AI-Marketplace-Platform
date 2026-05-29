@@ -6,12 +6,19 @@ import { useAdminAuth } from "@/features/platform-core/hooks/use-admin-auth";
 import { useAnalyticsSnapshotsQuery } from "@/features/analytics/hooks/use-analytics-data";
 import { useAIInferenceLogsQuery } from "@/features/ai/hooks/use-ai-config";
 import { 
-  ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid,
-  BarChart, Bar, LineChart, Line
-} from "recharts";
-import { 
   BarChart3, Cpu, AlertTriangle, TrendingUp, Clock, Activity
 } from "lucide-react";
+import dynamic from "next/dynamic";
+
+const AdminGrowthChart = dynamic(
+  () => import("@/features/super-admin/components/charts").then((mod) => mod.AdminGrowthChart),
+  { ssr: false, loading: () => <div className="flex h-full items-center justify-center text-zinc-600 animate-pulse">LOADING_GROWTH_CHART...</div> }
+);
+
+const AdminLatencyChart = dynamic(
+  () => import("@/features/super-admin/components/charts").then((mod) => mod.AdminLatencyChart),
+  { ssr: false, loading: () => <div className="flex h-full items-center justify-center text-zinc-600 animate-pulse">LOADING_LATENCY_CHART...</div> }
+);
 
 export default function AnalyticsPage() {
   const { hasCapability } = useAdminAuth();
@@ -120,19 +127,7 @@ export default function AnalyticsPage() {
           <span className="block text-[10px] font-bold text-zinc-400 uppercase">Tenant Account Growth Scale</span>
           <div className="h-60 w-full">
             {mounted && historyData.length > 0 ? (
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={historyData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#27272a" />
-                  <XAxis dataKey="date" stroke="#71717a" fontSize={9} />
-                  <YAxis stroke="#71717a" fontSize={9} />
-                  <Tooltip 
-                    contentStyle={{ backgroundColor: "#09090b", border: "1px solid #27272a", borderRadius: 0 }}
-                    labelStyle={{ color: "#71717a", fontSize: 9 }}
-                  />
-                  <Area type="monotone" dataKey="tenants" stroke="#f59e0b" fill="#f59e0b" fillOpacity={0.05} name="Total Tenants" />
-                  <Area type="monotone" dataKey="active" stroke="#10b981" fill="#10b981" fillOpacity={0.05} name="Active Tenants" />
-                </AreaChart>
-              </ResponsiveContainer>
+              <AdminGrowthChart data={historyData} />
             ) : (
               <div className="flex h-full items-center justify-center text-zinc-600">CHART_MOUNTING...</div>
             )}
@@ -144,18 +139,7 @@ export default function AnalyticsPage() {
           <span className="block text-[10px] font-bold text-zinc-400 uppercase">Search Inference Latency Performance (ms)</span>
           <div className="h-60 w-full">
             {mounted && latencyTrendData.length > 0 ? (
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={latencyTrendData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#27272a" />
-                  <XAxis dataKey="index" stroke="#71717a" fontSize={9} />
-                  <YAxis stroke="#71717a" fontSize={9} />
-                  <Tooltip 
-                    contentStyle={{ backgroundColor: "#09090b", border: "1px solid #27272a", borderRadius: 0 }}
-                    labelStyle={{ color: "#71717a", fontSize: 9 }}
-                  />
-                  <Line type="monotone" dataKey="latency" stroke="#ef4444" strokeWidth={2} activeDot={{ r: 4 }} name="Latency (ms)" />
-                </LineChart>
-              </ResponsiveContainer>
+              <AdminLatencyChart data={latencyTrendData} />
             ) : (
               <div className="flex h-full items-center justify-center text-zinc-600">CHART_MOUNTING...</div>
             )}

@@ -70,7 +70,7 @@ export class AggregationCronService {
       timestamp: new Date().toISOString(),
       correlationId: randomUUID(),
       payload: { snapshotId, dateStr },
-      metadata: { source: "cron", environment: "production" }
+      metadata: { source: "system", environment: "production" }
     });
   }
 

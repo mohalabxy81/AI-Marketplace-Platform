@@ -6,14 +6,21 @@ import { useAdminAuth } from "@/features/platform-core/hooks/use-admin-auth";
 import { useInvoicesQuery, useSubscriptionsQuery, useIssueRefundMutation } from "@/features/billing/hooks/use-billing-queries";
 import { useAnalyticsSnapshotsQuery } from "@/features/analytics/hooks/use-analytics-data";
 import { 
-  ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid,
-  PieChart, Pie, Cell
-} from "recharts";
-import { 
   CreditCard, DollarSign, RefreshCcw, 
   AlertTriangle, ArrowDownRight, ArrowUpRight, FileText
 } from "lucide-react";
 import { toast } from "sonner";
+import dynamic from "next/dynamic";
+
+const AdminMRRChart = dynamic(
+  () => import("@/features/super-admin/components/charts").then((mod) => mod.AdminMRRChart),
+  { ssr: false, loading: () => <div className="flex h-full items-center justify-center text-zinc-600 animate-pulse">LOADING_MRR_CHART...</div> }
+);
+
+const AdminPlanPieChart = dynamic(
+  () => import("@/features/super-admin/components/charts").then((mod) => mod.AdminPlanPieChart),
+  { ssr: false, loading: () => <div className="flex h-full items-center justify-center text-zinc-600 animate-pulse">LOADING_DISTRIBUTION_CHART...</div> }
+);
 
 const COLORS = ["#18181b", "#27272a", "#52525b", "#d97706"]; // Industrial palette
 
@@ -119,25 +126,7 @@ export default function BillingPage() {
           <span className="block text-[10px] font-bold text-zinc-400 uppercase">MONTHLY_RECURRING_REVENUE_TREND</span>
           <div className="h-64 w-full">
             {mounted && mrrHistoryData.length > 0 ? (
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={mrrHistoryData}>
-                  <defs>
-                    <linearGradient id="colorMrr" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.1}/>
-                      <stop offset="95%" stopColor="#f59e0b" stopOpacity={0}/>
-                    </linearGradient>
-                  </defs>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#27272a" />
-                  <XAxis dataKey="date" stroke="#71717a" fontSize={9} />
-                  <YAxis stroke="#71717a" fontSize={9} tickFormatter={(v) => `$${v}`} />
-                  <Tooltip 
-                    contentStyle={{ backgroundColor: "#09090b", border: "1px solid #27272a", borderRadius: 0 }}
-                    labelStyle={{ color: "#71717a", fontSize: 9 }}
-                    itemStyle={{ color: "#f59e0b", fontSize: 10 }}
-                  />
-                  <Area type="monotone" dataKey="mrr" stroke="#f59e0b" strokeWidth={2} fillOpacity={1} fill="url(#colorMrr)" />
-                </AreaChart>
-              </ResponsiveContainer>
+              <AdminMRRChart data={mrrHistoryData} />
             ) : (
               <div className="flex h-full items-center justify-center text-zinc-600">CHART_MOUNTING...</div>
             )}
@@ -149,27 +138,7 @@ export default function BillingPage() {
           <span className="block text-[10px] font-bold text-zinc-400 uppercase">PLAN_DISTRIBUTION</span>
           <div className="h-44 w-full flex justify-center items-center">
             {mounted && planPieData.length > 0 ? (
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie
-                    data={planPieData}
-                    cx="50%"
-                    cy="50%"
-                    innerRadius={40}
-                    outerRadius={65}
-                    paddingAngle={3}
-                    dataKey="value"
-                  >
-                    {planPieData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} stroke="#27272a" strokeWidth={1} />
-                    ))}
-                  </Pie>
-                  <Tooltip 
-                    contentStyle={{ backgroundColor: "#09090b", border: "1px solid #27272a", borderRadius: 0 }}
-                    itemStyle={{ fontSize: 9 }}
-                  />
-                </PieChart>
-              </ResponsiveContainer>
+              <AdminPlanPieChart data={planPieData} colors={COLORS} />
             ) : (
               <div className="text-zinc-600">CHART_MOUNTING...</div>
             )}

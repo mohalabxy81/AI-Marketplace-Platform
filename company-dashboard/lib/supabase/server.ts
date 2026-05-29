@@ -26,6 +26,9 @@ export async function createSupabaseServerClient() {
   );
 }
 
+// Alias for compatibility across codebase
+export const getSupabaseServerClient = createSupabaseServerClient;
+
 export async function createSupabaseServiceRoleClient() {
   const { createClient } = await import("@supabase/supabase-js");
   return createClient(
