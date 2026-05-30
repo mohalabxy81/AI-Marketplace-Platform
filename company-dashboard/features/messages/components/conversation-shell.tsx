@@ -38,8 +38,8 @@ export function ConversationShell() {
 
         {/* Placeholder Message 2 */}
         <div className="flex gap-4 flex-row-reverse">
-          <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center shrink-0">
-            <span className="text-purple-600 font-medium text-xs">ME</span>
+          <div className="w-8 h-8 rounded-full bg-teal-100 flex items-center justify-center shrink-0">
+            <span className="text-teal-600 font-medium text-xs">ME</span>
           </div>
           <div className="flex flex-col items-end">
             <div className="flex items-baseline gap-2 flex-row-reverse">

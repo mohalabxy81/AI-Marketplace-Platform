@@ -19,6 +19,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Company Dashboard",
   description: "Company management dashboard",
+  openGraph: {
+    title: "Company Dashboard",
+    description: "Company management dashboard",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

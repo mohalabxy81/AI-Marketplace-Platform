@@ -30,6 +30,7 @@ export function ListingCard({ listing, onDelete, selected, onSelect }: ListingCa
           <div className="absolute top-2 left-2 z-10">
             <input 
               type="checkbox" 
+              aria-label="Select listing"
               className="h-4 w-4 rounded border-[var(--color-border)] text-[var(--color-accent)] focus:ring-[var(--color-accent)] cursor-pointer"
               checked={selected}
               onChange={(e) => onSelect(listing.id, e.target.checked)}

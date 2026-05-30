@@ -38,6 +38,14 @@ This specification set transforms the approved **AI-Native Multi-Tenant Marketpl
 | 18 | MVP & Version Roadmap | [18-mvp-definition.md](file:///home/mohal665544/pr1/docs/specs/18-mvp-definition.md) | **v3** | ~22KB | ✅ **Maximum Depth** |
 | 19 | Build Readiness Analysis | [19-build-readiness.md](file:///home/mohal665544/pr1/docs/specs/19-build-readiness.md) | **v3** | ~20KB | ✅ **Maximum Depth** |
 | 20 | Final Implementation Blueprint | [20-final-blueprint.md](file:///home/mohal665544/pr1/docs/specs/20-final-blueprint.md) | **v3** | ~22KB | ✅ **Maximum Depth** |
+| 21 | **Master Feature Inventory & Capability Map** | [21-master-feature-inventory.md](file:///home/mohal665544/pr1/docs/specs/21-master-feature-inventory.md) | **v1** | ~80KB | ✅ **Single Source of Truth** |
+
+---
+
+## Spec 21 — For Product, UX & Business Teams
+1. Read **Spec 21** (Master Feature Inventory) — complete capability map, role inventory, screen inventory, user journeys, feature access matrix, MVP definition, and AI/Analytics/Billing/Trust catalogs
+2. Use **Spec 21** as the starting point for PRD authoring, UX wireframing, and test case generation
+3. Cross-reference with engineering specs (01-20) for technical implementation details
 
 ---
 

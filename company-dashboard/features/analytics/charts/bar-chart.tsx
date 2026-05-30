@@ -20,8 +20,8 @@ export function CategoryBarChart({ data }: CategoryBarChartProps) {
   // Array of colors for different bars
   const colors = [
     "#6366f1", // indigo-500
-    "#8b5cf6", // violet-500
-    "#a855f7", // purple-500
+    "#10b981", // emerald-500
+    "#34d399", // emerald-400
     "#d946ef", // fuchsia-500
     "#ec4899", // pink-500
     "#f43f5e", // rose-500

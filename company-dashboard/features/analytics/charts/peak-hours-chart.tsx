@@ -16,8 +16,8 @@ interface PeakHoursChartProps {
 }
 
 export function PeakHoursChart({ data }: PeakHoursChartProps) {
-  const fillColor = "#8b5cf6"; // violet-500
-  const hoverColor = "#a855f7"; // purple-500
+  const fillColor = "#14b8a6"; // teal-500
+  const hoverColor = "#2dd4bf"; // teal-400
 
   return (
     <ResponsiveContainer width="100%" height="100%">

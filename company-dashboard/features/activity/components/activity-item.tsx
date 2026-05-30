@@ -5,7 +5,7 @@ const actionConfig = {
   created: { icon: CheckCircle, color: "text-green-500 bg-green-500/10" },
   edited: { icon: Edit3, color: "text-blue-500 bg-blue-500/10" },
   deleted: { icon: Trash2, color: "text-red-500 bg-red-500/10" },
-  invited: { icon: Mail, color: "text-purple-500 bg-purple-500/10" },
+  invited: { icon: Mail, color: "text-teal-500 bg-teal-500/10" },
   role_changed: { icon: Shield, color: "text-orange-500 bg-orange-500/10" },
   published: { icon: Share, color: "text-indigo-500 bg-indigo-500/10" },
   archived: { icon: Eye, color: "text-gray-500 bg-gray-500/10" },

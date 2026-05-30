@@ -39,8 +39,8 @@ export default function SuperAdminDashboardPage() {
 
         <div className="overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900/50 p-6">
           <div className="flex items-center gap-x-4">
-            <div className="p-2 bg-purple-500/10 rounded-lg">
-              <Database className="h-6 w-6 text-purple-400" />
+            <div className="p-2 bg-teal-500/10 rounded-lg">
+              <Database className="h-6 w-6 text-teal-400" />
             </div>
             <h3 className="text-sm font-medium leading-6 text-neutral-400">Vector Index Size</h3>
           </div>
