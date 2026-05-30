@@ -39,6 +39,10 @@ This specification set transforms the approved **AI-Native Multi-Tenant Marketpl
 | 19 | Build Readiness Analysis | [19-build-readiness.md](file:///home/mohal665544/pr1/docs/specs/19-build-readiness.md) | **v3** | ~20KB | ✅ **Maximum Depth** |
 | 20 | Final Implementation Blueprint | [20-final-blueprint.md](file:///home/mohal665544/pr1/docs/specs/20-final-blueprint.md) | **v3** | ~22KB | ✅ **Maximum Depth** |
 | 21 | **Master Feature Inventory & Capability Map** | [21-master-feature-inventory.md](file:///home/mohal665544/pr1/docs/specs/21-master-feature-inventory.md) | **v1** | ~80KB | ✅ **Single Source of Truth** |
+| 22 | **Database Evolution Master Design** | [22-database-evolution-master-design.md](file:///home/mohal665544/pr1/docs/specs/22-database-evolution-master-design.md) | **v1** | ~60KB | ✅ **Master Design** |
+| 23 | **Engineering Constitution Part 1** | [23-STEP-AC-engineering-constitution.md](file:///home/mohal665544/pr1/docs/specs/23-STEP-AC-engineering-constitution.md) | **v1** | ~25KB | ✅ **Sealed** |
+| 24 | **Engineering Constitution Part 2** | [24-STEP-AC-part2-realtime-ai-frontend-authz.md](file:///home/mohal665544/pr1/docs/specs/24-STEP-AC-part2-realtime-ai-frontend-authz.md) | **v1** | ~25KB | ✅ **Sealed** |
+| 25 | **Engineering Constitution Part 3** | [25-STEP-AC-part3-integrations-readiness-handoff.md](file:///home/mohal665544/pr1/docs/specs/25-STEP-AC-part3-integrations-readiness-handoff.md) | **v1** | ~30KB | ✅ **Sealed** |
 
 ---
 
