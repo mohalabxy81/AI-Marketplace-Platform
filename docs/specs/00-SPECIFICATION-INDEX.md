@@ -44,6 +44,10 @@ This specification set transforms the approved **AI-Native Multi-Tenant Marketpl
 | 24 | **Engineering Constitution Part 2** | [24-STEP-AC-part2-realtime-ai-frontend-authz.md](file:///home/mohal665544/pr1/docs/specs/24-STEP-AC-part2-realtime-ai-frontend-authz.md) | **v1** | ~25KB | ✅ **Sealed** |
 | 25 | **Engineering Constitution Part 3** | [25-STEP-AC-part3-integrations-readiness-handoff.md](file:///home/mohal665544/pr1/docs/specs/25-STEP-AC-part3-integrations-readiness-handoff.md) | **v1** | ~30KB | ✅ **Sealed** |
 | 26 | **Backend Engineering Blueprint** | [26-STEP-AD-backend-blueprint.md](file:///home/mohal665544/pr1/docs/specs/26-STEP-AD-backend-blueprint.md) | **v1** | ~30KB | ✅ **Sealed** |
+| 27 | **Monetization & Growth Intelligence Architecture** | [27-STEP-05-monetization-architecture.md](file:///home/mohal665544/pr1/docs/specs/27-STEP-05-monetization-architecture.md) | **v1** | ~8KB | ✅ **Sealed** |
+| 28 | **Trust, Safety & Fraud Infrastructure Architecture** | [28-STEP-06-trust-safety-architecture.md](file:///home/mohal665544/pr1/docs/specs/28-STEP-06-trust-safety-architecture.md) | **v1** | ~7KB | ✅ **Sealed** |
+| 29 | **Frontend Application Architecture Blueprint** | [29-STEP-AE-frontend-architecture.md](file:///home/mohal665544/pr1/docs/specs/29-STEP-AE-frontend-architecture.md) | **v1** | ~8KB | ✅ **Sealed** |
+| 30 | **STEP AC — Complete Engineering Constitution** | [30-STEP-AC-COMPLETE-ENGINEERING-CONSTITUTION.md](file:///home/mohal665544/pr1/docs/specs/30-STEP-AC-COMPLETE-ENGINEERING-CONSTITUTION.md) | **v1** | ~45KB | ✅ **Sealed** |
 
 ---
 
@@ -121,3 +125,6 @@ The following specifications were expanded from shallow outlines to maximum-dept
 | **18 MVP Definition** | In/out scope tables | Hypothesis-driven versioning, detailed capability tables per domain, MVP launch criteria (9 criteria), V1/V2/V3 roadmap with acceptance criteria, feature flag strategy |
 | **19 Build Readiness** | Simple Go/No-Go | Architecture readiness matrix, infrastructure prerequisites, technology stack decisions, 15-item risk register (Critical/High/Medium), what to build now vs defer, build sequence recommendation |
 | **20 Final Blueprint** | Basic system diagram | Full ASCII system map, domain dependency graph, event dependency graph, API graph, critical path flows (feed + listing lifecycle), 4-phase scaling roadmap, operational roadmap, implementation contracts summary, 10 Architecture Laws |
+- [Spec 27: Monetization & Growth Intelligence Architecture](27-STEP-05-monetization-architecture.md)
+- [Spec 28: Trust, Safety & Fraud Infrastructure Architecture](28-STEP-06-trust-safety-architecture.md)
+- [Spec 29: Frontend Application Architecture](29-STEP-AE-frontend-architecture.md)
