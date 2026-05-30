@@ -48,6 +48,7 @@ This specification set transforms the approved **AI-Native Multi-Tenant Marketpl
 | 28 | **Trust, Safety & Fraud Infrastructure Architecture** | [28-STEP-06-trust-safety-architecture.md](file:///home/mohal665544/pr1/docs/specs/28-STEP-06-trust-safety-architecture.md) | **v1** | ~7KB | ✅ **Sealed** |
 | 29 | **Frontend Application Architecture Blueprint** | [29-STEP-AE-frontend-architecture.md](file:///home/mohal665544/pr1/docs/specs/29-STEP-AE-frontend-architecture.md) | **v1** | ~8KB | ✅ **Sealed** |
 | 30 | **STEP AC — Complete Engineering Constitution** | [30-STEP-AC-COMPLETE-ENGINEERING-CONSTITUTION.md](file:///home/mohal665544/pr1/docs/specs/30-STEP-AC-COMPLETE-ENGINEERING-CONSTITUTION.md) | **v1** | ~45KB | ✅ **Sealed** |
+| 31 | **STEP AD — Backend Engineering Blueprint** | [31-STEP-AD-BACKEND-ENGINEERING-BLUEPRINT.md](file:///home/mohal665544/pr1/docs/specs/31-STEP-AD-BACKEND-ENGINEERING-BLUEPRINT.md) | **v1** | ~89KB | ✅ **Sealed** |
 
 ---
 
