@@ -87,3 +87,27 @@ These systems are fully designed and integrated into the **[PLANNER.md](file:///
   - **Prioritization Matrix**: All features classified with business value, engineering cost, AI complexity, operational complexity, and risk
   - **Final Product Map**: Complete capability, feature, screen, journey, and ownership maps
 - **Outcome**: Spec 21 is the single source of truth product document. Product Managers can immediately begin PRD authoring. UX teams can begin wireframing. Engineering teams have the complete feature scope for implementation planning.
+
+### Task 12: Database Evolution Master Design (Spec 22)
+- **Description**: Generated the complete `docs/specs/22-database-evolution-master-design.md` — the enterprise-grade database evolution specification transforming the existing Supabase foundation into a production-scale AI Marketplace Operating System. Document contains 20 exhaustive sections including:
+  - **Master Data Architecture**: 15 functional domains across 3 tiers (Kernel, Marketplace, Cognitive) with full purpose, ownership, boundary, lifecycle, and scalability specifications
+  - **Domain Data Ownership Model**: Complete data ownership matrix (16 domains), write/read authority rules, anti-corruption boundaries, and 6 inviolable cross-domain access rules
+  - **Complete Entity Inventory**: All 118 tables across 16 schemas — with full field specifications, types (Aggregate Root, Entity, Value Object, Event Log, Reference, Materialized), relationships, and lifecycle rules for all 15 domains
+  - **Marketplace Data Model**: Listing lifecycle state machine, Read Model Architecture (materialized snapshots for Discovery separation), hybrid attribute system (fixed schema + category attributes + JSONB + AI-enriched), Quality Score formula, and Media Processing Pipeline data flow
+  - **Discovery & Recommendation Data Model**: Feed generation data architecture (7-step pipeline), storage strategy by data velocity (Redis vs PostgreSQL vs HNSW), retention strategy, recalculation triggers with latency targets
+  - **Search & Semantic Data Model**: pgvector strategy (dimensions, HNSW params, tenant filtering, extraction triggers), Embedding Lifecycle pipeline, Hybrid Retrieval Architecture with RRF formula, Search Explainability Data Model
+  - **AI Data Architecture**: Model lifecycle (A/B migration pattern), Prompt lifecycle (immutable versioning), Inference lifecycle (8-stage Token Guard → Cache → Provider → Log → Meter pipeline), AI Cost Tracking lifecycle
+  - **Billing & Monetization Data Model**: Full monetization lifecycle (5 revenue sources), Quota lifecycle with 3-threshold alerting, Revenue Attribution Model (5 attribution models), Ad Auction GSP model with formula
+  - **Trust & Moderation Data Model**: Trust lifecycle (score evolution), Moderation lifecycle (automated → human escalation pipeline), Evidence Retention Rules (7 data types, 7 retention periods)
+  - **Analytics Data Model**: Dual-layer architecture (PostgreSQL snapshots + ClickHouse OLAP), 6 ClickHouse table designs with Kafka topics, Funnel Analysis with windowFunnel query, Cohort Retention Model, Snapshot Generation Schedule
+  - **Realtime Data Model**: Complete channel topology (11 channel types), Event Propagation Path via WAL, 4-layer Isolation Strategy
+  - **Multi-Tenant Isolation Model**: 9-layer Isolation Matrix, Data Access Matrix (7 actor types), 5-step Tenant Context Injection Protocol
+  - **RLS Master Design**: 7 policy categories, Complete RLS Responsibility Matrix (27 tables × 4 policy types)
+  - **Indexing Strategy**: 60+ indexes across all domains (B-Tree, Partial, UNIQUE, GIN, GIN trigram, HNSW) with purpose documentation
+  - **Partitioning Strategy**: 23 partitioned tables with partition keys, intervals, max partitions, retention periods; Partition Management Strategy; 4-tier Archival Strategy (Hot → ClickHouse → S3 → Glacier)
+  - **Storage & Media Architecture**: 9 Supabase Storage buckets with owner domain, access policy, and lifecycle; Path convention; 7 Security Rules
+  - **Data Retention & Governance**: Retention Policy Matrix (11 categories), GDPR Readiness Model (7 rights implemented), Soft vs Hard Delete Strategy
+  - **Database Scalability Analysis**: Growth projections (Year 1-3 per domain), 10-item Scaling Risk Analysis with thresholds and mitigations, 6-item Extraction Indicator table
+  - **Database Evolution Roadmap**: 5 phases (AA.1–AA.5) each with duration, objectives, entities introduced, dependencies, migration risks, and validation strategy
+  - **Final Database Blueprint**: Complete ERD Domain Map (ASCII diagram with tier layering), Entity Count Summary (118 tables, 26 partitioned, 3 HNSW indexes), Complete Ownership Map, Lifecycle Map (8 trigger scenarios), Scaling Evolution Map (5 stages), and 10 Inviolable Database Laws
+- **Outcome**: Spec 22 is the complete database evolution document. Database architects can build ERDs, Supabase architects can design migrations, backend engineers can define repositories, AI engineers can plan embedding storage, analytics engineers can build pipelines, and security engineers can implement RLS — all without requiring additional database architecture discovery.
