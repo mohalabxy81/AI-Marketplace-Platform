@@ -22,7 +22,7 @@ export function CategoryBarChart({ data }: CategoryBarChartProps) {
     "#6366f1", // indigo-500
     "#10b981", // emerald-500
     "#34d399", // emerald-400
-    "#d946ef", // fuchsia-500
+    "#14b8a6", // teal-500
     "#ec4899", // pink-500
     "#f43f5e", // rose-500
     "#ef4444", // red-500

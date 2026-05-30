@@ -59,7 +59,7 @@ function CustomTooltip({ active, payload, label }: TooltipProps) {
       <div className="rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)]/95 backdrop-blur-sm p-3 shadow-lg">
         <p className="text-xs font-medium text-[var(--color-text-muted)] mb-1">{label}</p>
         <div className="flex items-center gap-2">
-          <div className="h-2 w-2 rounded-full bg-violet-500" />
+          <div className="h-2 w-2 rounded-full bg-teal-500" />
           <p className="text-sm font-medium text-[var(--color-text)]">
             {payload[0].value.toLocaleString()}{" "}
             <span className="text-xs text-[var(--color-text-muted)] font-normal">Interactions</span>

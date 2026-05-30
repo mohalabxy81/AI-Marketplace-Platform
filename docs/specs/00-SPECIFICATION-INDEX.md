@@ -43,6 +43,7 @@ This specification set transforms the approved **AI-Native Multi-Tenant Marketpl
 | 23 | **Engineering Constitution Part 1** | [23-STEP-AC-engineering-constitution.md](file:///home/mohal665544/pr1/docs/specs/23-STEP-AC-engineering-constitution.md) | **v1** | ~25KB | ✅ **Sealed** |
 | 24 | **Engineering Constitution Part 2** | [24-STEP-AC-part2-realtime-ai-frontend-authz.md](file:///home/mohal665544/pr1/docs/specs/24-STEP-AC-part2-realtime-ai-frontend-authz.md) | **v1** | ~25KB | ✅ **Sealed** |
 | 25 | **Engineering Constitution Part 3** | [25-STEP-AC-part3-integrations-readiness-handoff.md](file:///home/mohal665544/pr1/docs/specs/25-STEP-AC-part3-integrations-readiness-handoff.md) | **v1** | ~30KB | ✅ **Sealed** |
+| 26 | **Backend Engineering Blueprint** | [26-STEP-AD-backend-blueprint.md](file:///home/mohal665544/pr1/docs/specs/26-STEP-AD-backend-blueprint.md) | **v1** | ~30KB | ✅ **Sealed** |
 
 ---
 

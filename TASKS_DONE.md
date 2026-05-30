@@ -119,6 +119,15 @@ These systems are fully designed and integrated into the **[PLANNER.md](file:///
   - **Part 3 (Spec 25)**: Defined Integration Contracts (Supabase, Stripe, OpenAI, SendGrid, Twilio, ClickHouse), Observability Contracts (Logs, Metrics, Traces, SLOs, P0-P3 Alerting rules), Backend Implementation Readiness (15 Work Packages with acceptance criteria), Frontend Implementation Readiness (8 Work Packages with component targets), and the final STEP AD Handoff Package (Edge functions, Queue, Search index settings, CI/CD pipeline).
 - **Outcome**: The architecture is officially sealed. Engineering teams (Backend, Frontend, AI, Infrastructure) can now begin STEP AD (Implementation) immediately without any further architectural ambiguity.
 
+### Task 14: STEP AD — Backend Engineering Blueprint
+- **Description**: Generated the complete, production-grade Backend Engineering Blueprint (`26-STEP-AD-backend-blueprint.md`) as the canonical backend technical constitution.
+  - **Backend System Map**: Defined decomposition of all 21 system layers, including Auth, Tenant, RBAC, Listing, Search, AI, Analytics, Messaging, Quota, Billing, and Moderation.
+  - **Supabase Edge Functions Architecture**: Cataloged route specifications, authentication and authorization, inputs/outputs, rate limits, and error handling for all 18 functions.
+  - **Background Jobs & Queue Architecture**: Outlined crons, triggers, retries, and transactional outbox queues utilizing PGMQ.
+  - **Search & Vector DB**: Specified pgvector schema, indexing parameters (HNSW), dynamic hybrid BM25 + vector search rankings (RRF), and recommendation engine models.
+  - **Billing & Security Architecture**: Formalized Stripe webhook ledger handling, JWT validation, tenant isolation via PostgreSQL RLS, OTel observability standards, and AWS VPC topology.
+- **Outcome**: Handed off the complete, sealed backend architecture roadmap and implementation specification to unblock STEP AE (Frontend Application Architecture).
+
 ## 🏗️ Implementation Phase
 
 ### Epic 1: Platform Kernel & Database Infrastructure (Phase AA.1)
