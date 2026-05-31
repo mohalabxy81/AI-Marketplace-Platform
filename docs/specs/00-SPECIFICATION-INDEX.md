@@ -53,6 +53,7 @@ This specification set transforms the approved **AI-Native Multi-Tenant Marketpl
 | 33 | **STEP AF — AI Infrastructure Blueprint** | [33-STEP-AF-AI-INFRASTRUCTURE-BLUEPRINT.md](file:///home/mohal665544/pr1/docs/specs/33-STEP-AF-AI-INFRASTRUCTURE-BLUEPRINT.md) | **v1** | ~12KB | ✅ **Sealed** |
 | 35 | **STEP AH — Master Execution Plan** | [35-STEP-AH-MASTER-EXECUTION-PLAN.md](file:///home/mohal665544/pr1/docs/specs/35-STEP-AH-MASTER-EXECUTION-PLAN.md) | **v1** | ~12KB | ✅ **Sealed** |
 | 36 | **STEP AI — Code Generation Prompt Pack** | [36-STEP-AI-CODE-GENERATION-PROMPT-PACK.md](file:///home/mohal665544/pr1/docs/specs/36-STEP-AI-CODE-GENERATION-PROMPT-PACK.md) | **v1** | ~12KB | ✅ **Sealed** |
+| 37 | **STEP AJ — Complete Production Launch Package** | [37-STEP-AJ-PRODUCTION-LAUNCH-PACKAGE.md](file:///home/mohal665544/pr1/docs/specs/37-STEP-AJ-PRODUCTION-LAUNCH-PACKAGE.md) | **v1** | ~40KB | ✅ **Sealed** |
 
 ---
 
@@ -133,3 +134,4 @@ The following specifications were expanded from shallow outlines to maximum-dept
 - [Spec 27: Monetization & Growth Intelligence Architecture](27-STEP-05-monetization-architecture.md)
 - [Spec 28: Trust, Safety & Fraud Infrastructure Architecture](28-STEP-06-trust-safety-architecture.md)
 - [Spec 29: Frontend Application Architecture](29-STEP-AE-frontend-architecture.md)
+- [Spec 37: Complete Production Launch Package](37-STEP-AJ-PRODUCTION-LAUNCH-PACKAGE.md)
