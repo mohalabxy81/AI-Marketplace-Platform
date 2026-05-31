@@ -51,8 +51,8 @@ This specification set transforms the approved **AI-Native Multi-Tenant Marketpl
 | 31 | **STEP AD — Backend Engineering Blueprint** | [31-STEP-AD-BACKEND-ENGINEERING-BLUEPRINT.md](file:///home/mohal665544/pr1/docs/specs/31-STEP-AD-BACKEND-ENGINEERING-BLUEPRINT.md) | **v1** | ~89KB | ✅ **Sealed** |
 | 32 | **STEP AE — Frontend Engineering Blueprint** | [32-STEP-AE-FRONTEND-ENGINEERING-BLUEPRINT.md](file:///home/mohal665544/pr1/docs/specs/32-STEP-AE-FRONTEND-ENGINEERING-BLUEPRINT.md) | **v1** | ~24KB | ✅ **Sealed** |
 | 33 | **STEP AF — AI Infrastructure Blueprint** | [33-STEP-AF-AI-INFRASTRUCTURE-BLUEPRINT.md](file:///home/mohal665544/pr1/docs/specs/33-STEP-AF-AI-INFRASTRUCTURE-BLUEPRINT.md) | **v1** | ~12KB | ✅ **Sealed** |
-| 34 | **STEP AG — Production DevOps Platform Blueprint** | [34-STEP-AG-PRODUCTION-DEVOPS-PLATFORM.md](file:///home/mohal665544/pr1/docs/specs/34-STEP-AG-PRODUCTION-DEVOPS-PLATFORM.md) | **v1** | ~12KB | ✅ **Sealed** |
 | 35 | **STEP AH — Master Execution Plan** | [35-STEP-AH-MASTER-EXECUTION-PLAN.md](file:///home/mohal665544/pr1/docs/specs/35-STEP-AH-MASTER-EXECUTION-PLAN.md) | **v1** | ~12KB | ✅ **Sealed** |
+| 36 | **STEP AI — Code Generation Prompt Pack** | [36-STEP-AI-CODE-GENERATION-PROMPT-PACK.md](file:///home/mohal665544/pr1/docs/specs/36-STEP-AI-CODE-GENERATION-PROMPT-PACK.md) | **v1** | ~12KB | ✅ **Sealed** |
 
 ---
 
