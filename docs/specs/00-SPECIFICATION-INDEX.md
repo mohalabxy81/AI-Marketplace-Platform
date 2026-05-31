@@ -51,14 +51,15 @@ This specification set transforms the approved **AI-Native Multi-Tenant Marketpl
 | 31 | **STEP AD — Backend Engineering Blueprint** | [31-STEP-AD-BACKEND-ENGINEERING-BLUEPRINT.md](file:///home/mohal665544/pr1/docs/specs/31-STEP-AD-BACKEND-ENGINEERING-BLUEPRINT.md) | **v1** | ~89KB | ✅ **Sealed** |
 | 32 | **STEP AE — Frontend Engineering Blueprint** | [32-STEP-AE-FRONTEND-ENGINEERING-BLUEPRINT.md](file:///home/mohal665544/pr1/docs/specs/32-STEP-AE-FRONTEND-ENGINEERING-BLUEPRINT.md) | **v1** | ~24KB | ✅ **Sealed** |
 | 33 | **STEP AF — AI Infrastructure Blueprint** | [33-STEP-AF-AI-INFRASTRUCTURE-BLUEPRINT.md](file:///home/mohal665544/pr1/docs/specs/33-STEP-AF-AI-INFRASTRUCTURE-BLUEPRINT.md) | **v1** | ~12KB | ✅ **Sealed** |
+| 34 | **STEP AG — Production DevOps Platform Blueprint** | [34-STEP-AG-PRODUCTION-DEVOPS-PLATFORM.md](file:///home/mohal665544/pr1/docs/specs/34-STEP-AG-PRODUCTION-DEVOPS-PLATFORM.md) | **v1** | ~12KB | ✅ **Sealed** |
 | 35 | **STEP AH — Master Execution Plan** | [35-STEP-AH-MASTER-EXECUTION-PLAN.md](file:///home/mohal665544/pr1/docs/specs/35-STEP-AH-MASTER-EXECUTION-PLAN.md) | **v1** | ~12KB | ✅ **Sealed** |
 | 36 | **STEP AI — Code Generation Prompt Pack** | [36-STEP-AI-CODE-GENERATION-PROMPT-PACK.md](file:///home/mohal665544/pr1/docs/specs/36-STEP-AI-CODE-GENERATION-PROMPT-PACK.md) | **v1** | ~12KB | ✅ **Sealed** |
 | 37 | **STEP AJ — Complete Production Launch Package** | [37-STEP-AJ-PRODUCTION-LAUNCH-PACKAGE.md](file:///home/mohal665544/pr1/docs/specs/37-STEP-AJ-PRODUCTION-LAUNCH-PACKAGE.md) | **v1** | ~40KB | ✅ **Sealed** |
 | 38 | **STEP AK — Growth & Analytics Operating System** | [38-STEP-AK-GROWTH-ANALYTICS-OPERATING-SYSTEM.md](file:///home/mohal665544/pr1/docs/specs/38-STEP-AK-GROWTH-ANALYTICS-OPERATING-SYSTEM.md) | **v1** | ~42KB | ✅ **Sealed** |
 | 39 | **STEP AL — Marketplace Optimization System** | [39-STEP-AL-MARKETPLACE-OPTIMIZATION-SYSTEM.md](file:///home/mohal665544/pr1/docs/specs/39-STEP-AL-MARKETPLACE-OPTIMIZATION-SYSTEM.md) | **v1** | ~44KB | ✅ **Sealed** |
-| 40 | **STEP AM — AI Evolution Roadmap** | [AI_EVOLUTION_ROADMAP.md](file:///home/mohal665544/pr1/AI_EVOLUTION_ROADMAP.md) | **v1** | ~163KB | ✅ **Sealed** |
-| 41 | **STEP AN — Enterprise Expansion Blueprint** | [ENTERPRISE_EXPANSION_BLUEPRINT.md](file:///home/mohal665544/pr1/ENTERPRISE_EXPANSION_BLUEPRINT.md) | **v1** | ~134KB | ✅ **Sealed** |
-| 42 | **STEP AO — Global Scale Architecture** | [GLOBAL_SCALE_ARCHITECTURE.md](file:///home/mohal665544/pr1/GLOBAL_SCALE_ARCHITECTURE.md) | **v1** | ~42KB | ✅ **Sealed** |
+| 40 | **STEP AM — AI Evolution Roadmap** | [40-STEP-AM-AI-EVOLUTION-ROADMAP.md](file:///home/mohal665544/pr1/docs/specs/40-STEP-AM-AI-EVOLUTION-ROADMAP.md) | **v1** | ~163KB | ✅ **Sealed** |
+| 41 | **STEP AN — Enterprise Expansion Blueprint** | [41-STEP-AN-ENTERPRISE-EXPANSION-BLUEPRINT.md](file:///home/mohal665544/pr1/docs/specs/41-STEP-AN-ENTERPRISE-EXPANSION-BLUEPRINT.md) | **v1** | ~134KB | ✅ **Sealed** |
+| 42 | **STEP AO — Global Scale Architecture** | [42-STEP-AO-GLOBAL-SCALE-ARCHITECTURE.md](file:///home/mohal665544/pr1/docs/specs/42-STEP-AO-GLOBAL-SCALE-ARCHITECTURE.md) | **v1** | ~42KB | ✅ **Sealed** |
 
 ---
 
