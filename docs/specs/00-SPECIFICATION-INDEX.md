@@ -3,7 +3,7 @@
 > **Document Status**: Canonical Engineering Reference  
 > **Architecture Basis**: [PLANNER.md](file:///home/mohal665544/pr1/PLANNER.md) (The Platform Constitution)  
 > **Purpose**: Bridge between approved architecture and buildable engineering specifications  
-> **Version**: 3.1.0 — Data Platform & BI Layer Added  
+> **Version**: 3.2.0 — Security & Compliance Enterprise Package Added  
 > **Last Updated**: 2026-05-31  
 
 ---
@@ -61,6 +61,7 @@ This specification set transforms the approved **AI-Native Multi-Tenant Marketpl
 | 41 | **STEP AN — Enterprise Expansion Blueprint** | [41-STEP-AN-ENTERPRISE-EXPANSION-BLUEPRINT.md](file:///home/mohal665544/pr1/docs/specs/41-STEP-AN-ENTERPRISE-EXPANSION-BLUEPRINT.md) | **v1** | ~134KB | ✅ **Sealed** |
 | 42 | **STEP AO — Global Scale Architecture** | [42-STEP-AO-GLOBAL-SCALE-ARCHITECTURE.md](file:///home/mohal665544/pr1/docs/specs/42-STEP-AO-GLOBAL-SCALE-ARCHITECTURE.md) | **v1** | ~42KB | ✅ **Sealed** |
 | 43 | **STEP AP — Data Platform & BI Blueprint** | [43-STEP-AP-DATA-PLATFORM-BI-BLUEPRINT.md](file:///home/mohal665544/pr1/docs/specs/43-STEP-AP-DATA-PLATFORM-BI-BLUEPRINT.md) | **v1** | ~80KB | ✅ **Sealed** |
+| 44 | **STEP AQ — Security & Compliance Enterprise Package** | [44-STEP-AQ-SECURITY-COMPLIANCE-ENTERPRISE-PACKAGE.md](file:///home/mohal665544/pr1/docs/specs/44-STEP-AQ-SECURITY-COMPLIANCE-ENTERPRISE-PACKAGE.md) | **v1** | ~120KB | ✅ **Sealed** |
 
 ---
 
