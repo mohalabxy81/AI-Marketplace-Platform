@@ -807,6 +807,12 @@ The system starts as a modular monolith to simplify deployment and testing. As i
 *   **Operational Readiness**: Cross-region routing health checks.
 *   **Validation Requirements**: Verify data replicates successfully to all target regions.
 
+### Post-Launch Strategic Roadmaps
+
+Beyond the foundational engineering phases, the long-term strategic evolution of the platform is defined by two comprehensive master roadmaps:
+*   **[AI Evolution Roadmap](file:///home/mohal665544/pr1/AI_EVOLUTION_ROADMAP.md)**: A 36-month, 7-phase strategy (AI-Enhanced → AI-Native → AI Agent Platform → Autonomous Marketplace Ecosystem) detailing deep designs for agent tooling, memory, multi-agent catalog, and sovereign multi-tenant AI.
+*   **[Enterprise Expansion Blueprint](file:///home/mohal665544/pr1/ENTERPRISE_EXPANSION_BLUEPRINT.md)**: A complete 24-month plan to scale the platform into an enterprise-grade SaaS ecosystem, specifying SSO (SAML/OIDC), SCIM 2.0 provisioning, ABAC/PBAC authorization, SOC 2 / HIPAA compliance profiles, multi-region active-active tenancy, and the holding company model.
+
 ---
 
 ## # 17. MASTER PLATFORM PRINCIPLES

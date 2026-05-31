@@ -56,6 +56,8 @@ This specification set transforms the approved **AI-Native Multi-Tenant Marketpl
 | 37 | **STEP AJ — Complete Production Launch Package** | [37-STEP-AJ-PRODUCTION-LAUNCH-PACKAGE.md](file:///home/mohal665544/pr1/docs/specs/37-STEP-AJ-PRODUCTION-LAUNCH-PACKAGE.md) | **v1** | ~40KB | ✅ **Sealed** |
 | 38 | **STEP AK — Growth & Analytics Operating System** | [38-STEP-AK-GROWTH-ANALYTICS-OPERATING-SYSTEM.md](file:///home/mohal665544/pr1/docs/specs/38-STEP-AK-GROWTH-ANALYTICS-OPERATING-SYSTEM.md) | **v1** | ~42KB | ✅ **Sealed** |
 | 39 | **STEP AL — Marketplace Optimization System** | [39-STEP-AL-MARKETPLACE-OPTIMIZATION-SYSTEM.md](file:///home/mohal665544/pr1/docs/specs/39-STEP-AL-MARKETPLACE-OPTIMIZATION-SYSTEM.md) | **v1** | ~44KB | ✅ **Sealed** |
+| 40 | **STEP AM — AI Evolution Roadmap** | [AI_EVOLUTION_ROADMAP.md](file:///home/mohal665544/pr1/AI_EVOLUTION_ROADMAP.md) | **v1** | ~163KB | ✅ **Sealed** |
+| 41 | **STEP AN — Enterprise Expansion Blueprint** | [ENTERPRISE_EXPANSION_BLUEPRINT.md](file:///home/mohal665544/pr1/ENTERPRISE_EXPANSION_BLUEPRINT.md) | **v1** | ~134KB | ✅ **Sealed** |
 
 ---
 
@@ -139,3 +141,5 @@ The following specifications were expanded from shallow outlines to maximum-dept
 - [Spec 37: Complete Production Launch Package](37-STEP-AJ-PRODUCTION-LAUNCH-PACKAGE.md)
 - [Spec 38: Growth & Analytics Operating System](38-STEP-AK-GROWTH-ANALYTICS-OPERATING-SYSTEM.md)
 - [Spec 39: Marketplace Optimization System](39-STEP-AL-MARKETPLACE-OPTIMIZATION-SYSTEM.md)
+- [Spec 40: AI Evolution Roadmap](file:///home/mohal665544/pr1/AI_EVOLUTION_ROADMAP.md)
+- [Spec 41: Enterprise Expansion Blueprint](file:///home/mohal665544/pr1/ENTERPRISE_EXPANSION_BLUEPRINT.md)
