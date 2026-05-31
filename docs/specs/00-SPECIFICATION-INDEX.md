@@ -58,6 +58,7 @@ This specification set transforms the approved **AI-Native Multi-Tenant Marketpl
 | 39 | **STEP AL — Marketplace Optimization System** | [39-STEP-AL-MARKETPLACE-OPTIMIZATION-SYSTEM.md](file:///home/mohal665544/pr1/docs/specs/39-STEP-AL-MARKETPLACE-OPTIMIZATION-SYSTEM.md) | **v1** | ~44KB | ✅ **Sealed** |
 | 40 | **STEP AM — AI Evolution Roadmap** | [AI_EVOLUTION_ROADMAP.md](file:///home/mohal665544/pr1/AI_EVOLUTION_ROADMAP.md) | **v1** | ~163KB | ✅ **Sealed** |
 | 41 | **STEP AN — Enterprise Expansion Blueprint** | [ENTERPRISE_EXPANSION_BLUEPRINT.md](file:///home/mohal665544/pr1/ENTERPRISE_EXPANSION_BLUEPRINT.md) | **v1** | ~134KB | ✅ **Sealed** |
+| 42 | **STEP AO — Global Scale Architecture** | [GLOBAL_SCALE_ARCHITECTURE.md](file:///home/mohal665544/pr1/GLOBAL_SCALE_ARCHITECTURE.md) | **v1** | ~42KB | ✅ **Sealed** |
 
 ---
 
@@ -143,3 +144,4 @@ The following specifications were expanded from shallow outlines to maximum-dept
 - [Spec 39: Marketplace Optimization System](39-STEP-AL-MARKETPLACE-OPTIMIZATION-SYSTEM.md)
 - [Spec 40: AI Evolution Roadmap](file:///home/mohal665544/pr1/AI_EVOLUTION_ROADMAP.md)
 - [Spec 41: Enterprise Expansion Blueprint](file:///home/mohal665544/pr1/ENTERPRISE_EXPANSION_BLUEPRINT.md)
+- [Spec 42: Global Scale Architecture](file:///home/mohal665544/pr1/GLOBAL_SCALE_ARCHITECTURE.md)

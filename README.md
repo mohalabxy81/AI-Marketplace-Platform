@@ -20,6 +20,7 @@ This project consists of the following components:
 ├── PLANNER.md            # Canonical Master Platform Blueprint and constitution
 ├── AI_EVOLUTION_ROADMAP.md # Canonical 36-Month AI Evolution & Agent Strategy Roadmap
 ├── ENTERPRISE_EXPANSION_BLUEPRINT.md # Canonical 24-Month Enterprise SaaS Expansion Blueprint
+├── GLOBAL_SCALE_ARCHITECTURE.md # Canonical Planet-Scale Operating & Infrastructure Strategy
 ├── TASKS_DONE.md         # Living log tracking architectural accomplishments
 └── .agent/               # Antigravity Kit agent rules, tools, validation scripts, and skills
 ```
@@ -28,6 +29,7 @@ This project consists of the following components:
 * **[company-dashboard/](file:///home/mohal665544/pr1/company-dashboard)**: Built using Next.js, this provides the dashboard user interface for super admins and tenants to manage operations, view analytics, and adjust budgets.
 * **[AI_EVOLUTION_ROADMAP.md](file:///home/mohal665544/pr1/AI_EVOLUTION_ROADMAP.md)**: Establishes the 36-month strategy spanning 7 phases to mature the platform from an AI-enhanced application into an autonomous agent marketplace ecosystem.
 * **[ENTERPRISE_EXPANSION_BLUEPRINT.md](file:///home/mohal665544/pr1/ENTERPRISE_EXPANSION_BLUEPRINT.md)**: Outlines the 24-month roadmap and specifications (SSO, SCIM, RBAC/ABAC, SOC 2, HIPAA, Multi-region) to scale the platform for global enterprise clients.
+* **[GLOBAL_SCALE_ARCHITECTURE.md](file:///home/mohal665544/pr1/GLOBAL_SCALE_ARCHITECTURE.md)**: Outlines the planet-scale operational architecture, Anycast BGP routing, active-active PostgreSQL database sharding, and edge AI orchestration.
 * **[.agent/](file:///home/mohal665544/pr1/.agent)**: Custom workspace agents, workflows (like `/brainstorm` and `/ui-ux-pro-max`), and validation scripts used to enforce code standards.
 
 ---

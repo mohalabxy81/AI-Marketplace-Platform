@@ -809,9 +809,10 @@ The system starts as a modular monolith to simplify deployment and testing. As i
 
 ### Post-Launch Strategic Roadmaps
 
-Beyond the foundational engineering phases, the long-term strategic evolution of the platform is defined by two comprehensive master roadmaps:
+Beyond the foundational engineering phases, the long-term strategic evolution of the platform is defined by three comprehensive master blueprints:
 *   **[AI Evolution Roadmap](file:///home/mohal665544/pr1/AI_EVOLUTION_ROADMAP.md)**: A 36-month, 7-phase strategy (AI-Enhanced → AI-Native → AI Agent Platform → Autonomous Marketplace Ecosystem) detailing deep designs for agent tooling, memory, multi-agent catalog, and sovereign multi-tenant AI.
 *   **[Enterprise Expansion Blueprint](file:///home/mohal665544/pr1/ENTERPRISE_EXPANSION_BLUEPRINT.md)**: A complete 24-month plan to scale the platform into an enterprise-grade SaaS ecosystem, specifying SSO (SAML/OIDC), SCIM 2.0 provisioning, ABAC/PBAC authorization, SOC 2 / HIPAA compliance profiles, multi-region active-active tenancy, and the holding company model.
+*   **[Global Scale Architecture](file:///home/mohal665544/pr1/GLOBAL_SCALE_ARCHITECTURE.md)**: A planet-scale distributed operating infrastructure strategy supporting 10M+ users, 100M+ daily events, and 100K+ concurrent companies across multiple continents, defining multi-region active-active database sharding, Anycast BGP networking, decentralized GPU AI routing, and unified global compliance meshes.
 
 ---
 
