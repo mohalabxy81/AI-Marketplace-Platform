@@ -84,12 +84,12 @@ AN Enterprise Expansion Blueprint
 
 AO Global Scale Architecture
 
-AP Data Platform & BI Blueprint
-
-AQ Security & Compliance Package
-
-AR Investor & Board Package
-
+AP [Data Platform & BI Blueprint](file:///home/mohal665544/pr1/docs/specs/43-STEP-AP-DATA-PLATFORM-BI-BLUEPRINT.md)
+ 
+AQ [Security & Compliance Package](file:///home/mohal665544/pr1/docs/specs/44-STEP-AQ-SECURITY-COMPLIANCE-ENTERPRISE-PACKAGE.md)
+ 
+AR [Investor & Board Package](file:///home/mohal665544/pr1/docs/specs/45-STEP-AR-CAPITAL-GOVERNANCE-ENTERPRISE-PACKAGE.md)
+ 
 AS Autonomous Platform Roadmap
 
 باختصار شديد جدًا:

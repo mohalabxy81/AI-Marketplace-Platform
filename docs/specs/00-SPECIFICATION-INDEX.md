@@ -3,7 +3,7 @@
 > **Document Status**: Canonical Engineering Reference  
 > **Architecture Basis**: [PLANNER.md](file:///home/mohal665544/pr1/PLANNER.md) (The Platform Constitution)  
 > **Purpose**: Bridge between approved architecture and buildable engineering specifications  
-> **Version**: 3.2.0 — Security & Compliance Enterprise Package Added  
+> **Version**: 3.3.0 — Capital & Governance Enterprise Package Added  
 > **Last Updated**: 2026-05-31  
 
 ---
@@ -62,6 +62,7 @@ This specification set transforms the approved **AI-Native Multi-Tenant Marketpl
 | 42 | **STEP AO — Global Scale Architecture** | [42-STEP-AO-GLOBAL-SCALE-ARCHITECTURE.md](file:///home/mohal665544/pr1/docs/specs/42-STEP-AO-GLOBAL-SCALE-ARCHITECTURE.md) | **v1** | ~42KB | ✅ **Sealed** |
 | 43 | **STEP AP — Data Platform & BI Blueprint** | [43-STEP-AP-DATA-PLATFORM-BI-BLUEPRINT.md](file:///home/mohal665544/pr1/docs/specs/43-STEP-AP-DATA-PLATFORM-BI-BLUEPRINT.md) | **v1** | ~80KB | ✅ **Sealed** |
 | 44 | **STEP AQ — Security & Compliance Enterprise Package** | [44-STEP-AQ-SECURITY-COMPLIANCE-ENTERPRISE-PACKAGE.md](file:///home/mohal665544/pr1/docs/specs/44-STEP-AQ-SECURITY-COMPLIANCE-ENTERPRISE-PACKAGE.md) | **v1** | ~120KB | ✅ **Sealed** |
+| 45 | **STEP AR — Capital & Governance Enterprise Package** | [45-STEP-AR-CAPITAL-GOVERNANCE-ENTERPRISE-PACKAGE.md](file:///home/mohal665544/pr1/docs/specs/45-STEP-AR-CAPITAL-GOVERNANCE-ENTERPRISE-PACKAGE.md) | **v1** | ~35KB | ✅ **Sealed** |
 
 ---
 
@@ -148,3 +149,6 @@ The following specifications were expanded from shallow outlines to maximum-dept
 - [Spec 40: AI Evolution Roadmap](file:///home/mohal665544/pr1/AI_EVOLUTION_ROADMAP.md)
 - [Spec 41: Enterprise Expansion Blueprint](file:///home/mohal665544/pr1/ENTERPRISE_EXPANSION_BLUEPRINT.md)
 - [Spec 42: Global Scale Architecture](file:///home/mohal665544/pr1/GLOBAL_SCALE_ARCHITECTURE.md)
+- [Spec 43: Data Platform & BI Blueprint](43-STEP-AP-DATA-PLATFORM-BI-BLUEPRINT.md)
+- [Spec 44: Security & Compliance Enterprise Package](44-STEP-AQ-SECURITY-COMPLIANCE-ENTERPRISE-PACKAGE.md)
+- [Spec 45: Capital & Governance Enterprise Package](45-STEP-AR-CAPITAL-GOVERNANCE-ENTERPRISE-PACKAGE.md)
