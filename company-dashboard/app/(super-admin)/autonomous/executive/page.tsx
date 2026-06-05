@@ -26,14 +26,14 @@ export default function ExecutiveAutonomyPage() {
   return (
     <div style={{ minHeight: '100vh', background: '#0A0A0F', color: '#E8E8F0', fontFamily: 'Inter, system-ui, sans-serif', padding: '32px' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '32px' }}>
-        <div style={{ width: '48px', height: '48px', background: 'linear-gradient(135deg, #8B5CF6, #6D28D9)', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px' }}>👔</div>
+        <div style={{ width: '48px', height: '48px', background: 'linear-gradient(135deg, #0D9488, #115E59)', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px' }}>👔</div>
         <div>
           <h1 style={{ fontSize: '28px', fontWeight: 700, color: '#FFFFFF', margin: 0 }}>Executive Autonomy</h1>
           <p style={{ margin: 0, color: '#6B7280', fontSize: '14px' }}>AU.1 · CEO Copilot · CFO Copilot · Strategy Agent</p>
         </div>
         <div style={{ marginLeft: 'auto', display: 'flex', gap: '12px' }}>
           {[
-            { label: 'ARR', value: `$${(mockCompanyMetrics.arr_usd / 1000000).toFixed(1)}M`, color: '#8B5CF6' },
+            { label: 'ARR', value: `$${(mockCompanyMetrics.arr_usd / 1000000).toFixed(1)}M`, color: '#0D9488' },
             { label: 'Runway', value: `${mockCompanyMetrics.cash_runway_months}mo`, color: '#10B981' },
             { label: 'NDR', value: `${(mockCompanyMetrics.ndr * 100).toFixed(0)}%`, color: '#3B82F6' },
           ].map(m => (
@@ -57,7 +57,7 @@ export default function ExecutiveAutonomyPage() {
             style={{
               padding: '8px 20px', borderRadius: '8px', border: 'none', cursor: 'pointer',
               fontSize: '13px', fontWeight: 500, transition: 'all 0.2s',
-              background: activeTab === tab.id ? '#8B5CF6' : 'transparent',
+              background: activeTab === tab.id ? '#0D9488' : 'transparent',
               color: activeTab === tab.id ? '#0A0A0F' : '#9CA3AF',
             }}
           >
@@ -69,7 +69,7 @@ export default function ExecutiveAutonomyPage() {
       {activeTab === 'ceo' && (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px' }}>
           {[
-            { label: 'Total ARR', value: `$${(mockCompanyMetrics.arr_usd / 1000000).toFixed(2)}M`, color: '#8B5CF6', sub: `+${(mockCompanyMetrics.arr_growth_yoy * 100).toFixed(0)}% YoY` },
+            { label: 'Total ARR', value: `$${(mockCompanyMetrics.arr_usd / 1000000).toFixed(2)}M`, color: '#0D9488', sub: `+${(mockCompanyMetrics.arr_growth_yoy * 100).toFixed(0)}% YoY` },
             { label: 'Net Dollar Retention', value: `${(mockCompanyMetrics.ndr * 100).toFixed(0)}%`, color: '#10B981', sub: 'World-class: >120%' },
             { label: 'Gross Margin', value: `${(mockCompanyMetrics.gross_margin * 100).toFixed(0)}%`, color: '#3B82F6', sub: 'Target: 85%' },
             { label: 'Est. Enterprise Value', value: `$${(mockCompanyMetrics.enterprise_value_est / 1000000).toFixed(0)}M`, color: '#F59E0B', sub: 'Based on 14.4x ARR multiple' },
@@ -133,8 +133,8 @@ export default function ExecutiveAutonomyPage() {
                  <strong style={{ color: '#9CA3AF' }}>Strategic Logic:</strong> {move.logic}
                </div>
                <div style={{ display: 'flex', alignItems: 'center', gap: '16px', borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '16px' }}>
-                 <div style={{ fontSize: '12px', color: '#6B7280' }}>Agent Confidence: <span style={{ color: '#8B5CF6', fontWeight: 700 }}>{(move.confidence * 100).toFixed(0)}%</span></div>
-                 <button style={{ marginLeft: 'auto', padding: '10px 24px', background: 'rgba(139,92,246,0.1)', color: '#8B5CF6', border: '1px solid rgba(139,92,246,0.3)', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}>Review Data Room</button>
+                 <div style={{ fontSize: '12px', color: '#6B7280' }}>Agent Confidence: <span style={{ color: '#0D9488', fontWeight: 700 }}>{(move.confidence * 100).toFixed(0)}%</span></div>
+                 <button style={{ marginLeft: 'auto', padding: '10px 24px', background: 'rgba(13,148,136,0.1)', color: '#0D9488', border: '1px solid rgba(13,148,136,0.3)', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}>Review Data Room</button>
                </div>
              </div>
            ))}

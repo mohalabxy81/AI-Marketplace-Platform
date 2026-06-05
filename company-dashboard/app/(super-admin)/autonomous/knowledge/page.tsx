@@ -164,7 +164,7 @@ export default function KnowledgeAutonomyPage() {
             { label: 'Active Contexts', value: mockMemory.active_contexts.toString(), color: '#10B981' },
             { label: 'STM Items', value: mockMemory.stm_items.toString(), color: '#3B82F6', sub: 'Short-term memory' },
             { label: 'LTM Items', value: mockMemory.ltm_items.toString(), color: '#F59E0B', sub: 'Long-term memory (Vector)' },
-            { label: 'Memory Size', value: `${mockMemory.memory_size_mb} MB`, color: '#A78BFA' },
+            { label: 'Memory Size', value: `${mockMemory.memory_size_mb} MB`, color: '#14B8A6' },
           ].map(m => (
             <div key={m.label} style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '16px', padding: '20px' }}>
               <div style={{ fontSize: '28px', fontWeight: 800, color: m.color, marginBottom: '4px' }}>{m.value}</div>

@@ -48,14 +48,14 @@ export default function MarketplaceAutonomyPage() {
     <div style={{ minHeight: '100vh', background: '#0A0A0F', color: '#E8E8F0', fontFamily: 'Inter, system-ui, sans-serif', padding: '32px' }}>
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '32px' }}>
-        <div style={{ width: '48px', height: '48px', background: 'linear-gradient(135deg, #A78BFA, #7C3AED)', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px' }}>🏪</div>
+        <div style={{ width: '48px', height: '48px', background: 'linear-gradient(135deg, #14B8A6, #0F766E)', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px' }}>🏪</div>
         <div>
           <h1 style={{ fontSize: '28px', fontWeight: 700, color: '#FFFFFF', margin: 0 }}>Marketplace Autonomy</h1>
           <p style={{ margin: 0, color: '#6B7280', fontSize: '14px' }}>AU.4 · Listing · Discovery · Matching · Trust · Fraud Agents</p>
         </div>
         <div style={{ marginLeft: 'auto', display: 'flex', gap: '12px' }}>
           {[
-            { label: 'Listings', value: mockListing.total.toLocaleString(), color: '#A78BFA' },
+            { label: 'Listings', value: mockListing.total.toLocaleString(), color: '#14B8A6' },
             { label: 'Fraud Prevented', value: `$${mockFraud.fraud_prevented_usd.toLocaleString()}`, color: '#00E5A0' },
             { label: 'Avg Trust', value: `${(mockTrust.avg_trust_score * 100).toFixed(0)}%`, color: '#3B82F6' },
           ].map(m => (
@@ -82,7 +82,7 @@ export default function MarketplaceAutonomyPage() {
             style={{
               padding: '8px 20px', borderRadius: '8px', border: 'none', cursor: 'pointer',
               fontSize: '13px', fontWeight: 500, transition: 'all 0.2s',
-              background: activeTab === tab.id ? '#A78BFA' : 'transparent',
+              background: activeTab === tab.id ? '#14B8A6' : 'transparent',
               color: activeTab === tab.id ? '#0A0A0F' : '#9CA3AF',
             }}
           >
@@ -98,7 +98,7 @@ export default function MarketplaceAutonomyPage() {
               { label: 'Total Listings', value: mockListing.total.toLocaleString(), color: '#E8E8F0', sub: `${mockListing.published.toLocaleString()} published` },
               { label: 'Auto-Published Today', value: mockListing.auto_published_today.toString(), color: '#00E5A0', sub: 'Agent-approved' },
               { label: 'Avg Quality Score', value: `${(mockListing.quality_score_avg * 100).toFixed(0)}%`, color: '#3B82F6', sub: 'Target: 80%' },
-              { label: 'Embedding Coverage', value: `${(mockListing.embedding_coverage * 100).toFixed(0)}%`, color: '#A78BFA', sub: 'Vector indexed' },
+              { label: 'Embedding Coverage', value: `${(mockListing.embedding_coverage * 100).toFixed(0)}%`, color: '#14B8A6', sub: 'Vector indexed' },
             ].map(k => (
               <div key={k.label} style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '16px', padding: '20px' }}>
                 <div style={{ fontSize: '32px', fontWeight: 800, color: k.color, marginBottom: '4px' }}>{k.value}</div>
@@ -215,7 +215,7 @@ export default function MarketplaceAutonomyPage() {
           {[
             { label: 'Feed Requests (24h)', value: mockDiscovery.feed_requests_24h.toLocaleString(), icon: '📡', color: '#00E5A0' },
             { label: 'Avg Latency', value: `${mockDiscovery.avg_latency_ms}ms`, icon: '⚡', color: '#3B82F6' },
-            { label: 'Cache Hit Rate', value: `${(mockDiscovery.cache_hit_rate * 100).toFixed(0)}%`, icon: '💾', color: '#A78BFA' },
+            { label: 'Cache Hit Rate', value: `${(mockDiscovery.cache_hit_rate * 100).toFixed(0)}%`, icon: '💾', color: '#14B8A6' },
             { label: 'Vector Search p95', value: `${mockDiscovery.vector_search_p95_ms}ms`, icon: '🎯', color: '#F59E0B' },
             { label: 'Re-rank p95', value: `${mockDiscovery.rerank_p95_ms}ms`, icon: '🔄', color: '#E8E8F0' },
             { label: 'CTR Average', value: `${(mockDiscovery.ctr_avg * 100).toFixed(1)}%`, icon: '👆', color: '#00E5A0' },

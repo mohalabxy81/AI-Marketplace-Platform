@@ -201,7 +201,7 @@ export default function SupportAutonomyPage() {
             { label: 'Avg Listing Quality', value: '78%', color: '#3B82F6', icon: '⭐' },
             { label: 'Avg Response Time', value: '6.2h', color: '#F59E0B', icon: '⏱️' },
             { label: 'Low Performing', value: '48', color: '#EF4444', icon: '⚠️' },
-            { label: 'Outreach Queued', value: '48', color: '#A78BFA', icon: '📬' },
+            { label: 'Outreach Queued', value: '48', color: '#14B8A6', icon: '📬' },
           ].map(m => (
             <div key={m.label} style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '16px', padding: '24px', display: 'flex', alignItems: 'center', gap: '16px' }}>
               <span style={{ fontSize: '32px' }}>{m.icon}</span>

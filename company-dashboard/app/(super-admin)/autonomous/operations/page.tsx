@@ -98,7 +98,7 @@ export default function OperationsAutonomyPage() {
               { label: 'CPU Average', value: `${(mockHealth.cpu_avg * 100).toFixed(0)}%`, color: '#00E5A0', bar: mockHealth.cpu_avg },
               { label: 'Memory Average', value: `${(mockHealth.memory_avg * 100).toFixed(0)}%`, color: '#3B82F6', bar: mockHealth.memory_avg },
               { label: 'DB Connections', value: `${mockHealth.db_connections_active}/${mockHealth.db_connections_max}`, color: '#F59E0B', bar: mockHealth.db_connections_active / mockHealth.db_connections_max },
-              { label: 'Cache Hit Rate', value: `${(mockHealth.cache_hit_rate * 100).toFixed(0)}%`, color: '#A78BFA', bar: mockHealth.cache_hit_rate },
+              { label: 'Cache Hit Rate', value: `${(mockHealth.cache_hit_rate * 100).toFixed(0)}%`, color: '#14B8A6', bar: mockHealth.cache_hit_rate },
             ].map(v => (
               <div key={v.label} style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '16px', padding: '20px' }}>
                 <div style={{ fontSize: '28px', fontWeight: 800, color: v.color, marginBottom: '8px' }}>{v.value}</div>

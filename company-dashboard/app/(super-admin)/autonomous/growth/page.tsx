@@ -97,7 +97,7 @@ export default function GrowthAutonomyPage() {
           { label: 'Organic Traffic Growth MoM', value: `+${(mockGrowth.organic_traffic_growth_mom * 100).toFixed(1)}%`, icon: '📈', color: '#00E5A0' },
           { label: 'Trial Start Rate', value: `${(mockGrowth.trial_start_rate * 100).toFixed(1)}%`, icon: '🔬', color: '#F59E0B', note: 'Target: 4.1%' },
           { label: 'Trial → Paid', value: `${(mockGrowth.trial_to_paid * 100).toFixed(0)}%`, icon: '💳', color: '#3B82F6' },
-          { label: 'Viral Coefficient', value: mockGrowth.viral_coefficient.toFixed(2), icon: '🦠', color: '#A78BFA', note: 'Target: >0.4' },
+          { label: 'Viral Coefficient', value: mockGrowth.viral_coefficient.toFixed(2), icon: '🦠', color: '#14B8A6', note: 'Target: >0.4' },
         ].map(kpi => (
           <div key={kpi.label} style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '16px', padding: '20px' }}>
             <div style={{ fontSize: '24px', marginBottom: '8px' }}>{kpi.icon}</div>
@@ -186,7 +186,7 @@ export default function GrowthAutonomyPage() {
                 <div style={{ fontSize: '11px', color: '#6B7280' }}>Click Rate</div>
               </div>
               <div style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: '16px', fontWeight: 700, color: '#A78BFA' }}>{c.conversion_rate ? `${(c.conversion_rate * 100).toFixed(0)}%` : '—'}</div>
+                <div style={{ fontSize: '16px', fontWeight: 700, color: '#14B8A6' }}>{c.conversion_rate ? `${(c.conversion_rate * 100).toFixed(0)}%` : '—'}</div>
                 <div style={{ fontSize: '11px', color: '#6B7280' }}>Conversion</div>
               </div>
               <div style={{ textAlign: 'center' }}>
