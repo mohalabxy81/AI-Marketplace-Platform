@@ -2,8 +2,8 @@
 "use client";
 
 import * as React from "react";
-import { useAdminAuth } from "@/features/platform-core/hooks/use-admin-auth";
-import { useModerationQueueQuery, useActOnModerationMutation } from "@/features/moderation/hooks/use-moderation-queue";
+import { useAdminAuth } from "@/features/platform-core";
+import { useModerationQueueQuery, useActOnModerationMutation } from "@/features/moderation";
 import { useModerationQueueStore } from "@/store/super-admin/moderation-queue.store";
 import { 
   ShieldAlert, ShieldCheck, HelpCircle, 

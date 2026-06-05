@@ -1,9 +1,9 @@
 "use client";
 
 import { useListingPerformance, useCategoryBreakdown } from "@/hooks/use-analytics";
-import { ChartContainer } from "@/features/analytics/components/chart-container";
+import { ChartContainer } from "@/features/analytics";
 import dynamic from "next/dynamic";
-import { AnalyticsTable } from "@/features/analytics/components/analytics-table";
+import { AnalyticsTable } from "@/features/analytics";
 
 const CategoryBarChart = dynamic(
   () => import("@/features/analytics/charts/bar-chart").then((mod) => mod.CategoryBarChart),

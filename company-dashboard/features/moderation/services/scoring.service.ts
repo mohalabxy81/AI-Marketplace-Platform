@@ -1,15 +1,10 @@
 // features/moderation/services/scoring.service.ts
 import { supabase } from "@/lib/supabase/client";
 import { type FraudScore } from "@/types/super-admin/trust";
-import { logAdminAction } from "@/features/platform-core/services/platform-audit.service";
+import { logAdminAction } from "@/features/platform-core";
 
 export const scoringService = {
-  /**
-   * Fetch fraud scores, optionally filtering by minimum score threshold.
-   */
-  async getFraudScores(minScore: number = 0): Promise<FraudScore[]> {
-    const { data, error } = await supabase
-      .from("fraud_scores")
+  "fraud_scores")
       .select("*")
       .gte("score", minScore)
       .order("score", { ascending: false });

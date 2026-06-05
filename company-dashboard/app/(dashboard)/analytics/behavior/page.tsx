@@ -2,7 +2,7 @@
 
 import { MapPin } from "lucide-react";
 import { usePeakHours, useActionBreakdown } from "@/hooks/use-analytics";
-import { ChartContainer } from "@/features/analytics/components/chart-container";
+import { ChartContainer } from "@/features/analytics";
 import dynamic from "next/dynamic";
 
 const PeakHoursChart = dynamic(

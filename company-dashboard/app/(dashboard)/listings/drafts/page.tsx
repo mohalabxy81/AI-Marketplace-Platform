@@ -12,7 +12,7 @@ import {
   PageContent,
 } from "@/components/layout/page-container";
 import { Button } from "@/components/ui/button";
-import { ListingsTable } from "@/features/listings/components/listings-table";
+import { ListingsTable } from "@/features/listings";
 
 export default function DraftListingsPage() {
   const { data: allListings, isLoading } = useListings();

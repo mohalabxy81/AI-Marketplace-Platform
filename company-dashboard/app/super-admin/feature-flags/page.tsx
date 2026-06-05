@@ -2,10 +2,10 @@
 "use client";
 
 import * as React from "react";
-import { useAdminAuth } from "@/features/platform-core/hooks/use-admin-auth";
-import { useAuditLogsQuery } from "@/features/platform-core/hooks/use-audit-logs";
+import { useAdminAuth } from "@/features/platform-core";
+import { useAuditLogsQuery } from "@/features/platform-core";
 import { MOCK_FEATURE_FLAGS, MOCK_ROLLOUTS } from "@/lib/mock/super-admin-mock-data";
-import { logAdminAction } from "@/features/platform-core/services/platform-audit.service";
+import { logAdminAction } from "@/features/platform-core";
 import { 
   ToggleLeft, ToggleRight, Sliders, Plus, 
   Trash2, AlertTriangle, Play, HelpCircle, Check, Settings

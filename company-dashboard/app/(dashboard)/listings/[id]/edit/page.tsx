@@ -12,7 +12,7 @@ import {
   PageContent,
 } from "@/components/layout/page-container";
 import { Button } from "@/components/ui/button";
-import { ListingForm } from "@/features/listings/components/listing-form";
+import { ListingForm } from "@/features/listings";
 import type { ListingFormValues } from "@/features/listings/components/listing-form";
 
 export default function EditListingPage({ params }: { params: Promise<{ id: string }> }) {

@@ -2,8 +2,8 @@
 "use client";
 
 import * as React from "react";
-import { useAdminAuth } from "@/features/platform-core/hooks/use-admin-auth";
-import { logAdminAction } from "@/features/platform-core/services/platform-audit.service";
+import { useAdminAuth } from "@/features/platform-core";
+import { logAdminAction } from "@/features/platform-core";
 import { 
   Settings, Users, Bell, AlertTriangle, ShieldCheck, 
   Trash2, Plus, Terminal, RefreshCw

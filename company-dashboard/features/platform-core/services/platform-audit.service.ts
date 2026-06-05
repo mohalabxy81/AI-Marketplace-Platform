@@ -89,7 +89,7 @@ export async function getAuditLogs(
   if (error) throw new Error(`getAuditLogs: ${error.message}`);
 
   return {
-    logs: (data as any[]) ?? [],
+    logs: (data as PlatformAuditLog[]) ?? [],
     count: count ?? 0,
   };
 }
@@ -109,5 +109,5 @@ export async function getAuditLogsByTarget(
     .order("created_at", { ascending: false });
 
   if (error) throw new Error(`getAuditLogsByTarget: ${error.message}`);
-  return (data as any[]) ?? [];
+  return (data as PlatformAuditLog[]) ?? [];
 }

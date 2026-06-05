@@ -2,8 +2,8 @@
 "use client";
 
 import * as React from "react";
-import { useAdminAuth } from "@/features/platform-core/hooks/use-admin-auth";
-import { useAuditLogsQuery } from "@/features/platform-core/hooks/use-audit-logs";
+import { useAdminAuth } from "@/features/platform-core";
+import { useAuditLogsQuery } from "@/features/platform-core";
 import { 
   History, Search, ShieldCheck, Download, 
   ChevronDown, ChevronUp, AlertTriangle 

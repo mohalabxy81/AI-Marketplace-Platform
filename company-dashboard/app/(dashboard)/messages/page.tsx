@@ -1,5 +1,5 @@
-import { InboxSidebar } from "@/features/messages/components/inbox-sidebar";
-import { ConversationShell } from "@/features/messages/components/conversation-shell";
+import { InboxSidebar } from "@/features/messages";
+import { ConversationShell } from "@/features/messages";
 
 export default function MessagesPage() {
   return (

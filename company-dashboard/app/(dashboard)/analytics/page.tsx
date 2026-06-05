@@ -2,11 +2,11 @@
 
 import { Eye, MousePointerClick, Bookmark, Percent } from "lucide-react";
 import { useAnalyticsOverview, useInteractionTrend, useCategoryBreakdown, useActionBreakdown, useListingPerformance, useAiInsights, useMarkInsightRead } from "@/hooks/use-analytics";
-import { AnalyticsCard } from "@/features/analytics/components/analytics-card";
-import { ChartContainer } from "@/features/analytics/components/chart-container";
-import { AIRecommendationCard, AIInsightPlaceholder } from "@/features/analytics/components/ai-recommendation-card";
+import { AnalyticsCard } from "@/features/analytics";
+import { ChartContainer } from "@/features/analytics";
+import { AIRecommendationCard, AIInsightPlaceholder } from "@/features/analytics";
 import dynamic from "next/dynamic";
-import { AnalyticsTable } from "@/features/analytics/components/analytics-table";
+import { AnalyticsTable } from "@/features/analytics";
 
 const InteractionLineChart = dynamic(
   () => import("@/features/analytics/charts/line-chart").then((mod) => mod.InteractionLineChart),

@@ -2,10 +2,10 @@
 "use client";
 
 import * as React from "react";
-import { useAdminAuth } from "@/features/platform-core/hooks/use-admin-auth";
-import { useSubscriptionsQuery, useOverrideQuotaMutation } from "@/features/billing/hooks/use-billing-queries";
-import { logAdminAction } from "@/features/platform-core/services/platform-audit.service";
-import { useImpersonateUserMutation } from "@/features/support/hooks/use-support-tickets";
+import { useAdminAuth } from "@/features/platform-core";
+import { useSubscriptionsQuery, useOverrideQuotaMutation } from "@/features/billing";
+import { logAdminAction } from "@/features/platform-core";
+import { useImpersonateUserMutation } from "@/features/support";
 import { MOCK_TENANTS } from "@/lib/mock/super-admin-mock-data";
 import { 
   Search, ShieldAlert, Key, 

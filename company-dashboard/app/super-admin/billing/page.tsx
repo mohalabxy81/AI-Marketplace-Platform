@@ -2,9 +2,9 @@
 "use client";
 
 import * as React from "react";
-import { useAdminAuth } from "@/features/platform-core/hooks/use-admin-auth";
-import { useInvoicesQuery, useSubscriptionsQuery, useIssueRefundMutation } from "@/features/billing/hooks/use-billing-queries";
-import { useAnalyticsSnapshotsQuery } from "@/features/analytics/hooks/use-analytics-data";
+import { useAdminAuth } from "@/features/platform-core";
+import { useInvoicesQuery, useSubscriptionsQuery, useIssueRefundMutation } from "@/features/billing";
+import { useAnalyticsSnapshotsQuery } from "@/features/analytics";
 import { 
   CreditCard, DollarSign, RefreshCcw, 
   AlertTriangle, ArrowDownRight, ArrowUpRight, FileText

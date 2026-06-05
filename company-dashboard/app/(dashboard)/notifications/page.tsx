@@ -1,7 +1,7 @@
 "use client";
 
-import { useNotifications } from "@/features/notifications/hooks/use-notifications";
-import { NotificationCard } from "@/features/notifications/components/notification-card";
+import { useNotifications } from "@/features/notifications";
+import { NotificationCard } from "@/features/notifications";
 
 export default function NotificationsPage() {
   const { notifications, isLoading, error, markAsRead, clearAll, unreadCount } = useNotifications();

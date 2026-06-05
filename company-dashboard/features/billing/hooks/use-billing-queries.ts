@@ -2,7 +2,7 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { billingService, type SubscriptionFilters, type InvoiceFilters } from "../services/billing.service";
 import { quotaService } from "../services/quota.service";
-import { logAdminAction } from "@/features/platform-core/services/platform-audit.service";
+import { logAdminAction } from "@/features/platform-core";
 import { toast } from "sonner";
 import { MOCK_ENTITLEMENTS } from "@/lib/mock/super-admin-mock-data";
 import { supabase } from "@/lib/supabase/client";

@@ -2,9 +2,9 @@
 "use client";
 
 import * as React from "react";
-import { useAdminAuth } from "@/features/platform-core/hooks/use-admin-auth";
-import { useSupportTicketsQuery, useTicketMessagesQuery, useAddMessageMutation, useImpersonateUserMutation } from "@/features/support/hooks/use-support-tickets";
-import { logAdminAction } from "@/features/platform-core/services/platform-audit.service";
+import { useAdminAuth } from "@/features/platform-core";
+import { useSupportTicketsQuery, useTicketMessagesQuery, useAddMessageMutation, useImpersonateUserMutation } from "@/features/support";
+import { logAdminAction } from "@/features/platform-core";
 import { AlertTriangle, Key, CheckCircle, Send, Mail } from "lucide-react";
 import { toast } from "sonner";
 

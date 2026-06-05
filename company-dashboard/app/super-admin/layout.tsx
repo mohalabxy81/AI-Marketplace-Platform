@@ -2,10 +2,10 @@
 "use client";
 
 import * as React from "react";
-import { AdminSidebar } from "@/features/platform-core/components/admin-sidebar";
-import { AdminTopbar } from "@/features/platform-core/components/admin-topbar";
-import { CommandPalette } from "@/features/platform-core/components/command-palette";
-import { useAdminAuth } from "@/features/platform-core/hooks/use-admin-auth";
+import { AdminSidebar } from "@/features/platform-core";
+import { AdminTopbar } from "@/features/platform-core";
+import { CommandPalette } from "@/features/platform-core";
+import { useAdminAuth } from "@/features/platform-core";
 import { Terminal } from "lucide-react";
 
 export default function SuperAdminLayout({

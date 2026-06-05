@@ -2,8 +2,8 @@
 "use client";
 
 import * as React from "react";
-import { useAdminAuth } from "@/features/platform-core/hooks/use-admin-auth";
-import { useAIConfigQuery, useAIExperimentsQuery, useAIInferenceLogsQuery, useUpdateWeightsMutation, useTriggerReindexMutation } from "@/features/ai/hooks/use-ai-config";
+import { useAdminAuth } from "@/features/platform-core";
+import { useAIConfigQuery, useAIExperimentsQuery, useAIInferenceLogsQuery, useUpdateWeightsMutation, useTriggerReindexMutation } from "@/features/ai";
 import { 
   Cpu, Sliders, Play, Check, AlertTriangle, 
   HelpCircle, Sparkles, BarChart2, Activity, Terminal

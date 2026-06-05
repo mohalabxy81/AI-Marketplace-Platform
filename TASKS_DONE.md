@@ -265,3 +265,10 @@ These systems are fully designed and integrated into the **[PLANNER.md](file:///
   - Created 4 Super Admin dashboards utilizing Command Center Brutalism design: Executive Copilot Dashboard, Autonomy Metrics Dashboard, Revenue Agents Console, and Risk Forecast Dashboard, as well as a Board of Directors Dashboard.
 - **Outcome**: The AI-Driven Adaptive Marketplace Infrastructure is now equipped with the foundational services, database structures, and Executive intelligence dashboards to monitor, control, and observe autonomous agents across the enterprise.
 
+### Task 27: Phase AU.10 Validation & Security Hardening
+- **Description**: Finalized migration to Phase AU.10 validation by deploying rigorous security and performance patches directly to the production database via Supabase MCP.
+  - Resolved `auth_rls_initplan` performance warnings across both `public` and `agents` schemas by wrapping `auth.uid()` and `auth.jwt()` calls in subqueries `(select auth.uid())` to prevent row-by-row re-evaluation overhead.
+  - Eliminated `pg_graphql_anon_table_exposed` and `pg_graphql_authenticated_table_exposed` warnings by injecting `@graphql({"exclude": true})` directives on sensitive tables.
+  - Hardened core database functions (`get_current_company_id`, `is_platform_admin_user`, etc.) by setting `search_path = ''` to prevent mutable search path vulnerabilities.
+  - Removed unauthorized public bucket access policies for `branding_assets`.
+- **Outcome**: Successfully achieved a clean security bill-of-health and resolved initialization plan performance overheads, officially validating the successful migration to Phase AU.10 without breaking existing production schemas.

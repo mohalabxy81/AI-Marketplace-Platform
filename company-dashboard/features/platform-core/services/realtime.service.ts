@@ -14,14 +14,15 @@ export class RealtimeService {
    * Broadcasts a notification to a specific tenant's channel.
    * Clients subscribed to `tenant:{tenantId}:notifications` will receive it.
    */
-  private async handleNotification(event: any) {
-    if (!event.tenantId) return;
+  private async handleNotification(event: unknown) {
+    const typedEvent = event as { tenantId?: string; payload?: unknown };
+    if (!typedEvent.tenantId || !typedEvent.payload) return;
 
     const supabase = this.getClient();
-    await supabase.channel(`tenant:${event.tenantId}:notifications`).send({
+    await supabase.channel(`tenant:${typedEvent.tenantId}:notifications`).send({
       type: "broadcast",
       event: "new_notification",
-      payload: event.payload
+      payload: typedEvent.payload
     });
   }
 

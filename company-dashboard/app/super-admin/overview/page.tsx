@@ -2,14 +2,14 @@
 "use client";
 
 import * as React from "react";
-import { useAdminAuth } from "@/features/platform-core/hooks/use-admin-auth";
-import { useAnalyticsSnapshotsQuery, usePlanDistributionQuery } from "@/features/analytics/hooks/use-analytics-data";
-import { useAuditLogsQuery } from "@/features/platform-core/hooks/use-audit-logs";
-import { useSubscriptionsQuery, useInvoicesQuery, useOverrideQuotaMutation } from "@/features/billing/hooks/use-billing-queries";
-import { useSupportTicketsQuery } from "@/features/support/hooks/use-support-tickets";
-import { useModerationQueueQuery } from "@/features/moderation/hooks/use-moderation-queue";
-import { useTriggerReindexMutation } from "@/features/ai/hooks/use-ai-config";
-import { logAdminAction } from "@/features/platform-core/services/platform-audit.service";
+import { useAdminAuth } from "@/features/platform-core";
+import { useAnalyticsSnapshotsQuery, usePlanDistributionQuery } from "@/features/analytics";
+import { useAuditLogsQuery } from "@/features/platform-core";
+import { useSubscriptionsQuery, useInvoicesQuery, useOverrideQuotaMutation } from "@/features/billing";
+import { useSupportTicketsQuery } from "@/features/support";
+import { useModerationQueueQuery } from "@/features/moderation";
+import { useTriggerReindexMutation } from "@/features/ai";
+import { logAdminAction } from "@/features/platform-core";
 import { 
   Activity, ShieldAlert, Cpu, HardDrive, 
   Users, DollarSign, LifeBuoy, AlertTriangle, 

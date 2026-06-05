@@ -1,23 +1,10 @@
 // features/support/services/impersonation.service.ts
 import { supabase } from "@/lib/supabase/client";
 import { type ImpersonationSession } from "@/types/super-admin/support";
-import { logAdminAction } from "@/features/platform-core/services/platform-audit.service";
+import { logAdminAction } from "@/features/platform-core";
 
 export const impersonationService = {
-  /**
-   * Create a time-boxed impersonation session.
-   * NOTE: For full security, getting the actual JWT requires a server-side route
-   * with the service_role key to bypass normal auth, or an Edge Function.
-   * This handles the audit and session record part.
-   */
-  async createSession(
-    adminId: string,
-    targetUserId: string,
-    targetCompanyId: string,
-    justification: string
-  ): Promise<ImpersonationSession> {
-    const { data, error } = await supabase
-      .from("impersonation_sessions")
+  "impersonation_sessions")
       .insert({
         admin_id: adminId,
         target_user_id: targetUserId,

@@ -6,7 +6,7 @@ import { eventBus } from "./event-bus.service";
  * Phase 2: Redis (Upstash) for global distributed caching.
  */
 class CacheService {
-  private memoryCache = new Map<string, { value: any; expiry: number }>();
+  private memoryCache = new Map<string, { value: unknown; expiry: number }>();
 
   constructor() {
     // 1. Listen for listing events to invalidate feed/search caches
@@ -18,8 +18,8 @@ class CacheService {
   /**
    * Event-driven invalidation handler
    */
-  private async handleListingChange(event: any) {
-    const tenantId = event.tenantId;
+  private async handleListingChange(event: unknown) {
+    const tenantId = (event as { tenantId?: string }).tenantId;
     if (tenantId) {
       // Invalidate the feed cache for this tenant
       this.invalidatePattern(`feed:${tenantId}:*`);
@@ -45,7 +45,7 @@ class CacheService {
   /**
    * Set an item in the cache with a TTL (seconds).
    */
-  public async set(key: string, value: any, ttlSeconds: number = 300): Promise<void> {
+  public async set(key: string, value: unknown, ttlSeconds: number = 300): Promise<void> {
     const expiry = Date.now() + ttlSeconds * 1000;
     this.memoryCache.set(key, { value, expiry });
   }

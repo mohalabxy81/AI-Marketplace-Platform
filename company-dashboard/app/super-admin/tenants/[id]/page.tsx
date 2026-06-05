@@ -3,9 +3,9 @@
 
 import * as React from "react";
 import { useParams, useRouter } from "next/navigation";
-import { useAdminAuth } from "@/features/platform-core/hooks/use-admin-auth";
-import { useSubscriptionsQuery } from "@/features/billing/hooks/use-billing-queries";
-import { useImpersonateUserMutation } from "@/features/support/hooks/use-support-tickets";
+import { useAdminAuth } from "@/features/platform-core";
+import { useSubscriptionsQuery } from "@/features/billing";
+import { useImpersonateUserMutation } from "@/features/support";
 import { MOCK_TENANTS } from "@/lib/mock/super-admin-mock-data";
 import { ArrowLeft, Key, ShieldCheck, AlertTriangle } from "lucide-react";
 

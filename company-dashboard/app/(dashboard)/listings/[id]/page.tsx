@@ -20,7 +20,7 @@ import {
   PageContent,
 } from "@/components/layout/page-container";
 import { Button } from "@/components/ui/button";
-import { StatusBadge } from "@/features/listings/components/status-badge";
+import { StatusBadge } from "@/features/listings";
 import { Card, CardContent } from "@/components/ui/card";
 
 // Placeholder activity items — will be replaced by real data from audit log table

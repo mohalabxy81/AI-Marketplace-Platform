@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback, useLayoutEffect } from "react";
 import { createClient } from "@supabase/supabase-js";
 import type { RealtimeChannel } from "@supabase/supabase-js";
 
@@ -110,7 +110,9 @@ export function useRealtimeChannel<T = unknown>({
 }: UseRealtimeChannelOptions<T>) {
   // Stable ref so the subscription callback never captures a stale closure.
   const onMessageRef = useRef(onMessage);
-  onMessageRef.current = onMessage;
+  useLayoutEffect(() => {
+    onMessageRef.current = onMessage;
+  }, [onMessage]);
 
   const channelRef = useRef<RealtimeChannel | null>(null);
 

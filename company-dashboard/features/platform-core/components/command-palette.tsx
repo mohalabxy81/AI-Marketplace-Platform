@@ -11,7 +11,7 @@ interface CommandItem {
   title: string;
   category: string;
   href: string;
-  icon: React.ComponentType<any>;
+  icon: React.ComponentType<{ className?: string }>;
 }
 
 const PLATFORM_COMMANDS: CommandItem[] = [
@@ -50,10 +50,6 @@ export function CommandPalette() {
     cmd.title.toLowerCase().includes(search.toLowerCase()) ||
     cmd.category.toLowerCase().includes(search.toLowerCase())
   );
-
-  React.useEffect(() => {
-    setSelectedIndex(0);
-  }, [search]);
 
   const handleSelect = (href: string) => {
     router.push(href);
@@ -97,7 +93,10 @@ export function CommandPalette() {
             className="flex-1 bg-transparent text-xs text-zinc-200 outline-none placeholder:text-zinc-600 caret-amber-500"
             placeholder="TYPE_COMMAND_TO_NAVIGATE..."
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              setSelectedIndex(0);
+            }}
             autoFocus
           />
           <span className="text-[9px] border border-zinc-800 bg-zinc-950 px-1.5 py-0.5 text-zinc-500 font-bold">

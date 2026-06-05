@@ -48,8 +48,8 @@ export interface PlatformAuditLog {
   action: string;
   targetType: string;
   targetId?: string;
-  beforeState?: Record<string, any>;
-  afterState?: Record<string, any>;
+  beforeState?: Record<string, unknown>;
+  afterState?: Record<string, unknown>;
   ipAddress: string;
   userAgent: string;
   createdAt: string;

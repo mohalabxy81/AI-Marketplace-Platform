@@ -2,9 +2,9 @@
 "use client";
 
 import * as React from "react";
-import { useAdminAuth } from "@/features/platform-core/hooks/use-admin-auth";
-import { useAnalyticsSnapshotsQuery } from "@/features/analytics/hooks/use-analytics-data";
-import { useAIInferenceLogsQuery } from "@/features/ai/hooks/use-ai-config";
+import { useAdminAuth } from "@/features/platform-core";
+import { useAnalyticsSnapshotsQuery } from "@/features/analytics";
+import { useAIInferenceLogsQuery } from "@/features/ai";
 import { 
   BarChart3, Cpu, AlertTriangle, TrendingUp, Clock, Activity
 } from "lucide-react";

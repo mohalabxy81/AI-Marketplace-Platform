@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { subscriptionService } from "@/features/billing/services/subscription.service";
+import { subscriptionService } from "@/features/billing";
 
 // Mock stripe instance for architectural purposes
 const stripeMock = {

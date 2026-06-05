@@ -3,7 +3,7 @@ import { randomUUID } from "crypto";
 export interface ProfilerResult {
   operation: string;
   durationMs: number;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
   timestamp: string;
 }
 
@@ -15,7 +15,7 @@ export class ProfilerService {
    */
   public async profile<T>(
     operationName: string,
-    metadata: Record<string, any>,
+    metadata: Record<string, unknown>,
     fn: () => Promise<T>
   ): Promise<T> {
     const start = performance.now();

@@ -1,8 +1,8 @@
 import { createServerClient } from "@supabase/ssr";
 import { TenantContext } from "@/types/contracts/tenant.context";
 import { DbListing, InsertListing, ListingStatus } from "@/types/database";
-import { eventBus } from "@/features/platform-core/services/event-bus.service";
-import { auditService } from "@/features/platform-core/services/audit.service";
+import { eventBus } from "@/features/platform-core";
+import { auditService } from "@/features/platform-core";
 import { randomUUID } from "crypto";
 
 export class ListingService {

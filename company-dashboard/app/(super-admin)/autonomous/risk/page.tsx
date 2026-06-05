@@ -1,6 +1,6 @@
 import React from 'react';
 import { ShieldAlert, Activity, AlertOctagon, RefreshCw, BarChart2 } from 'lucide-react';
-import { RiskForecastService } from '@/features/autonomous/executive/risk-forecast.service';
+import { RiskForecastService } from '@/features/autonomous';
 
 export default async function RiskForecastDashboard() {
   const register = await RiskForecastService.getRiskRegister();

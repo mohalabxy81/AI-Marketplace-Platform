@@ -1,5 +1,5 @@
 import { createServerClient } from "@supabase/ssr";
-import { eventBus } from "@/features/platform-core/services/event-bus.service";
+import { eventBus } from "@/features/platform-core";
 import { quotaService } from "./quota.service";
 import { ListingStatusChangedEvent } from "@/types/contracts/events/marketplace.events";
 import { EmbeddingGeneratedEvent } from "@/types/contracts/events/ai.events";

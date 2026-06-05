@@ -1,8 +1,8 @@
 import { createServerClient } from "@supabase/ssr";
 import { TenantContext } from "@/types/contracts/tenant.context";
-import { recommendationService, CandidateListing, ScoredRecommendation } from "@/features/ai/services/recommendation.service";
-import { cacheService } from "@/features/platform-core/services/cache.service";
-import { profilerService } from "@/features/platform-core/services/profiler.service";
+import { recommendationService, CandidateListing, ScoredRecommendation } from "@/features/ai";
+import { cacheService } from "@/features/platform-core";
+import { profilerService } from "@/features/platform-core";
 
 export class FeedService {
   /**

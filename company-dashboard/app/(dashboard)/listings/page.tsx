@@ -13,9 +13,9 @@ import {
   PageContent,
 } from "@/components/layout/page-container";
 import { Button } from "@/components/ui/button";
-import { ListingsTable } from "@/features/listings/components/listings-table";
-import { ListingCard } from "@/features/listings/components/listing-card";
-import { ListingsFilters } from "@/features/listings/components/listings-filters";
+import { ListingsTable } from "@/features/listings";
+import { ListingCard } from "@/features/listings";
+import { ListingsFilters } from "@/features/listings";
 // import type { DbListing } from "@/types/database";
 
 type ViewMode = "table" | "grid";

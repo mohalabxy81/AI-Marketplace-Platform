@@ -1,4 +1,4 @@
-import { CustomizationShell } from "@/features/branding/components/customization-shell";
+import { CustomizationShell } from "@/features/branding";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

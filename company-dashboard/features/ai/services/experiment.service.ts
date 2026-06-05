@@ -1,5 +1,5 @@
 import { createServerClient } from "@supabase/ssr";
-import { eventBus } from "@/features/platform-core/services/event-bus.service";
+import { eventBus } from "@/features/platform-core";
 import { randomUUID } from "crypto";
 
 export interface ExperimentVariant {
