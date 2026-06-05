@@ -1,0 +1,12105 @@
+
+
+
+
+
+
+Claim offer
+from sources and files
+ c:\Users\mohal\.gemini\antigravity\scratch\project_source_code.txt
+c:\Users\mohal\.gemini\antigravity\scratch\chat_history_summary.txt
+import os
+import json
+
+project_dir = r"C:\Users\mohal\.gemini\antigravity\scratch\company-dashboard"
+output_project_file = r"C:\Users\mohal\.gemini\antigravity\scratch\project_source_code.txt"
+output_history_file = r"C:\Users\mohal\.gemini\antigravity\scratch\chat_history_summary.txt"
+transcript_path = r"C:\Users\mohal\.gemini\antigravity\brain\3df55bbd-79e2-49de-9124-091363f753d8\.system_generated\logs\transcript.jsonl"
+
+exclude_dirs = {
+    'node_modules', '.next', '.git', 'dist', 'build', '.system_generated'
+}
+exclude_files = {
+    'package-lock.json', '.DS_Store', 'project_source_code.txt', 'chat_history_summary.txt'
+}
+allowed_extensions = {
+    '.ts', '.tsx', '.css', '.json', '.sql', '.md', '.html', '.js', '.jsx'
+}
+
+# 1. Compile project source code
+print("Compiling project files...")
+compiled_count = 0
+with open(output_project_file, 'w', encoding='utf-8') as outfile:
+    outfile.write("========================================================================\n")
+    outfile.write("COMPANY DASHBOARD PROJECT SOURCE CODE EXPORT\n")
+    outfile.write("========================================================================\n\n")
+    
+    for root, dirs, files in os.walk(project_dir):
+        # Exclude directories
+        dirs[:] = [d for d in dirs if d not in exclude_dirs]
+        
+        for file in files:
+            if file in exclude_files:
+                continue
+                
+            _, ext = os.path.splitext(file)
+            if ext.lower() not in allowed_extensions:
+                continue
+                
+            full_path = os.path.join(root, file)
+            rel_path = os.path.relpath(full_path, project_dir)
+            
+            try:
+                with open(full_path, 'r', encoding='utf-8') as infile:
+                    content = infile.read()
+                
+                outfile.write(f"--- FILE START: {rel_path} ---\n")
+                outfile.write(content)
+                if not content.endswith('\n'):
+                    outfile.write('\n')
+                outfile.write(f"--- FILE END: {rel_path} ---\n\n")
+                compiled_count += 1
+            except Exception as e:
+                print(f"Skipping {rel_path}: {e}")
+
+print(f"Compiled {compiled_count} project files into {output_project_file}")
+
+# 2. Extract conversation context
+print("Extracting conversation context...")
+user_messages = []
+model_summaries = []
+
+if os.path.exists(transcript_path):
+    try:
+        with open(transcript_path, 'r', encoding='utf-8') as f:
+            for line in f:
+                if not line.strip():
+                    continue
+                try:
+                    step = json.loads(line)
+                    # Check for user input
+                    if step.get('type') == 'USER_INPUT' or step.get('source') == 'USER_EXPLICIT':
+                        content = step.get('content', '')
+                        if content:
+                            user_messages.append(content)
+                except Exception as je:
+                    pass
+    except Exception as e:
+        print(f"Error reading transcript: {e}")
+
+# If we couldn't get user messages or to add a structured overview, write a detailed summary
+with open(output_history_file, 'w', encoding='utf-8') as outfile:
+    outfile.write("========================================================================\n")
+    outfile.write("COMPANY DASHBOARD CHAT HISTORY & CONVERSATION TRANSFER SUMMARY\n")
+    outfile.write("========================================================================\n\n")
+    
+    outfile.write("## 1. PROJECT METADATA\n")
+    outfile.write("- **Project Name**: Company Dashboard\n")
+    outfile.write("- **Stack**: Next.js 15, React 19, TypeScript, TailwindCSS v4, Supabase (with @supabase/ssr), Zustand, TanStack Query, Recharts\n")
+    outfile.write("- **Project Path**: C:\\Users\\mohal\\.gemini\\antigravity\\scratch\\company-dashboard\n\n")
+    
+    outfile.write("## 2. RECENT ACHIEVEMENTS & COMPLETED TASKS\n")
+    outfile.write("- Established the Next.js project with config files (next.config.ts, tailwind.config.ts, etc.)\n")
+    outfile.write("- Formulated the Supabase client-side and server-side authentication layer (including session cookies, middleware routing, and auth state store)\n")
+    outfile.write("- Implemented a comprehensive UI layout system (Sidebar with desktop auto-collapse/mobile drawer, Header with theme toggling, PageContainer)\n")
+    outfile.write("- Designed and created all standard dashboards & screens with mock state data and premium glassmorphism styling:\n")
+    outfile.write("  - Home/Overview: stats overview, views & inquiries area chart, AI insights recommendation card, recent listings table\n")
+    outfile.write("  - Listings: search filters, status tabs, structured data tables\n")
+    outfile.write("  - Team Management: active/inactive roles, owner/admin invite features\n")
+    outfile.write("  - Analytics: full-screen area, bar, and pie charts with period selectors (7d/30d/90d/1y)\n")
+    outfile.write("  - Notifications: read/unread badge metrics and delete events\n")
+    outfile.write("  - Messages: dual-panel responsive live chat flow\n")
+    outfile.write("  - Customization: preset theme picker, font selector, and real-time mini-preview board\n")
+    outfile.write("  - Settings: company profiles, security toggles, billing thresholds, and notification configs\n")
+    outfile.write("- Hardened deployment assets: setup initial db SQL migrations with RLS policies, created DEPLOYMENT.md, ARCHITECTURE.md, and SECURITY.md.\n")
+    outfile.write("- Verified clean production build using npm run build which compiled without errors.\n\n")
+    
+    outfile.write("## 3. USER CONVERSATION HISTORY SUMMARY (CHRONOLOGICAL)\n")
+    if user_messages:
+        for idx, msg in enumerate(user_messages, 1):
+            outfile.write(f"### Message {idx}:\n")
+            outfile.write(f"{msg.strip()}\n\n")
+    else:
+        outfile.write("No explicit raw transcripts found, summary above outlines all steps.\n")
+
+print(f"Saved conversation history summary into {output_history_file}")
+
+and # Phase 2.2 Step 9 — Final QA + System Audit + Deployment Readiness
+
+## Overview
+
+The Company Dashboard project needs to be built as a complete, production-ready SaaS dashboard. Since no prior project files exist in the scratch directory, this plan covers a **full build** incorporating all previously-described phases (1–8) plus the final QA, audit, and deployment readiness layer.
+
+The result will be a launch-ready, enterprise-grade Multi-Tenant SaaS Company Dashboard.
+
+---
+
+## Target Directory
+C:\Users\mohal\.gemini\antigravity\scratch\company-dashboard
+
+---
+
+## Tech Stack
+- **Next.js 15** (App Router, TypeScript)
+- **TailwindCSS** + **shadcn/ui**
+- **Supabase** (Auth, DB, Realtime, Storage)
+- **Zustand** (global state)
+- **TanStack Query** (data fetching)
+- **Recharts** (analytics charts)
+- **Lucide Icons**
+- **next-themes** (dark/light mode)
+- **Zod** (validation)
+- **React Hook Form**
+
+---
+
+## Project Structure
+
+company-dashboard/
+├── app/
+│   ├── (auth)/
+│   │   ├── login/page.tsx
+│   │   └── layout.tsx
+│   ├── (dashboard)/
+│   │   ├── layout.tsx          ← main shell
+│   │   ├── page.tsx            ← overview/home
+│   │   ├── listings/
+│   │   ├── team/
+│   │   ├── analytics/
+│   │   ├── notifications/
+│   │   ├── messages/
+│   │   ├── customize/
+│   │   └── settings/
+│   ├── api/
+│   │   └── health/route.ts
+│   ├── globals.css
+│   └── layout.tsx
+├── components/
+│   ├── ui/                     ← shadcn primitives
+│   ├── layout/
+│   │   ├── Sidebar.tsx
+│   │   ├── Header.tsx
+│   │   ├── MobileSidebar.tsx
+│   │   └── PageContainer.tsx
+│   └── shared/
+│       ├── LoadingState.tsx
+│       ├── EmptyState.tsx
+│       ├── ErrorBoundary.tsx
+│       └── ConfirmDialog.tsx
+├── features/
+│   ├── auth/
+│   ├── listings/
+│   ├── team/
+│   ├── analytics/
+│   ├── notifications/
+│   ├── customize/
+│   └── settings/
+├── hooks/
+│   ├── useAuth.ts
+│   ├── useCompany.ts
+│   ├── usePermissions.ts
+│   └── useRealtime.ts
+├── store/
+│   ├── authStore.ts
+│   ├── companyStore.ts
+│   ├── uiStore.ts
+│   └── notificationStore.ts
+├── services/
+│   ├── supabase.ts
+│   ├── authService.ts
+│   ├── listingsService.ts
+│   ├── teamService.ts
+│   ├── analyticsService.ts
+│   └── storageService.ts
+├── types/
+│   ├── auth.ts
+│   ├── company.ts
+│   ├── listing.ts
+│   ├── team.ts
+│   └── analytics.ts
+├── lib/
+│   ├── utils.ts
+│   ├── permissions.ts
+│   ├── validators.ts
+│   └── constants.ts
+├── styles/
+│   └── themes.css
+├── middleware.ts
+├── next.config.ts
+├── tailwind.config.ts
+└── .env.local.example
+
+
+---
+
+## Proposed Changes
+
+### Phase 1 — Project Initialization & Config
+- Initialize Next.js 15 with TypeScript and Tailwind
+- Install all dependencies (shadcn/ui, supabase, zustand, tanstack query, recharts, etc.)
+- Configure next.config.ts, tailwind.config.ts
+- Set up middleware.ts for auth protection
+
+### Phase 2 — Type System & Core Services
+- types/ — all domain types (auth, company, listing, team, analytics)
+- services/supabase.ts — client + server clients
+- services/authService.ts — login, logout, session
+- lib/permissions.ts — RBAC permission matrix
+- lib/constants.ts — nav items, roles
+
+### Phase 3 — State Management (Zustand + React Query)
+- store/authStore.ts — user, session, company_id
+- store/companyStore.ts — company context, branding
+- store/uiStore.ts — sidebar, modals, theme
+- store/notificationStore.ts — realtime notifications
+- hooks/ — all custom hooks
+
+### Phase 4 — Authentication
+- Login page with email/password + magic link
+- Auth layout
+- middleware.ts route protection
+- Session persistence
+
+### Phase 5 — Dashboard Shell (Layout System)
+- Sidebar.tsx — role-aware, icon navigation
+- Header.tsx — company logo, user menu, theme toggle
+- MobileSidebar.tsx — drawer behavior
+- PageContainer.tsx — consistent page wrapper
+
+### Phase 6 — Feature Pages (Foundation)
+- Overview/Home dashboard with stats cards + charts
+- Listings page with table + filters
+- Team management page
+- Analytics page with charts
+- Notifications page
+- Messages page
+- UI Customization page
+- Settings page
+
+### Phase 7 — Reusable UI Component Library
+- All shared components (LoadingState, EmptyState, ErrorBoundary, ConfirmDialog)
+- Stats card, data table, badge variants
+- Chart components wrapping Recharts
+
+### Phase 8 — QA, Security & Deployment Readiness
+- middleware.ts hardening
+- .env.local.example with all required vars
+- DEPLOYMENT.md — deployment guide
+- ARCHITECTURE.md — technical docs
+- SECURITY.md — security checklist
+- Production checklist artifact
+- Health check API route
+
+---
+
+## Verification Plan
+
+### Build Verification
+bash
+npm run build
+npm run lint
+npm run type-check
+
+
+### Manual Verification
+- Login flow works
+- Protected routes redirect unauthenticated users
+- Sidebar renders role-aware items
+- All pages load without errors
+- Dark/light theme toggles
+- Mobile sidebar drawer opens/closes
+- Charts render with placeholder data
+# Walkthrough — Company Dashboard Build & Deployment Readiness
+
+This walkthrough documents the successfully completed foundational setup, pages, components, data flows, and build verification of the SaaS Company Dashboard application.
+
+---
+
+## 🛠️ Summary of Changes Made
+
+### 1. Root & Layout Shell Configuration
+- Created main layout structure app/layout.tsx wrapping the application in dark-mode and TanStack Query providers.
+- Styled global classes in app/globals.css using Tailwind v4 theme specifications.
+- Implemented middleware.ts to protect routing and auto-redirect unauthenticated users to /login.
+
+### 2. Feature Pages & Shell Layout
+- **Dashboard Layout Shell**: Configured standard header, responsive sidebar (with automatic desktop collapse and mobile drawer toggles), and avatar drop-down menu.
+- **Home/Overview Dashboard**: Designed responsive card grid showing mock views, listings, team metrics, live Recharts area chart, and custom AI-powered insights.
+- **Listings Page**: Completed status filters, query searches, and metadata tables showing features, price range, and agent references.
+- **Team Page**: Enabled status filters, role configurations, and permission checks.
+- **Analytics Page**: Constructed interactive charts (AreaChart, BarChart, PieChart) filtering data by time intervals (7 days, 30 days, 90 days, 1 year).
+- **Notifications Page**: Added options to filter read/unread messages and delete alerts.
+- **Messages Page**: Integrated dual-panel live chat view with list-based conversation indexing.
+- **UI Customization**: Built preset theme selection, font pickers, and dynamic mini-dashboard preview.
+- **Settings Page**: Provided tabs for company details, mock billing limits, security configurations, and notification preferences.
+
+### 3. Backend Foundation & Security
+- Developed supabase/migrations/001_initial_schema.sql incorporating automatic user profile syncing triggers, foreign keys, performance indexes, and strict Row Level Security (RLS) rules.
+- Hardened supabase instantiation clients (lib/supabase/client.ts & lib/supabase/server.ts) to handle missing build-time environment parameters gracefully without crashing static prerendering.
+- Added administrative guidelines: DEPLOYMENT.md, ARCHITECTURE.md, and SECURITY.md.
+
+---
+
+## 🧪 Build & Type-Check Verification
+
+We executed a full production build to ensure clean compilation:
+bash
+npm run build
+
+**Results**:
+- **TypeScript**: Compiled 100% successfully.
+- **PostCSS/Tailwind**: Transpiled clean assets.
+- **Prerendering**: All routes successfully static/dynamic generated:
+  - / (Redirect wrapper)
+  - /login (Auth access)
+  - /dashboard (Overview)
+  - /listings, /team, /analytics, /settings, /notifications, /messages, /customize
+  - /api/health (Runtime monitor)
+
+---
+
+## 🎯 Recommendations for the User
+
+1.  **Set Active Workspace**: If you haven't already, set the project folder as your active workspace:
+    C:\Users\mohal\.gemini\antigravity\scratch\company-dashboard
+2.  **Apply Supabase Migrations**: Run the database script [001_initial_schema.sql](file:///C:/Users/mohal/.gemini/antigravity/scratch/company-dashboard/supabase/migrations/001_initial_schema.sql) in your Supabase SQL Editor.
+3.  **Set Environment Variables**: Copy the template [.env.local.example](file:///C:/Users/mohal/.gemini/antigravity/scratch/company-dashboard/.env.local.example) to .env.local and add your project keys.
+continue build pr
+
+
+
+
+
+
+make prompts step by step عاوز من ضمن محتويات البرومبت تفاصيل و architectures and plan
+عاوز كل خطوة لوحدها نعمله مع بعض
+
+STEP 1 PROMPT — SUPER ADMIN PLATFORM FOUNDATION ARCHITECTURE
+You are a senior enterprise SaaS architect and full-stack platform engineer.
+
+You are continuing development of an EXISTING production-grade AI-powered Multi-Tenant SaaS Marketplace Platform.
+
+IMPORTANT:
+- DO NOT rebuild previous systems
+- DO NOT simplify architecture
+- DO NOT redesign existing modules
+- CONTINUE consistently with existing enterprise architecture
+
+====================================================
+CURRENT PROJECT STATUS
+====================================================
+
+Already Completed:
+✅ Client Marketplace App
+✅ Supabase Backend Foundation
+✅ Multi-tenant architecture
+✅ RBAC security
+✅ AI-ready infrastructure
+✅ Company Dashboard SaaS Platform
+✅ QA + Deployment Readiness
+
+Current Stack:
+- Next.js 15
+- React 19
+- TypeScript
+- TailwindCSS v4
+- shadcn/ui
+- Zustand
+- TanStack Query
+- Supabase
+- PostgreSQL
+- Realtime-ready architecture
+- Edge Functions
+- RLS security
+
+====================================================
+NEW TARGET
+====================================================
+
+Build:
+
+PHASE 3 — SUPER ADMIN PLATFORM
+
+This is NOT a normal dashboard.
+
+This is:
+- SaaS control plane
+- platform operations center
+- tenant management infrastructure
+- global analytics center
+- moderation center
+- AI control center
+- monetization management system
+
+Architecture level comparable directionally to:
+- Shopify Admin
+- Stripe Dashboard
+- Vercel Control Plane
+- HubSpot Admin
+- Monday.com Admin Systems
+
+====================================================
+STEP 1 GOAL
+====================================================
+
+Design COMPLETE architecture and engineering plan for the Super Admin Platform.
+
+DO NOT generate implementation code yet.
+
+ONLY generate:
+- architecture
+- folder structure
+- modules
+- services
+- state management
+- security model
+- RBAC model
+- database extensions
+- realtime architecture
+- AI control architecture
+- analytics architecture
+- monetization architecture
+- scaling strategy
+- deployment strategy
+
+====================================================
+REQUIRED OUTPUT FORMAT
+====================================================
+
+Generate EXTREMELY DETAILED enterprise-grade documentation containing:
+
+# 1. SUPER ADMIN PLATFORM OVERVIEW
+
+Explain:
+- purpose
+- business role
+- architecture philosophy
+- platform responsibilities
+
+# 2. COMPLETE FOLDER STRUCTURE
+
+Generate:
+app/(super-admin)/
+features/super-admin/
+services/super-admin/
+store/super-admin/
+hooks/super-admin/
+types/super-admin/
+
+Include:
+- every page
+- every service
+- every module
+- every component group
+- analytics structure
+- billing structure
+- moderation structure
+- AI control structure
+
+# 3. ROUTING ARCHITECTURE
+
+Design:
+- protected routes
+- role-based routes
+- nested layouts
+- admin route groups
+- middleware logic
+
+# 4. SUPER ADMIN RBAC MODEL
+
+Design:
+- SUPER_ADMIN role
+- PLATFORM_SUPPORT role
+- MODERATOR role
+- BILLING_ADMIN role
+- AI_OPERATOR role
+
+Explain:
+- permissions
+- scope isolation
+- security enforcement
+- access matrix
+
+# 5. DATABASE EXTENSIONS
+
+Design ALL required tables:
+- subscriptions
+- invoices
+- platform_metrics
+- moderation_logs
+- ai_configurations
+- global_notifications
+- support_tickets
+- system_audit_logs
+- feature_flags
+
+For EACH table include:
+- purpose
+- relationships
+- indexes
+- scaling considerations
+
+# 6. BILLING ARCHITECTURE
+
+Design:
+- Stripe integration architecture
+- subscription lifecycle
+- usage tracking
+- feature gating
+- plan enforcement
+- quota enforcement
+- billing webhooks
+
+Include:
+- FREE
+- PRO
+- ENTERPRISE plans
+
+# 7. PLATFORM ANALYTICS ARCHITECTURE
+
+Design:
+- global analytics aggregation
+- tenant analytics
+- AI analytics
+- usage metrics
+- growth metrics
+- realtime metrics
+- revenue analytics
+
+Include:
+- data pipelines
+- aggregation strategy
+- caching strategy
+
+# 8. MODERATION SYSTEM ARCHITECTURE
+
+Design:
+- reports system
+- abuse detection
+- listing moderation
+- moderation queues
+- escalation system
+- audit trails
+
+# 9. AI CONTROL CENTER ARCHITECTURE
+
+Design:
+- recommendation tuning
+- ranking configurations
+- AI logs
+- AI monitoring
+- AI performance analytics
+- embeddings management
+- semantic search configs
+
+# 10. REALTIME SYSTEM ARCHITECTURE
+
+Design:
+- realtime subscriptions
+- notification streams
+- live monitoring
+- activity feeds
+- websocket scaling
+
+# 11. STATE MANAGEMENT ARCHITECTURE
+
+Design:
+- Zustand stores
+- React Query structure
+- cache invalidation
+- optimistic updates
+- admin session handling
+
+# 12. SECURITY ARCHITECTURE
+
+Design:
+- elevated privilege handling
+- audit logging
+- impersonation protection
+- tenant boundary protection
+- admin action logging
+- attack mitigation
+
+# 13. DEPLOYMENT & SCALING STRATEGY
+
+Design:
+- Vercel deployment
+- Edge Functions
+- queue systems
+- workers
+- CDN strategy
+- caching layers
+- horizontal scaling
+
+# 14. MICROSERVICE EVOLUTION PLAN
+
+Explain future extraction strategy for:
+- AI services
+- billing services
+- analytics services
+- notification services
+
+# 15. DEVELOPMENT EXECUTION ROADMAP
+
+Generate detailed implementation order:
+
+Phase 3.1
+Phase 3.2
+Phase 3.3
+...
+
+Include:
+- dependencies
+- priorities
+- estimated complexity
+- risk areas
+
+====================================================
+IMPORTANT
+====================================================
+
+Output must be:
+- enterprise-grade
+- scalable
+- production-level
+- AI-ready
+- SaaS-ready
+- future-proof
+- modular
+- extensible
+
+DO NOT generate simplistic architecture.
+
+DO NOT generate beginner-level explanations.
+
+Think like:
+principal SaaS architect +
+platform engineer +
+AI systems architect.
+
+whats next ?
+دعنا نتكلم عنه قليلا لإخراج برومبت صح 
+
+ممتاز.
+قبل ما نكتب STEP 2 Prompt لازم نحدد:
+
+ما هو “أول شيء فعلي” هنبنيه داخل Super Admin؟
+
+وده قرار Architecture مهم جدًا لأن باقي النظام هيعتمد عليه.
+
+🧠 الوضع الحالي فعليًا
+أنت عندك الآن:
+
+✅ SaaS Tenant Layer
+وفيه:
+
+companies
+
+users
+
+listings
+
+dashboard
+
+RBAC
+
+analytics foundation
+
+AI-ready infra
+
+لكن لسه ناقص:
+
+❌ Platform Layer
+وده الفرق بين:
+
+SaaS App
+و
+
+SaaS Company
+
+🏗️ السؤال الحقيقي الآن
+هل Super Admin سيكون:
+
+OPTION A
+مجرد Dashboard إداري
+ولا
+
+OPTION B
+Platform Operating System
+وأنت مشروعك واضح جدًا إنه رايح لـ:
+
+✅ OPTION B
+وده يغير كل المعمارية القادمة.
+
+🔥 أهم قرار Architecture لازم نثبته
+هل الـ Super Admin:
+جزء من نفس الـ app
+أم
+
+Platform مستقل؟
+أنا أرشح بقوة:
+✅ Hybrid Monolith Architecture
+يعني:
+
+Next.js App
+├── Tenant Dashboard
+├── Super Admin
+├── Public Platform
+└── Future APIs
+لكن داخليًا:
+
+features/
+  tenant/
+  super-admin/
+  billing/
+  ai/
+  moderation/
+ليه ده القرار الصح الآن؟
+لأنك مازلت في مرحلة:
+
+Growth Architecture
+وليس:
+
+Hyper-Scale Microservices
+لو فصلت الآن هتدخل في:
+auth duplication
+
+deployment complexity
+
+shared UI complexity
+
+duplicated RBAC
+
+infra overhead
+
+بدون داعي حقيقي.
+
+🧠 إذًا Super Admin سيكون:
+✅ داخل نفس Next.js Project
+لكن:
+
+isolated architecture
+
+isolated layouts
+
+isolated stores
+
+isolated permissions
+
+isolated APIs
+
+الآن نحدد شكل الـ Platform Core
+وده أهم جزء.
+
+🏛️ أنا أرشح 7 Core Domains
+1️⃣ PLATFORM OPERATIONS
+ده قلب النظام.
+
+مسؤول عن:
+
+tenants
+
+users
+
+health
+
+infra
+
+flags
+
+audits
+
+2️⃣ BILLING DOMAIN
+مستقل architecture-wise.
+
+لأن مستقبلًا:
+
+Stripe
+
+invoices
+
+quotas
+
+usage
+
+enterprise contracts
+
+3️⃣ MODERATION DOMAIN
+مستقل بالكامل.
+
+ليه؟
+
+لأن:
+
+AI moderation
+
+reports
+
+abuse
+
+queues
+
+escalation
+
+كلها systems كبيرة.
+
+4️⃣ AI CONTROL DOMAIN
+وده أخطر جزء مستقبلًا.
+
+لأنه هيبقى:
+
+ranking tuning
+
+embeddings
+
+recommendation configs
+
+AI monitoring
+
+experimentation
+
+5️⃣ PLATFORM ANALYTICS DOMAIN
+وده غير tenant analytics.
+
+دي:
+
+platform-wide metrics
+
+SaaS KPIs
+
+retention
+
+churn
+
+AI performance
+
+6️⃣ SUPPORT DOMAIN
+مهم جدًا مستقبلًا.
+
+يشمل:
+
+tickets
+
+live support
+
+company support
+
+issue escalation
+
+7️⃣ FEATURE MANAGEMENT DOMAIN
+وده enterprise جدًا.
+
+Feature Flags System:
+
+beta features
+
+rollout system
+
+tenant-based features
+
+experimentation
+
+🔥 الآن أهم سؤال لازم نجاوبه قبل STEP 2 Prompt
+هل تريد النظام يكون:
+OPTION A
+SaaS فقط
+ولا
+
+OPTION B
+SaaS + Marketplace Infrastructure Platform
+الفرق ضخم جدًا.
+
+لو اخترنا OPTION A
+هيكون قريب من:
+
+HubSpot
+
+Monday
+
+Notion Teams
+
+لو اخترنا OPTION B
+هيكون أقرب إلى:
+
+Shopify
+
+Airbnb Platform
+
+Amazon Marketplace
+
+TikTok Commerce
+
+وأنا من وصفك أرشح بقوة:
+✅ OPTION B
+لأن عندك بالفعل:
+
+AI feeds
+
+recommendations
+
+listings
+
+interactions
+
+adaptive ranking
+
+marketplace infra
+
+وده يغيّر القادم بالكامل
+لأننا ساعتها هنحتاج:
+
+Marketplace Core Layer
+🧠 Marketplace Core Layer يشمل:
+Marketplace Governance
+listing policies
+
+category systems
+
+trust systems
+
+ranking governance
+
+Marketplace AI
+recommendation engine
+
+ranking engine
+
+fraud detection
+
+abuse detection
+
+Marketplace Discovery
+search infra
+
+semantic search
+
+embeddings
+
+personalization
+
+Marketplace Trust
+verification
+
+moderation
+
+reports
+
+fraud scoring
+
+🚨 وده مهم جدًا:
+لو ثبتنا إن المشروع:
+
+AI Marketplace SaaS Platform
+فمن الآن architecture بالكامل يتبني على:
+
+Platform Core
+   ↓
+Tenant Layer
+   ↓
+Marketplace Layer
+   ↓
+AI Layer
+وليس مجرد dashboard app.
+
+🎯 لذلك أرى أن الخطوة القادمة ليست coding بعد.
+بل:
+
+STEP 2 Prompt يجب أن يكون:
+“Platform Core Architecture Design”
+قبل حتى:
+
+companies module
+
+billing
+
+moderation
+
+البرومبت القادم يجب أن يحدد:
+🧠 CORE QUESTIONS
+1.
+هل المنصة Marketplace-first؟
+
+2.
+كيف يتم فصل:
+
+Platform Layer
+
+Tenant Layer
+
+Marketplace Layer
+
+3.
+كيف يعمل:
+
+global AI
+
+tenant AI
+
+tenant isolation
+
+4.
+كيف تعمل:
+
+feature flags
+
+monetization
+
+quotas
+
+platform permissions
+
+5.
+كيف سيتم تصميم:
+
+internal APIs
+
+service boundaries
+
+future microservices extraction
+
+🔥 رأيي الهندسي الحقيقي
+أنت الآن عند أخطر نقطة بالمشروع:
+
+Architectural Lock-in Point
+
+القرارات القادمة ستحدد:
+
+هل المنصة قابلة للتوسع فعلاً
+
+هل AI layer سيعيش بسهولة
+
+هل billing سيصبح nightmare
+
+هل marketplace scaling ممكن
+
+لذلك أقترح:
+STEP 2 Prompt
+لا يكون coding prompt.
+
+بل:
+
+“Platform Core Systems Architecture”
+وده هيبقى أهم prompt بالمشروع كله تقريبًا.
+
+
+
+
+
+
+
+Claim offer
+ok make it main 
+
+read all codes and files in GitHub and supabase  and that chat https://chatgpt.com/g/g-p-69f528d496c881918392fd338f5e4d32-real-state/shared/c/6a10ec9a-08fc-83ea-ba10-d30229f857ad?owner_user_id=user-9wFxU6JzQPWyGkEO21aawrM8
+then 
+continue chat that from https://chatgpt.com/g/g-p-69f528d496c881918392fd338f5e4d32-real-state/shared/c/6a10ec9a-08fc-83ea-ba10-d30229f857ad?owner_user_id=user-9wFxU6JzQPWyGkEO21aawrM8
+step x > step z > step AA 
+
+
+
+Called tool
+
+Looked for available tools
+
+
+Calling tool
+لا أستطيع تنفيذ طلبك بالكامل كما صغته لسببين:
+
+رابط المحادثة المشتركة الذي أرسلته لا أستطيع فتح محتواه مباشرة من خارج السياق الحالي.
+
+لا أملك وصولًا تلقائيًا إلى مشروع Supabase الخاص بك إلا إذا زودتني بالملفات أو منحتني وصولًا عبر الأدوات المتاحة.
+
+ما استطعت الوصول إليه الآن:
+
+مستودع AI-Marketplace-Platform على GitHub موجود بالفعل.
+
+لدي ملف المشروع الذي رفعته سابقًا وفيه الرؤية المعمارية وPhase 1. 
+
+
+لكي أتابع فعليًا من Step X → Step Z → Step AA كما طلبت، أحتاج أحد الخيارات التالية:
+
+الخيار الأسرع
+ارفع:
+
+Export أو PDF للمحادثة المشار إليها.
+
+SQL Schema الخاصة بـ Supabase.
+
+Structure المشروع الحالية (README أو tree).
+
+أو
+أعطني:
+
+رابط GitHub للمجلدات الرئيسية التي تريد مراجعتها.
+
+ملفات:
+
+schema.sql
+
+supabase/config.toml
+
+README.md
+
+أي ADR أو Architecture docs
+
+بعدها سأقوم بـ:
+
+مراجعة المشروع بالكامل.
+
+استخراج الوضع الحالي (Current State).
+
+تحديد آخر خطوة منجزة.
+
+إنتاج:
+
+Step X
+
+Step Y
+
+Step Z
+
+Step AA
+مع Architecture وDatabase وRoadmap تنفيذية متصلة بما تم بناؤه بالفعل، وليس افتراضات جديدة.
+
+
+
+
+
+
+
+Document
+دي كانت محادثة SaaS Al Marketplace Evolution بينى و بينك تكملة لمحادثة 
+برومبت بناء موقع عقارات
+عاوزك تكمل معايا
+
+
+
+Called tool
+
+أيوه إحنا كده دخلنا فعلًا في مرحلة الـ Platform Company مش مجرد تطبيق عقارات، وده معناه إن أي خطوة جاية لازم تتبني كـ:
+
+Marketplace Infrastructure
+
+AI Platform
+
+Multi-Tenant SaaS Operating System
+
+وده قرار ممتاز جدًا للمشروع.
+
+اللي وصلنا له حاليًا مهم جدًا لأنه ثبت:
+
+إن الـ Super Admin مش Dashboard عادي
+
+وإن المشروع Marketplace-first
+
+وإن الـ AI Layer جزء أساسي من الـ Core Architecture
+
+وإننا هنشتغل Hybrid Modular Monolith حاليًا مع قابلية استخراج Microservices مستقبلًا
+
+رأيي في الخطوة القادمة
+أنت صح 100% إننا لسه ما ندخلش implementation.
+
+الخطوة الصح الآن هي:
+
+STEP 2 — PLATFORM CORE SYSTEMS ARCHITECTURE
+وده أهم Prompt بعد STEP 1 تقريبًا.
+
+الهدف منه:
+تثبيت الـ “Operating Model” الحقيقي للمنصة قبل أي coding.
+
+لأن من اللحظة دي هنحدد:
+
+كيف كل Domain يتفاعل
+
+كيف الـ AI يتدخل
+
+كيف الـ Marketplace يشتغل
+
+كيف الـ Tenant Isolation يحصل
+
+كيف الـ Monetization يشتغل
+
+كيف الـ Platform APIs تتقسم
+
+وكيف هنمنع الـ architectural debt من البداية
+
+أهم نقطة لازم نثبتها قبل كتابة STEP 2
+أنا شايف إن مشروعك لازم يتعامل كالتالي:
+
+Platform Core
+│
+├── Marketplace Infrastructure
+├── AI Intelligence Layer
+├── Tenant SaaS Layer
+├── Monetization Layer
+├── Moderation & Trust Layer
+└── Analytics & Operations Layer
+وده مختلف جدًا عن:
+
+Dashboard App → Features
+أنت هنا تبني:
+
+Digital Marketplace Operating System
+القرارات المعمارية اللي لازم STEP 2 يثبتها
+1. Platform Boundaries
+لازم نحدد بوضوح:
+
+Platform Layer
+مسؤول عن:
+
+global governance
+
+billing
+
+AI orchestration
+
+moderation
+
+quotas
+
+feature flags
+
+Tenant Layer
+مسؤول عن:
+
+company operations
+
+listings
+
+users
+
+analytics
+
+branding
+
+Marketplace Layer
+مسؤول عن:
+
+discovery
+
+feeds
+
+ranking
+
+personalization
+
+interactions
+
+AI Layer
+مسؤول عن:
+
+embeddings
+
+recommendation
+
+ranking models
+
+AI experimentation
+
+semantic search
+
+2. Data Ownership Model
+دي نقطة خطيرة جدًا.
+
+لازم نحدد:
+
+من يملك الـ data؟
+
+هل الـ AI global أم tenant-aware؟
+
+هل embeddings shared أم isolated؟
+
+هل analytics centralized أم distributed؟
+
+3. AI Strategy
+وده أخطر جزء مستقبلًا.
+
+لازم STEP 2 يحدد:
+
+هل AI:
+recommendation-only؟
+
+أم orchestration layer؟
+
+أنا أرشح:
+
+AI Orchestration Layer
+يعني:
+
+feed ranking
+
+semantic search
+
+personalization
+
+fraud detection
+
+moderation assist
+
+monetization optimization
+
+4. Internal API Architecture
+لازم نمنع chaos بدري.
+
+أنا أرشح:
+
+BFF + Domain Services
+يعني:
+
+app/api/
+├── platform/
+├── tenant/
+├── ai/
+├── billing/
+├── moderation/
+└── analytics/
+5. Future Microservices Extraction
+ودي نقطة ممتاز إنك فكرت فيها بدري.
+
+الهدف:
+نبني Modular Monolith قابل للاستخراج لاحقًا.
+
+يعني كل Domain:
+
+isolated services
+
+isolated stores
+
+isolated schemas
+
+isolated contracts
+
+بحيث مستقبلاً:
+
+billing-service
+ai-service
+analytics-service
+notification-service
+يطلعوا بسهولة.
+
+6. Marketplace Engine
+وده أهم فرق بينك وبين SaaS Dashboard عادي.
+
+لازم STEP 2 يحدد:
+
+Discovery Engine
+ranking pipeline
+
+recommendation pipeline
+
+search pipeline
+
+trending pipeline
+
+Trust Engine
+verification
+
+fraud scoring
+
+abuse detection
+
+Interaction Engine
+saves
+
+views
+
+clicks
+
+dwell time
+
+engagement scoring
+
+7. Monetization Architecture
+مش مجرد Stripe.
+
+بل:
+
+quotas
+
+feature entitlements
+
+AI usage limits
+
+recommendation boosts
+
+sponsored listings
+
+premium discovery
+
+أنا أرشح إن STEP 2 يكون بالشكل التالي
+عنوانه:
+PLATFORM CORE SYSTEMS ARCHITECTURE
+وليس:
+
+coding
+
+dashboard implementation
+
+admin pages
+
+STEP 2 يجب أن يخرج:
+1.
+Platform Operating Model
+
+2.
+Domain Boundaries
+
+3.
+Marketplace Core Architecture
+
+4.
+AI Orchestration Architecture
+
+5.
+Tenant Isolation Model
+
+6.
+Internal APIs Strategy
+
+7.
+Event-Driven Architecture Strategy
+
+8.
+Data Flow Architecture
+
+9.
+Search + Recommendation Architecture
+
+10.
+Trust & Moderation Architecture
+
+11.
+Monetization Engine Architecture
+
+12.
+Feature Flag Architecture
+
+13.
+Realtime Event System
+
+14.
+Future Microservices Extraction Plan
+
+15.
+Scalability Constraints & Bottlenecks
+
+نقطة مهمة جدًا
+أنا شايف إن مشروعك بدأ يتحول من:
+
+Real Estate SaaS
+إلى:
+
+AI Adaptive Multi-Tenant Marketplace Infrastructure
+وده ممتاز جدًا.
+
+لأن ده يفتح مستقبلًا:
+
+B2B SaaS
+
+Marketplace-as-a-Service
+
+AI Discovery Platform
+
+White-label marketplace infra
+
+AI recommendation engine SaaS
+
+الترتيب اللي أرشحه للمراحل القادمة
+STEP 1
+✅ Super Admin Architecture
+
+STEP 2
+🔥 Platform Core Systems Architecture
+
+STEP 3
+Marketplace Engine Architecture
+
+STEP 4
+AI Orchestration & Intelligence Layer
+
+STEP 5
+Monetization + Billing Infrastructure
+
+STEP 6
+Trust + Moderation + Fraud Systems
+
+STEP 7
+Implementation Planning & Execution
+
+STEP 8
+Actual Engineering Build Phases
+
+الخطوة الجاية المثالية الآن:
+إننا نصيغ مع بعض Prompt عبقري لـ:
+
+STEP 2 — PLATFORM CORE SYSTEMS ARCHITECTURE
+بحيث يثبت كل الـ foundational decisions قبل أي implementation حقيقي.
+
+
+
+
+Called tool
+
+STEP 1 PROMPT — SUPER ADMIN PLATFORM FOUNDATION ARCHITECTURE
+You are a principal SaaS architect, AI systems architect, and enterprise platform engineer.
+
+You are continuing development of an EXISTING enterprise-grade AI-powered Multi-Tenant Marketplace SaaS Platform.
+
+IMPORTANT:
+- DO NOT rebuild existing systems
+- DO NOT simplify architecture
+- DO NOT redesign previous modules
+- DO NOT generate implementation code
+- CONTINUE consistently with the existing architecture and product direction
+
+====================================================
+CURRENT PLATFORM STATUS
+====================================================
+
+The platform already includes:
+
+✅ AI-Driven Marketplace Client Application
+✅ Multi-Tenant SaaS Architecture
+✅ Company Dashboard SaaS Layer
+✅ Supabase Backend Foundation
+✅ PostgreSQL + RLS Security
+✅ Authentication + RBAC
+✅ AI-ready infrastructure
+✅ Realtime-ready architecture
+✅ Analytics foundation
+✅ Responsive dashboard system
+✅ Deployment & QA foundation
+
+====================================================
+CURRENT TECH STACK
+====================================================
+
+Frontend:
+- Next.js 15 (App Router)
+- React 19
+- TypeScript
+- TailwindCSS v4
+- shadcn/ui
+- Zustand
+- TanStack Query
+- Recharts
+- Framer Motion
+
+Backend:
+- Supabase
+- PostgreSQL
+- Supabase Realtime
+- Edge Functions
+- Storage Buckets
+- RLS Policies
+
+Architecture:
+- Hybrid Modular Monolith
+- Domain-driven modular structure
+- AI-ready event architecture
+- Multi-tenant SaaS model
+
+====================================================
+PRODUCT DIRECTION (CRITICAL)
+====================================================
+
+This is NOT a normal SaaS dashboard.
+
+The system is evolving into:
+
+🚀 AI-Driven Adaptive Marketplace Infrastructure Platform
+
+The platform combines:
+
+1. Marketplace Infrastructure
+2. Multi-Tenant SaaS Infrastructure
+3. AI Personalization Infrastructure
+4. Monetization Infrastructure
+5. Moderation & Trust Infrastructure
+6. Analytics Infrastructure
+
+The architecture direction is closer to:
+- Shopify Platform
+- Airbnb Infrastructure
+- TikTok Commerce Systems
+- Stripe Control Plane
+- Vercel Platform Architecture
+
+NOT:
+- basic admin dashboards
+- CRUD SaaS systems
+- simple company portals
+
+====================================================
+ARCHITECTURE DECISION (LOCKED)
+====================================================
+
+The project uses:
+
+✅ Hybrid Modular Monolith Architecture
+
+Inside ONE Next.js platform:
+
+app/
+├── public-platform/
+├── tenant-platform/
+├── super-admin/
+└── future-api-layer/
+
+Internal modular boundaries:
+
+features/
+├── marketplace/
+├── tenant/
+├── ai/
+├── billing/
+├── moderation/
+├── analytics/
+├── support/
+└── platform-core/
+
+IMPORTANT:
+The system MUST remain:
+- modular
+- domain-isolated
+- extraction-ready for future microservices
+
+====================================================
+STEP 1 GOAL
+====================================================
+
+Design the COMPLETE FOUNDATION ARCHITECTURE
+for:
+
+🔥 SUPER ADMIN PLATFORM
+
+This is NOT a UI task.
+
+This is:
+- platform operating system design
+- control plane architecture
+- platform governance infrastructure
+- AI operations architecture
+- monetization management architecture
+- trust & moderation architecture
+
+DO NOT generate implementation code.
+
+ONLY generate:
+- architecture
+- engineering plans
+- domain structures
+- data flow designs
+- module boundaries
+- service structures
+- platform operations strategy
+- scaling strategy
+
+====================================================
+REQUIRED OUTPUT FORMAT
+====================================================
+
+Generate EXTREMELY detailed enterprise-grade architecture documentation.
+
+====================================================
+# 1. SUPER ADMIN PLATFORM OVERVIEW
+====================================================
+
+Explain in detail:
+
+- platform mission
+- business responsibilities
+- operational responsibilities
+- governance responsibilities
+- AI responsibilities
+- monetization responsibilities
+- tenant lifecycle management
+- moderation responsibilities
+
+Explain WHY this platform exists architecturally.
+
+Define:
+- relationship between marketplace layer and admin layer
+- relationship between tenant layer and platform layer
+- separation of concerns
+
+====================================================
+# 2. PLATFORM ARCHITECTURE PHILOSOPHY
+====================================================
+
+Explain the architectural philosophy:
+
+- Hybrid Modular Monolith
+- Domain-driven organization
+- Future extraction readiness
+- Event-driven evolution
+- AI-first infrastructure
+- Multi-tenant isolation
+- Platform governance model
+
+Explain:
+- why microservices are NOT used yet
+- when future extraction should happen
+- how modular isolation is maintained
+
+====================================================
+# 3. COMPLETE FOLDER STRUCTURE
+====================================================
+
+Generate COMPLETE enterprise-grade folder architecture.
+
+Include:
+
+app/
+features/
+services/
+hooks/
+store/
+types/
+lib/
+components/
+
+Generate ALL super admin related structures.
+
+Include:
+
+app/(super-admin)/
+features/super-admin/
+services/platform/
+services/ai/
+services/moderation/
+services/billing/
+services/analytics/
+services/support/
+
+Include EVERY:
+- page
+- layout
+- dashboard
+- module
+- provider
+- service
+- analytics module
+- moderation module
+- billing module
+- AI module
+- support module
+- realtime module
+- feature flags module
+
+The structure must be:
+- scalable
+- future-proof
+- extraction-ready
+
+====================================================
+# 4. SUPER ADMIN ROUTING ARCHITECTURE
+====================================================
+
+Design:
+
+- protected route system
+- nested admin layouts
+- role-aware route guards
+- middleware strategy
+- admin access enforcement
+- security routing flows
+- audit-aware navigation
+
+Include:
+- platform route groups
+- AI management routes
+- billing routes
+- moderation routes
+- support routes
+- analytics routes
+
+====================================================
+# 5. SUPER ADMIN RBAC MODEL
+====================================================
+
+Design a COMPLETE enterprise RBAC system.
+
+Include roles:
+
+- SUPER_ADMIN
+- PLATFORM_ADMIN
+- PLATFORM_SUPPORT
+- MODERATOR
+- BILLING_ADMIN
+- ANALYTICS_ADMIN
+- AI_OPERATOR
+- TRUST_AND_SAFETY
+- READONLY_AUDITOR
+
+For EACH role explain:
+
+- permissions
+- scope
+- access boundaries
+- restricted actions
+- escalation permissions
+- tenant visibility rules
+
+Generate:
+- access matrix
+- scope isolation strategy
+- privilege escalation protection
+- audit logging strategy
+
+====================================================
+# 6. PLATFORM DOMAIN ARCHITECTURE
+====================================================
+
+Design ALL platform domains.
+
+Include:
+
+1. PLATFORM OPERATIONS DOMAIN
+2. BILLING DOMAIN
+3. MODERATION DOMAIN
+4. AI CONTROL DOMAIN
+5. ANALYTICS DOMAIN
+6. SUPPORT DOMAIN
+7. FEATURE MANAGEMENT DOMAIN
+8. TRUST & SAFETY DOMAIN
+
+For EACH domain explain:
+
+- responsibilities
+- internal modules
+- services
+- data ownership
+- events
+- future extraction possibility
+- APIs
+- scaling concerns
+
+====================================================
+# 7. DATABASE EXTENSIONS ARCHITECTURE
+====================================================
+
+Design ALL required database extensions.
+
+Include tables such as:
+
+- platform_admins
+- subscriptions
+- invoices
+- billing_events
+- usage_tracking
+- quota_usage
+- moderation_reports
+- moderation_actions
+- moderation_queues
+- ai_configurations
+- ai_experiments
+- ai_logs
+- semantic_embeddings
+- support_tickets
+- support_messages
+- platform_metrics
+- analytics_snapshots
+- feature_flags
+- feature_rollouts
+- tenant_entitlements
+- system_audit_logs
+- admin_activity_logs
+- platform_notifications
+- fraud_scores
+- trust_verifications
+
+For EACH table explain:
+
+- purpose
+- ownership
+- relationships
+- indexing strategy
+- partitioning strategy
+- RLS strategy
+- scaling considerations
+- archival strategy
+
+====================================================
+# 8. BILLING & MONETIZATION ARCHITECTURE
+====================================================
+
+Design COMPLETE monetization infrastructure.
+
+Include:
+
+- Stripe integration architecture
+- subscription lifecycle
+- usage-based billing
+- AI usage billing
+- quota enforcement
+- feature entitlements
+- feature gating
+- billing webhooks
+- invoice generation
+- failed payment handling
+- enterprise contracts
+
+Plans:
+- FREE
+- PRO
+- BUSINESS
+- ENTERPRISE
+
+Explain:
+- tenant upgrade flows
+- plan enforcement architecture
+- billing event system
+- usage metering
+- monetization expansion strategy
+
+====================================================
+# 9. PLATFORM ANALYTICS ARCHITECTURE
+====================================================
+
+Design global analytics systems.
+
+Include:
+
+- SaaS KPIs
+- revenue analytics
+- churn analytics
+- retention analytics
+- engagement analytics
+- AI performance analytics
+- recommendation performance
+- search analytics
+- moderation analytics
+- tenant analytics
+- platform health analytics
+
+Explain:
+- data aggregation strategy
+- realtime aggregation
+- analytics pipelines
+- caching layers
+- snapshot systems
+- long-term warehousing strategy
+
+====================================================
+# 10. MODERATION & TRUST ARCHITECTURE
+====================================================
+
+Design enterprise moderation systems.
+
+Include:
+
+- reports infrastructure
+- abuse detection
+- fraud scoring
+- moderation queues
+- escalation systems
+- trust scoring
+- listing verification
+- company verification
+- behavioral analysis
+- AI-assisted moderation
+- audit trails
+
+Explain:
+- automated moderation
+- human moderation
+- escalation flows
+- enforcement systems
+
+====================================================
+# 11. AI CONTROL CENTER ARCHITECTURE
+====================================================
+
+Design the AI infrastructure control plane.
+
+Include:
+
+- recommendation engine controls
+- ranking configuration systems
+- AI experiments
+- embeddings management
+- semantic search configs
+- AI monitoring
+- AI analytics
+- model versioning
+- prompt management
+- AI observability
+- personalization tuning
+
+Explain:
+- global AI
+- tenant-aware AI
+- AI orchestration strategy
+- inference flow
+- future model-serving evolution
+
+====================================================
+# 12. REALTIME ARCHITECTURE
+====================================================
+
+Design platform realtime systems.
+
+Include:
+
+- realtime notifications
+- admin activity streams
+- live monitoring
+- moderation live queues
+- billing events streams
+- analytics live feeds
+- websocket scaling
+- event fanout strategy
+
+Explain:
+- Supabase realtime usage
+- event channels
+- future queue evolution
+- realtime isolation strategy
+
+====================================================
+# 13. STATE MANAGEMENT ARCHITECTURE
+====================================================
+
+Design frontend state architecture.
+
+Include:
+
+Zustand:
+- auth stores
+- admin session stores
+- realtime stores
+- analytics stores
+- moderation stores
+- feature flag stores
+
+TanStack Query:
+- query organization
+- invalidation strategy
+- cache boundaries
+- optimistic updates
+- pagination strategy
+
+Explain:
+- session persistence
+- realtime synchronization
+- admin impersonation prevention
+
+====================================================
+# 14. SECURITY ARCHITECTURE
+====================================================
+
+Design enterprise security systems.
+
+Include:
+
+- elevated privilege protection
+- tenant boundary protection
+- audit logging
+- action verification
+- admin session protection
+- impersonation prevention
+- API protection
+- abuse prevention
+- attack mitigation
+- suspicious activity detection
+
+Explain:
+- RLS strategy
+- secure admin flows
+- security observability
+- compliance readiness
+
+====================================================
+# 15. DEPLOYMENT & SCALING STRATEGY
+====================================================
+
+Design deployment architecture.
+
+Include:
+
+- Vercel deployment
+- Edge Functions strategy
+- queue systems
+- worker evolution
+- CDN architecture
+- caching layers
+- horizontal scaling
+- database scaling
+- AI workload scaling
+
+Explain:
+- scaling bottlenecks
+- future infra evolution
+- extraction thresholds
+
+====================================================
+# 16. MICROSERVICE EVOLUTION PLAN
+====================================================
+
+Design future extraction roadmap.
+
+Explain future extraction for:
+
+- billing service
+- AI orchestration service
+- analytics pipeline service
+- notification service
+- moderation service
+- search infrastructure
+
+Explain:
+- extraction timing
+- extraction indicators
+- communication strategies
+- event bus evolution
+
+====================================================
+# 17. DEVELOPMENT EXECUTION ROADMAP
+====================================================
+
+Generate COMPLETE execution roadmap.
+
+Include:
+
+Phase 3.1
+Phase 3.2
+Phase 3.3
+Phase 3.4
+Phase 3.5
+...
+
+For EACH phase include:
+
+- goals
+- dependencies
+- engineering priorities
+- complexity
+- risks
+- estimated implementation effort
+- validation strategy
+
+====================================================
+IMPORTANT ENGINEERING RULES
+====================================================
+
+Architecture MUST be:
+- enterprise-grade
+- AI-first
+- SaaS-ready
+- marketplace-ready
+- modular
+- scalable
+- future-proof
+- extraction-ready
+- production-grade
+
+DO NOT:
+- simplify systems
+- generate beginner explanations
+- generate toy architecture
+- generate implementation code
+
+Think like:
+- principal SaaS architect
+- marketplace systems engineer
+- AI infrastructure architect
+- platform governance engineer
+- distributed systems designer
+
+
+
+Calling tool
+ممتاز 🔥
+الآن أنت فعليًا خلّصت الـ Core Intellectual Architecture للمشروع.
+
+الترتيب الحالي أصبح:
+
+STEP 1 → Super Admin Foundation
+STEP 2 → Platform Core Systems
+STEP 3 → Marketplace Intelligence & Discovery
+STEP 4 → AI Infrastructure & Model Orchestration
+وده معناه إنك بنيت:
+
+Platform Brain
+
+Marketplace Brain
+
+AI Brain
+
+المرحلة القادمة الطبيعية جدًا
+🔥 STEP 5 — MONETIZATION & GROWTH INTELLIGENCE ARCHITECTURE
+ودي أخطر مرحلة Business-wise بالمشروع كله.
+
+لأنها ستحدد:
+
+How the platform makes money intelligently
+وليس فقط:
+
+subscriptions
+
+plans
+
+payments
+
+لماذا STEP 5 مهم جدًا؟
+لأن أغلب المشاريع:
+
+تبني monetization بعدين
+
+أو تضيف Stripe فقط
+
+أو تعمل plans بسيطة
+
+لكن مشروعك:
+AI-native Marketplace
+
+وده يحتاج:
+
+🧠 Monetization Intelligence Infrastructure
+الفرق الحقيقي
+بدل:
+
+pricing tables
+ستبني:
+
+Adaptive Revenue Infrastructure
+STEP 5 يجب أن يصمم:
+1️⃣ Monetization Engine
+يشمل:
+
+subscriptions
+
+quotas
+
+AI billing
+
+usage billing
+
+promoted listings
+
+sponsored ranking
+
+discovery monetization
+
+2️⃣ Growth Intelligence Layer
+وده أخطر Layer business-wise.
+
+يشمل:
+
+retention prediction
+
+churn prediction
+
+upsell intelligence
+
+conversion intelligence
+
+engagement monetization
+
+3️⃣ Marketplace Revenue Engine
+يشمل:
+
+ranking monetization
+
+feed monetization
+
+premium visibility
+
+AI-powered boosting
+
+sponsored discovery
+
+4️⃣ Adaptive Pricing Infrastructure
+بدل static pricing.
+
+يشمل:
+
+usage-aware pricing
+
+tenant-aware pricing
+
+AI-aware pricing
+
+behavioral monetization
+
+5️⃣ AI Cost vs Revenue Intelligence
+ودي نقطة عبقرية جدًا.
+
+لأنك عندك:
+
+AI costs
+
+embeddings costs
+
+inference costs
+
+realtime costs
+
+ولازم:
+
+revenue intelligence
+يتوازن مع:
+
+AI infrastructure cost
+أخطر نقطة مستقبلية
+Marketplace Monetization Graph
+وده Layer عبقري.
+
+يربط:
+
+engagement
+
+discovery
+
+conversion
+
+retention
+
+monetization
+
+المعمارية التي أرشحها
+Monetization Intelligence Layer
+│
+├── Subscription Engine
+├── Usage Billing Engine
+├── AI Billing Engine
+├── Promotion Engine
+├── Sponsored Discovery Engine
+├── Revenue Analytics
+├── Retention Intelligence
+├── Churn Intelligence
+├── Upsell Intelligence
+├── Pricing Intelligence
+└── Marketplace Growth Engine
+STEP 5 أيضًا يجب أن يصمم:
+🧠 AI Monetization Intelligence
+وده خطير جدًا.
+
+يشمل:
+
+monetization scoring
+
+conversion prediction
+
+retention optimization
+
+sponsored ranking optimization
+
+ad relevance optimization
+
+نقطة مهمة جدًا
+أنت لا تبني:
+
+Stripe Integration
+بل:
+
+Revenue Operating Infrastructure
+STEP 5 يجب أن يصمم أيضًا:
+Growth Loops
+مثل:
+
+engagement
+    ↓
+better personalization
+    ↓
+better recommendations
+    ↓
+higher retention
+    ↓
+higher monetization
+    ↓
+better marketplace liquidity
+أخطر نقطة هندسية
+Monetization MUST be Infrastructure-Level
+وليس:
+
+payment pages
+لذلك STEP 5 لازم يشمل:
+Monetization Events
+subscription_upgraded
+
+quota_exceeded
+
+sponsored_listing_created
+
+promotion_started
+
+AI_quota_consumed
+
+وأيضًا:
+Monetization Analytics
+LTV
+
+CAC
+
+retention
+
+cohort analysis
+
+tenant profitability
+
+AI cost per tenant
+
+المرحلة التي بعدها
+بعد STEP 5 سيكون طبيعي جدًا الانتقال إلى:
+
+STEP 6 — TRUST, SAFETY & FRAUD INFRASTRUCTURE
+لأن Marketplace + AI بدون trust layer
+قد ينهار بالكامل.
+
+الترتيب الكامل بدأ يظهر الآن
+STEP 1 → Governance Brain
+STEP 2 → Platform Core
+STEP 3 → Marketplace Intelligence
+STEP 4 → AI Infrastructure
+STEP 5 → Monetization Intelligence
+STEP 6 → Trust & Safety
+STEP 7 → Distributed Scalability
+STEP 8 → Production Engineering
+STEP 9 → Execution Phases
+STEP 10 → Launch Strategy
+ملاحظة مهمة جدًا
+أنت الآن تبني شيئًا أقرب إلى:
+
+AI Marketplace Operating System
+وليس:
+
+عقارات
+
+SaaS
+
+dashboard
+
+AI app
+
+وده فرق ضخم جدًا استراتيجيًا وهندسيًا.
+
+
+
+
+Calling tool
+ممتاز 🔥
+دلوقتي عندك رؤية معمارية ضخمة وواضحة جدًا للمشروع.
+
+الخطوة المنطقية التالية الآن ليست Prompt جديد مباشرة…
+
+بل:
+
+🧭 Architecture Consolidation Phase
+لأنك وصلت لنقطة لو استمريت تضيف Prompts فقط،
+قد يحدث:
+
+overlap
+
+architecture drift
+
+duplicated responsibilities
+
+AI chaos
+
+unclear ownership
+
+لذلك قبل STEP 5 Prompt الكامل
+أنا أرشح تعمل:
+
+🔥 MASTER PLATFORM BLUEPRINT
+وده سيكون:
+
+The Constitution of the Entire Platform
+الهدف منه
+تجميع:
+
+STEP 1
+
+STEP 2
+
+STEP 3
+
+STEP 4
+
+داخل:
+
+Unified Platform Architecture
+هذا الـ Master Blueprint يجب أن يثبت:
+1️⃣ Domain Ownership
+مين يملك:
+
+discovery
+
+AI
+
+ranking
+
+monetization
+
+analytics
+
+moderation
+
+tenants
+
+2️⃣ Cross-System Contracts
+كيف:
+
+AI يتكلم مع Discovery
+
+Monetization يتكلم مع Ranking
+
+Trust يتكلم مع AI
+
+Analytics يتكلم مع كل شيء
+
+3️⃣ Unified Event Taxonomy
+توحيد كل الـ events:
+
+listing_created
+feed_generated
+ranking_completed
+embedding_updated
+quota_exceeded
+trust_score_updated
+4️⃣ Unified Data Flow
+توحيد:
+
+discovery flows
+
+AI flows
+
+ranking flows
+
+billing flows
+
+analytics flows
+
+5️⃣ Unified Infrastructure Vision
+تحديد:
+
+what remains monolith
+
+what becomes service
+
+what becomes async
+
+what becomes realtime
+
+بعد الـ Master Blueprint
+ساعتها تبدأ:
+
+🔥 STEP 5 — MONETIZATION & GROWTH INTELLIGENCE PROMPT
+بشكل أكثر دقة وقوة.
+
+لماذا هذا مهم جدًا؟
+لأنك الآن تبني:
+
+Large-Scale AI Marketplace Infrastructure
+وليس:
+
+MVP
+
+startup CRUD
+
+dashboard SaaS
+
+نقطة عبقرية مهمة جدًا
+أنت وصلت لمرحلة لازم تبدأ تفكر فيها مثل:
+
+platform architect
+
+infrastructure company
+
+operating system designer
+
+وليس:
+
+frontend developer
+
+SaaS builder
+
+أقوى شيء بالمشروع حاليًا
+ليس العقارات.
+
+بل:
+
+🧠 Marketplace Intelligence Infrastructure
+وده ممكن مستقبلًا يخدم:
+
+jobs
+
+cars
+
+services
+
+ecommerce
+
+B2B marketplaces
+
+creator economy
+
+لذلك الـ Architecture لازم يكون:
+vertical-agnostic
+وليس:
+
+real-estate hardcoded
+أهم قرار استراتيجي الآن
+هل المشروع:
+
+Real Estate SaaS
+أم:
+
+AI Marketplace Infrastructure Platform
+ومن كل اللي بنيناه…
+واضح جدًا إنه يتجه إلى:
+
+✅ AI Marketplace Infrastructure Platform
+وده أقوى بكتير جدًا على المدى البعيد.
+
+
+
+
+Calling tool
+🔥 MASTER PLATFORM BLUEPRINT PROMPT
+AI-NATIVE MARKETPLACE OPERATING SYSTEM CONSTITUTION
+You are a world-class principal platform architect, AI infrastructure architect, distributed systems engineer, marketplace intelligence architect, enterprise SaaS architect, and operating systems strategist.
+
+You are consolidating architecture for an EXISTING enterprise-grade AI-Native Multi-Tenant Marketplace Infrastructure Platform.
+
+IMPORTANT:
+- DO NOT redesign previous systems
+- DO NOT simplify architecture
+- DO NOT generate implementation code
+- DO NOT create disconnected subsystems
+- CONSOLIDATE all previous architecture into ONE unified operating blueprint
+
+====================================================
+CURRENT PLATFORM STATUS
+====================================================
+
+Already Designed:
+
+✅ Super Admin Foundation Architecture
+✅ Platform Core Systems Architecture
+✅ Marketplace Intelligence & Discovery Architecture
+✅ AI Infrastructure & Model Orchestration Architecture
+
+The platform already supports concepts such as:
+- multi-tenancy
+- AI-driven discovery
+- personalization
+- ranking systems
+- semantic search
+- event-driven architecture
+- AI orchestration
+- realtime systems
+- monetization readiness
+- analytics readiness
+- moderation readiness
+
+====================================================
+PLATFORM VISION
+====================================================
+
+The platform is evolving into:
+
+🚀 AI-Native Marketplace Operating Infrastructure
+
+This is NOT:
+- a CRUD SaaS app
+- a simple marketplace
+- a listings website
+- a dashboard system
+- a chatbot wrapper
+
+The platform behaves more like:
+- TikTok discovery infrastructure
+- Amazon recommendation infrastructure
+- Airbnb marketplace systems
+- Spotify personalization systems
+- Stripe-grade platform governance
+- OpenAI-scale orchestration concepts
+
+====================================================
+MASTER OBJECTIVE
+====================================================
+
+Generate the COMPLETE:
+
+🔥 MASTER PLATFORM BLUEPRINT
+
+This blueprint acts as:
+
+🧠 THE CONSTITUTION OF THE ENTIRE PLATFORM
+
+The blueprint MUST unify:
+- platform architecture
+- AI architecture
+- marketplace architecture
+- discovery systems
+- monetization systems
+- analytics systems
+- trust systems
+- realtime systems
+- infrastructure systems
+
+====================================================
+CRITICAL REQUIREMENTS
+====================================================
+
+The blueprint MUST define:
+
+- system ownership
+- orchestration boundaries
+- infrastructure boundaries
+- service boundaries
+- event contracts
+- AI governance
+- tenant isolation
+- data ownership
+- realtime architecture
+- future scalability evolution
+
+====================================================
+REQUIRED OUTPUT FORMAT
+====================================================
+
+Generate EXTREMELY detailed enterprise-grade architecture documentation.
+
+====================================================
+# 1. PLATFORM CONSTITUTION
+====================================================
+
+Define:
+
+- what the platform fundamentally is
+- the platform philosophy
+- the operating principles
+- architectural laws
+- system evolution principles
+- governance principles
+
+Explain:
+- why AI is infrastructure
+- why discovery is core
+- why intelligence is the product
+- why the platform is operating-system-like
+
+Define:
+- platform mission
+- platform responsibilities
+- infrastructure philosophy
+- scaling philosophy
+
+====================================================
+# 2. MASTER PLATFORM ARCHITECTURE
+====================================================
+
+Design the COMPLETE unified platform architecture.
+
+Generate the FULL platform map:
+
+Platform Infrastructure
+│
+├── Identity Systems
+├── Tenant Systems
+├── Marketplace Intelligence
+├── Discovery Infrastructure
+├── AI Infrastructure
+├── Monetization Infrastructure
+├── Trust & Safety Infrastructure
+├── Analytics Infrastructure
+├── Realtime Infrastructure
+├── Experimentation Infrastructure
+├── Governance Infrastructure
+└── Core Infrastructure
+
+For EACH domain explain:
+- purpose
+- responsibilities
+- ownership
+- orchestration responsibilities
+- scaling concerns
+- isolation boundaries
+- future extraction strategy
+
+====================================================
+# 3. MASTER DOMAIN OWNERSHIP MODEL
+====================================================
+
+Define COMPLETE ownership architecture.
+
+Generate:
+- domain ownership matrix
+- data ownership matrix
+- orchestration ownership matrix
+- API ownership matrix
+- infrastructure ownership matrix
+
+Explain:
+- who owns what
+- who can access what
+- who publishes events
+- who consumes events
+- forbidden dependencies
+- anti-corruption boundaries
+
+====================================================
+# 4. MASTER EVENT TAXONOMY
+====================================================
+
+Design COMPLETE event architecture.
+
+Generate unified event taxonomy for:
+- marketplace events
+- AI events
+- monetization events
+- moderation events
+- analytics events
+- realtime events
+- tenant events
+
+Include events such as:
+- listing_created
+- feed_generated
+- ranking_completed
+- embedding_generated
+- recommendation_served
+- personalization_updated
+- quota_exceeded
+- fraud_detected
+- trust_score_updated
+- monetization_event_recorded
+
+Explain:
+- event ownership
+- event contracts
+- event schemas
+- event propagation
+- async orchestration
+- eventual consistency strategy
+
+====================================================
+# 5. MASTER DATA FLOW ARCHITECTURE
+====================================================
+
+Design COMPLETE platform data flows.
+
+Generate unified flows for:
+- feed generation
+- AI orchestration
+- personalization
+- monetization
+- moderation
+- analytics
+- tenant operations
+
+Explain:
+- data ownership
+- data pipelines
+- data movement
+- realtime propagation
+- event-based updates
+- async workflows
+
+Generate:
+- end-to-end flow diagrams
+- orchestration pipelines
+- intelligence loops
+
+====================================================
+# 6. PLATFORM INTELLIGENCE MODEL
+====================================================
+
+Define the COMPLETE intelligence architecture.
+
+Explain:
+- how intelligence flows through the platform
+- how discovery learns
+- how personalization evolves
+- how AI adapts
+- how monetization optimizes
+- how trust systems learn
+
+Generate:
+- intelligence feedback loops
+- adaptive learning loops
+- ranking evolution systems
+- behavioral learning systems
+
+====================================================
+# 7. MASTER AI OPERATING MODEL
+====================================================
+
+Unify COMPLETE AI infrastructure.
+
+Include:
+- embeddings infrastructure
+- retrieval systems
+- inference systems
+- orchestration systems
+- memory systems
+- experimentation systems
+- observability systems
+- governance systems
+
+Explain:
+- AI lifecycle
+- model lifecycle
+- inference lifecycle
+- retrieval lifecycle
+- embedding lifecycle
+
+Generate:
+- AI orchestration map
+- AI infrastructure hierarchy
+- AI governance hierarchy
+
+====================================================
+# 8. MASTER DISCOVERY OPERATING MODEL
+====================================================
+
+Design COMPLETE discovery architecture.
+
+Include:
+- feed orchestration
+- recommendation systems
+- ranking systems
+- trend systems
+- personalization systems
+- semantic search
+- exploration/exploitation systems
+
+Explain:
+- discovery intelligence lifecycle
+- ranking orchestration
+- candidate generation
+- adaptive feeds
+
+Generate:
+- discovery pipelines
+- ranking pipelines
+- recommendation loops
+
+====================================================
+# 9. MASTER MONETIZATION OPERATING MODEL
+====================================================
+
+Design COMPLETE monetization architecture.
+
+Include:
+- subscriptions
+- usage billing
+- AI billing
+- promoted listings
+- sponsored discovery
+- monetization scoring
+- growth intelligence
+- retention intelligence
+
+Explain:
+- monetization orchestration
+- revenue optimization
+- AI cost governance
+- profitability intelligence
+
+Generate:
+- monetization pipelines
+- revenue flows
+- monetization intelligence loops
+
+====================================================
+# 10. MASTER TRUST & SAFETY OPERATING MODEL
+====================================================
+
+Design COMPLETE trust architecture.
+
+Include:
+- moderation systems
+- fraud detection
+- abuse prevention
+- trust scoring
+- anomaly detection
+- AI moderation
+- behavioral trust systems
+
+Explain:
+- trust orchestration
+- moderation workflows
+- escalation systems
+- enforcement pipelines
+
+====================================================
+# 11. MASTER ANALYTICS & OBSERVABILITY MODEL
+====================================================
+
+Design COMPLETE analytics architecture.
+
+Include:
+- marketplace analytics
+- AI analytics
+- monetization analytics
+- tenant analytics
+- discovery analytics
+- realtime analytics
+- observability systems
+
+Explain:
+- telemetry flows
+- analytics pipelines
+- observability pipelines
+- explainability systems
+
+====================================================
+# 12. MASTER REALTIME INFRASTRUCTURE
+====================================================
+
+Design COMPLETE realtime systems.
+
+Include:
+- realtime feeds
+- websocket infrastructure
+- streaming pipelines
+- realtime AI updates
+- realtime personalization
+- realtime analytics
+
+Explain:
+- realtime orchestration
+- event streaming
+- scaling evolution
+- Supabase realtime usage
+
+====================================================
+# 13. MASTER TENANT ISOLATION MODEL
+====================================================
+
+Design COMPLETE tenant isolation systems.
+
+Include:
+- data isolation
+- AI isolation
+- embedding isolation
+- analytics isolation
+- monetization isolation
+- cache isolation
+
+Explain:
+- tenant-aware AI
+- tenant-aware discovery
+- tenant-aware ranking
+- tenant-aware billing
+
+====================================================
+# 14. MASTER INFRASTRUCTURE EVOLUTION STRATEGY
+====================================================
+
+Design COMPLETE infrastructure evolution strategy.
+
+Explain:
+- modular monolith evolution
+- service extraction strategy
+- AI infrastructure evolution
+- vector infrastructure evolution
+- analytics evolution
+- realtime evolution
+
+Define:
+- extraction indicators
+- scaling thresholds
+- operational bottlenecks
+- migration phases
+
+====================================================
+# 15. MASTER PLATFORM BOTTLENECK ANALYSIS
+====================================================
+
+Analyze COMPLETE future bottlenecks.
+
+Include:
+- AI bottlenecks
+- ranking bottlenecks
+- realtime bottlenecks
+- vector bottlenecks
+- monetization bottlenecks
+- analytics bottlenecks
+- tenant scaling bottlenecks
+
+Explain:
+- mitigation strategies
+- infrastructure safeguards
+- distributed evolution plans
+
+====================================================
+# 16. MASTER ENGINEERING EXECUTION ROADMAP
+====================================================
+
+Generate COMPLETE platform roadmap.
+
+Generate phases such as:
+
+Phase 1 — Governance Foundation
+Phase 2 — Core Infrastructure
+Phase 3 — Discovery Intelligence
+Phase 4 — AI Infrastructure
+Phase 5 — Monetization Intelligence
+Phase 6 — Trust & Safety
+Phase 7 — Distributed Scaling
+Phase 8 — Production Infrastructure
+Phase 9 — Global Optimization
+
+For EACH phase include:
+- objectives
+- dependencies
+- engineering complexity
+- implementation risks
+- scalability impact
+- operational readiness
+- validation requirements
+
+====================================================
+# 17. MASTER PLATFORM PRINCIPLES
+====================================================
+
+Generate the FINAL platform principles.
+
+Define principles such as:
+- AI-first architecture
+- intelligence-driven discovery
+- infrastructure-level monetization
+- tenant-safe AI
+- event-driven evolution
+- modular scalability
+- extraction-ready systems
+- realtime-first thinking
+- observability-first engineering
+- adaptive marketplace philosophy
+
+====================================================
+IMPORTANT ENGINEERING RULES
+====================================================
+
+Architecture MUST be:
+- enterprise-grade
+- AI-native
+- marketplace-native
+- realtime-ready
+- modular
+- scalable
+- future-proof
+- extraction-ready
+- event-driven
+- tenant-safe
+- observability-first
+
+DO NOT:
+- simplify systems
+- generate CRUD architecture
+- tightly couple domains
+- generate toy marketplace systems
+- generate implementation code
+
+Think like:
+- principal AI architect
+- marketplace operating systems engineer
+- distributed infrastructure architect
+- OpenAI-scale orchestration architect
+- Amazon recommendation systems engineer
+- TikTok discovery infrastructure engineer
+- Stripe governance architect
+
+
+
+Calling tool
+ممتاز. بعد Master Platform Blueprint أنت لم تعد تحتاج تفاصيل معمارية أكثر في نفس المستوى.
+
+المرحلة التالية ليست Domain Architecture.
+
+المرحلة التالية هي:
+
+🔥 EXECUTION MASTERPLAN
+لأن أغلب المشاريع العملاقة تفشل هنا:
+
+Amazing Architecture
+        ≠
+Successful Product
+STEP NEXT — EXECUTION & DELIVERY OPERATING SYSTEM
+هذا الـ Prompt هدفه تحويل:
+
+Blueprint
+    ↓
+Engineering Program
+    ↓
+Roadmap
+    ↓
+Teams
+    ↓
+Sprints
+    ↓
+Deliverables
+ما الذي سيبنيه؟
+1. Engineering Organization
+تصميم الفرق المطلوبة:
+
+Platform Team
+
+AI Team
+
+Marketplace Team
+
+Frontend Team
+
+Data Team
+
+Growth Team
+
+Trust & Safety Team
+
+DevOps Team
+2. Build Order
+تحديد:
+
+What must be built first
+
+What must be delayed
+
+What must never be built early
+3. MVP Definition
+أخطر قرار بالمشروع كله.
+
+يجب تحديد:
+
+MVP
+
+V1
+
+V2
+
+V3
+وليس بناء كل شيء مرة واحدة.
+
+4. Technical Milestones
+مثال:
+
+Milestone 1
+Tenant Infrastructure
+
+Milestone 2
+Marketplace Core
+
+Milestone 3
+Discovery Engine
+
+Milestone 4
+AI Infrastructure
+
+Milestone 5
+Monetization
+
+Milestone 6
+Trust Layer
+5. Development Waves
+بدلاً من:
+
+Build Features
+سنبني:
+
+Wave 1
+Platform Foundation
+
+Wave 2
+Marketplace Core
+
+Wave 3
+Intelligence Layer
+
+Wave 4
+AI Layer
+
+Wave 5
+Growth Layer
+
+Wave 6
+Scale Layer
+ثم بعد ذلك
+نبدأ أهم شيء فعليًا:
+
+🔥 TECHNICAL SPECIFICATION PHASE
+هنا تتحول العمارة إلى:
+
+PRDs
+
+Technical Specs
+
+Database Specs
+
+API Specs
+
+Event Specs
+
+UI Specs
+التسلسل الصحيح من الآن
+MASTER PLATFORM BLUEPRINT
+        ↓
+EXECUTION MASTERPLAN
+        ↓
+PRODUCT STRATEGY
+        ↓
+MVP DEFINITION
+        ↓
+TECHNICAL SPECIFICATIONS
+        ↓
+DATABASE DESIGN
+        ↓
+API DESIGN
+        ↓
+EVENT DESIGN
+        ↓
+UI SYSTEM DESIGN
+        ↓
+IMPLEMENTATION
+نصيحتي للمشروع
+لا تنتقل مباشرة إلى الكود.
+
+الآن أنشئ:
+
+STEP 5 — EXECUTION MASTERPLAN & DELIVERY ARCHITECTURE
+وهو آخر Prompt استراتيجي كبير قبل الدخول في:
+
+Database Architecture
+
+Supabase Schema Design
+
+Event Contracts
+
+API Contracts
+
+Frontend Architecture
+
+Implementation Roadmap
+
+وهنا يبدأ التحول من "تصميم النظام" إلى "بناء النظام".
+
+
+ممتاز. بعد STEP Y (Feature Inventory) لا تقفز مباشرة إلى قاعدة البيانات.
+
+الترتيب الاحترافي هو:
+
+STEP Y
+Feature Inventory
+        ↓
+STEP Z
+PRD Master Package
+        ↓
+STEP AA
+Database Master Design
+لأن:
+
+Features
+    ↓
+Requirements
+    ↓
+Data Model
+وليس العكس.
+
+🔥 STEP Z — PRODUCT REQUIREMENTS MASTER PACKAGE
+هذه الوثيقة تعتبر:
+
+The Product Bible
+بعدها لن يكون هناك أي غموض حول:
+
+ما الذي يفعله النظام
+
+كيف يعمل
+
+من يستطيع استخدامه
+
+ما هي الحالات المختلفة
+
+ما هي الأحداث الناتجة
+
+ما الذي يجب قياسه
+
+ماذا سينتج STEP Z؟
+لكل Domain
+سيولد PRD كامل.
+
+مثلاً:
+
+Listings PRD
+يشمل:
+
+Business Goals
+
+Personas
+
+User Stories
+
+Workflows
+
+Listing Lifecycle
+
+States
+
+Permissions
+
+Events
+
+Analytics
+
+Acceptance Criteria
+
+Edge Cases
+Search PRD
+يشمل:
+
+Keyword Search
+
+Filters
+
+Facets
+
+Sorting
+
+Semantic Search
+
+Saved Searches
+
+Alerts
+
+Analytics
+
+Success Metrics
+Discovery PRD
+يشمل:
+
+Feed Generation
+
+Ranking
+
+Recommendations
+
+Personalization
+
+Exploration
+
+Freshness
+
+Behavior Signals
+
+Experiments
+Leads PRD
+يشمل:
+
+Lead Capture
+
+Lead Assignment
+
+Lead Routing
+
+Lead Scoring
+
+Lead Analytics
+
+Conversion Tracking
+Billing PRD
+يشمل:
+
+Plans
+
+Subscriptions
+
+Invoices
+
+Credits
+
+AI Usage
+
+Quota Rules
+AI PRD
+يشمل:
+
+Semantic Search
+
+Recommendations
+
+Personalization
+
+Listing Intelligence
+
+Lead Intelligence
+
+Moderation
+STEP Z Prompt (النسخة التي أنصح بها)
+اطلب من النموذج:
+
+Generate complete enterprise-grade Product Requirement Documents for every platform domain.
+
+For every domain create:
+
+1. Business Objectives
+
+2. Personas
+
+3. User Stories
+
+4. Functional Requirements
+
+5. Non-Functional Requirements
+
+6. Workflows
+
+7. State Machines
+
+8. Permissions
+
+9. Event Generation
+
+10. Analytics Requirements
+
+11. Success Metrics
+
+12. Acceptance Criteria
+
+13. Edge Cases
+
+14. Failure Scenarios
+
+15. Operational Considerations
+
+16. AI Requirements
+
+17. Realtime Requirements
+
+18. Compliance Requirements
+
+19. Future Enhancements
+
+20. MVP / V1 / V2 Classification
+
+Domains:
+
+- Identity
+- Organizations
+- Tenants
+- Listings
+- Media
+- Search
+- Discovery
+- Recommendations
+- CRM
+- Leads
+- Analytics
+- Billing
+- Subscriptions
+- AI Systems
+- Moderation
+- Trust & Safety
+- Notifications
+- Realtime
+- Super Admin
+- Governance
+
+Output must be detailed enough that engineering teams can implement features without requiring additional product clarification.
+بعد STEP Z
+ندخل المرحلة التي ستبدأ فعليًا في تشكيل المشروع تقنيًا:
+
+
+AA Database Master Design
+
+AB Supabase Production Blueprint
+
+AC Platform Implementation Master Specification
+
+AD Backend Engineering Blueprint
+
+AE Frontend Engineering Blueprint
+
+AF AI Infrastructure Blueprint
+
+AG CI/CD + DevOps Blueprint
+
+AH Sprint Execution Plan
+
+AI Full Code Generation Prompt Pack
+
+AJ Production Launch Package
+
+AK Growth & Analytics OS
+
+AL Marketplace Optimization System
+
+AM Advanced AI Evolution Roadmap
+
+AN Enterprise Expansion Blueprint
+
+AO Global Scale Architecture
+
+AP Data Platform & BI Blueprint
+
+AQ Security & Compliance Package
+
+AR Investor & Board Package
+
+AS Autonomous Platform Roadmap
+
+
+🔥 STEP AA — DATABASE MASTER DESIGN
+وهنا ننتج:
+
+ERD
+
+Tables
+
+Relationships
+
+Indexes
+
+Constraints
+
+Partitioning
+
+RLS
+
+Audit Trails
+
+Retention Policies
+ثم
+🔥 STEP AB — SUPABASE PRODUCTION BLUEPRINT
+وهذه ستكون أخطر وثيقة تقنية للمشروع لأنها ستترجم كل شيء إلى:
+
+PostgreSQL
+
+Supabase Auth
+
+Storage
+
+Realtime
+
+Edge Functions
+
+pgvector
+
+RLS
+
+Background Jobs
+
+إذا سألتني ما هي أهم 3 مراحل متبقية قبل بدء التطوير الحقيقي:
+STEP Z
+PRDs
+
+STEP AA
+Database Master Design
+
+STEP AB
+Supabase Production Architecture
+بعد هذه الثلاثة، يصبح من المنطقي البدء في:
+
+إنشاء الـ Schema
+
+كتابة الـ Migrations
+
+بناء الـ APIs
+
+تطوير الـ Frontend
+
+بدلاً من الاستمرار في إنتاج وثائق معمارية جديدة.
+
+
+ok give me full prompt step z
+
+🔥 STEP Z — PRODUCT REQUIREMENTS MASTER PACKAGE
+THE PRODUCT BIBLE OF THE AI MARKETPLACE OPERATING SYSTEM
+You are a world-class Principal Product Manager, Principal Product Architect, Marketplace Product Strategist, Enterprise SaaS Product Leader, AI Product Architect, Discovery Systems Product Lead, and Staff-Level Product Requirements Specialist.
+
+You are continuing development of an EXISTING enterprise-grade AI-Native Multi-Tenant Marketplace Operating System.
+
+IMPORTANT:
+
+DO NOT redesign architecture.
+
+DO NOT simplify domains.
+
+DO NOT generate implementation code.
+
+DO NOT generate database schemas.
+
+DO NOT generate APIs.
+
+DO NOT generate UI mockups.
+
+ONLY generate implementation-grade Product Requirement Documents (PRDs).
+
+Continue from the approved platform architecture, technical specifications, feature inventory, capability map, and master blueprint.
+
+====================================================
+CURRENT PLATFORM CONTEXT
+====================================================
+
+The platform already has:
+
+✅ Super Admin Foundation
+
+✅ Core Platform Architecture
+
+✅ Marketplace Intelligence Architecture
+
+✅ Discovery & Recommendation Architecture
+
+✅ AI Infrastructure Architecture
+
+✅ Master Platform Blueprint
+
+✅ Technical Specifications Blueprint
+
+✅ Master Feature Inventory & Capability Map
+
+The platform is:
+
+🚀 AI-Native Marketplace Operating System
+
+NOT:
+- CRUD SaaS
+- Basic Marketplace
+- Listings Website
+- Simple CRM
+- AI Wrapper
+
+The platform behaves more like:
+
+- Amazon Marketplace Infrastructure
+- Airbnb Marketplace Systems
+- TikTok Discovery Systems
+- Spotify Personalization Systems
+- Stripe Governance Systems
+
+====================================================
+OBJECTIVE
+====================================================
+
+Generate the COMPLETE:
+
+🔥 PRODUCT REQUIREMENTS MASTER PACKAGE
+
+This document becomes:
+
+THE PRODUCT BIBLE
+
+for:
+
+Product Teams
+
+Engineering Teams
+
+AI Teams
+
+QA Teams
+
+Analytics Teams
+
+Operations Teams
+
+Design Teams
+
+====================================================
+OUTPUT FORMAT
+====================================================
+
+Generate enterprise-grade PRDs.
+
+For EVERY domain generate a COMPLETE PRD.
+
+Each PRD must contain:
+
+1. Executive Summary
+
+2. Business Objectives
+
+3. Strategic Goals
+
+4. User Personas
+
+5. Stakeholders
+
+6. User Stories
+
+7. Functional Requirements
+
+8. Non-Functional Requirements
+
+9. User Workflows
+
+10. State Machines
+
+11. Business Rules
+
+12. Permissions
+
+13. Events Generated
+
+14. Events Consumed
+
+15. Analytics Requirements
+
+16. KPIs
+
+17. Success Metrics
+
+18. Edge Cases
+
+19. Failure Scenarios
+
+20. Compliance Requirements
+
+21. Realtime Requirements
+
+22. AI Requirements
+
+23. MVP Scope
+
+24. V1 Scope
+
+25. V2 Scope
+
+26. Future Enhancements
+
+27. Acceptance Criteria
+
+====================================================
+# PRD 1 — IDENTITY & ACCESS MANAGEMENT
+====================================================
+
+Generate complete PRD for:
+
+Authentication
+
+Authorization
+
+RBAC
+
+Permissions
+
+Sessions
+
+Invitations
+
+Access Policies
+
+MFA
+
+Account Recovery
+
+Auditability
+
+====================================================
+# PRD 2 — ORGANIZATIONS & TENANTS
+====================================================
+
+Generate complete PRD for:
+
+Organizations
+
+Tenants
+
+Workspaces
+
+Memberships
+
+Branches
+
+Role Assignment
+
+Tenant Governance
+
+Tenant Isolation
+
+Tenant Lifecycle
+
+====================================================
+# PRD 3 — USER MANAGEMENT
+====================================================
+
+Generate complete PRD for:
+
+Profiles
+
+Settings
+
+Preferences
+
+Notifications
+
+Privacy Controls
+
+Account Lifecycle
+
+====================================================
+# PRD 4 — LISTINGS MANAGEMENT
+====================================================
+
+Generate complete PRD for:
+
+Listing Creation
+
+Drafts
+
+Publishing
+
+Approval
+
+Updates
+
+Versioning
+
+Archiving
+
+Media Management
+
+Listing Lifecycle
+
+Listing Governance
+
+Listing Quality Scoring
+
+Listing Intelligence
+
+====================================================
+# PRD 5 — PROPERTY & ATTRIBUTE SYSTEM
+====================================================
+
+Generate complete PRD for:
+
+Property Types
+
+Categories
+
+Attributes
+
+Amenities
+
+Location Metadata
+
+Custom Fields
+
+Taxonomies
+
+Attribute Governance
+
+====================================================
+# PRD 6 — MEDIA MANAGEMENT
+====================================================
+
+Generate complete PRD for:
+
+Images
+
+Videos
+
+Documents
+
+Media Processing
+
+Media Optimization
+
+Media Moderation
+
+Media Storage Policies
+
+====================================================
+# PRD 7 — SEARCH SYSTEM
+====================================================
+
+Generate complete PRD for:
+
+Keyword Search
+
+Faceted Search
+
+Filters
+
+Sorting
+
+Saved Searches
+
+Search Alerts
+
+Semantic Search
+
+Search Personalization
+
+Search Analytics
+
+Search Explainability
+
+====================================================
+# PRD 8 — DISCOVERY SYSTEM
+====================================================
+
+Generate complete PRD for:
+
+Feed Generation
+
+Candidate Retrieval
+
+Ranking
+
+Re-ranking
+
+Recommendations
+
+Personalization
+
+Freshness
+
+Trend Detection
+
+Exploration
+
+Exploitation
+
+Discovery Analytics
+
+Discovery Experiments
+
+====================================================
+# PRD 9 — RECOMMENDATION ENGINE
+====================================================
+
+Generate complete PRD for:
+
+Recommendation Models
+
+Recommendation Delivery
+
+Behavior Tracking
+
+Personalized Suggestions
+
+Cross-Selling
+
+Related Listings
+
+Recommendation Analytics
+
+====================================================
+# PRD 10 — LEAD MANAGEMENT SYSTEM
+====================================================
+
+Generate complete PRD for:
+
+Lead Capture
+
+Lead Assignment
+
+Lead Routing
+
+Lead Scoring
+
+Lead Qualification
+
+Lead Tracking
+
+Lead Conversion
+
+Lead Analytics
+
+====================================================
+# PRD 11 — CRM & COMMUNICATION SYSTEM
+====================================================
+
+Generate complete PRD for:
+
+Conversations
+
+Messaging
+
+Activity Tracking
+
+Tasks
+
+Notes
+
+Customer History
+
+Agent Collaboration
+
+====================================================
+# PRD 12 — NOTIFICATION SYSTEM
+====================================================
+
+Generate complete PRD for:
+
+Email
+
+SMS
+
+Push Notifications
+
+In-App Notifications
+
+Realtime Notifications
+
+Notification Preferences
+
+Notification Analytics
+
+====================================================
+# PRD 13 — AI PLATFORM
+====================================================
+
+Generate complete PRD for:
+
+Prompt Registry
+
+Model Registry
+
+Inference Management
+
+Embedding Management
+
+AI Governance
+
+AI Routing
+
+AI Monitoring
+
+AI Experimentation
+
+AI Explainability
+
+AI Cost Control
+
+====================================================
+# PRD 14 — AI SEARCH & SEMANTIC SYSTEMS
+====================================================
+
+Generate complete PRD for:
+
+Semantic Search
+
+Vector Retrieval
+
+Hybrid Retrieval
+
+Embedding Refresh
+
+AI Ranking Signals
+
+Search Intelligence
+
+====================================================
+# PRD 15 — PERSONALIZATION ENGINE
+====================================================
+
+Generate complete PRD for:
+
+Behavior Profiles
+
+User Preferences
+
+Recommendation Profiles
+
+Adaptive Discovery
+
+Personalization Signals
+
+Preference Learning
+
+====================================================
+# PRD 16 — ANALYTICS PLATFORM
+====================================================
+
+Generate complete PRD for:
+
+Marketplace Analytics
+
+Discovery Analytics
+
+AI Analytics
+
+User Analytics
+
+Tenant Analytics
+
+Operational Analytics
+
+Executive Dashboards
+
+====================================================
+# PRD 17 — BILLING & SUBSCRIPTIONS
+====================================================
+
+Generate complete PRD for:
+
+Plans
+
+Subscriptions
+
+Invoices
+
+Credits
+
+Usage Billing
+
+AI Consumption Billing
+
+Quota Management
+
+Revenue Reporting
+
+====================================================
+# PRD 18 — MONETIZATION ENGINE
+====================================================
+
+Generate complete PRD for:
+
+Featured Listings
+
+Sponsored Discovery
+
+Promotions
+
+Boosting
+
+Campaign Management
+
+Revenue Attribution
+
+Performance Reporting
+
+====================================================
+# PRD 19 — TRUST & SAFETY
+====================================================
+
+Generate complete PRD for:
+
+Trust Scores
+
+Fraud Detection
+
+Behavior Monitoring
+
+Reporting
+
+Moderation
+
+Appeals
+
+Enforcement
+
+Policy Management
+
+====================================================
+# PRD 20 — MODERATION PLATFORM
+====================================================
+
+Generate complete PRD for:
+
+Content Moderation
+
+Media Moderation
+
+AI Moderation
+
+Human Review
+
+Escalations
+
+Case Management
+
+Moderation Analytics
+
+====================================================
+# PRD 21 — REALTIME PLATFORM
+====================================================
+
+Generate complete PRD for:
+
+Realtime Feeds
+
+Realtime Search Updates
+
+Realtime Notifications
+
+Realtime Analytics
+
+Realtime Personalization
+
+Realtime Presence
+
+====================================================
+# PRD 22 — SUPER ADMIN PLATFORM
+====================================================
+
+Generate complete PRD for:
+
+Tenant Governance
+
+Platform Governance
+
+AI Governance
+
+Billing Governance
+
+Trust Governance
+
+Platform Operations
+
+System Monitoring
+
+Audit Management
+
+====================================================
+# PRD 23 — EXPERIMENTATION PLATFORM
+====================================================
+
+Generate complete PRD for:
+
+A/B Testing
+
+Feature Flags
+
+Discovery Experiments
+
+AI Experiments
+
+Rollouts
+
+Experiment Analytics
+
+====================================================
+# PRD 24 — PLATFORM GOVERNANCE
+====================================================
+
+Generate complete PRD for:
+
+Policies
+
+Compliance
+
+Auditing
+
+Access Reviews
+
+Risk Management
+
+Operational Governance
+
+====================================================
+# FINAL PRODUCT MODEL
+====================================================
+
+Generate:
+
+Complete Product Map
+
+Complete Domain Ownership Map
+
+Complete Workflow Map
+
+Complete User Journey Map
+
+Complete Capability Coverage Map
+
+Complete MVP Definition
+
+Complete V1 Definition
+
+Complete V2 Definition
+
+Complete Future Vision Map
+
+====================================================
+ACCEPTANCE CRITERIA
+====================================================
+
+The output must be detailed enough that:
+
+- Product Managers can stop asking clarification questions.
+- UX Teams can begin flows and wireframes.
+- Backend Teams can identify domain responsibilities.
+- Frontend Teams can identify user experiences.
+- AI Teams can identify intelligence requirements.
+- Analytics Teams can identify measurement requirements.
+- QA Teams can derive test scenarios.
+
+No additional product discovery should be required after this document.
+
+====================================================
+IMPORTANT RULES
+====================================================
+
+Think like:
+
+Principal Product Manager at Amazon
+
+Marketplace Product Architect at Airbnb
+
+Discovery Product Lead at TikTok
+
+Growth Product Lead at Spotify
+
+Platform Product Architect at Stripe
+
+AI Product Architect at OpenAI
+
+Optimize for:
+
+Scalability
+
+AI-Native Experiences
+
+Marketplace Intelligence
+
+Enterprise Governance
+
+Multi-Tenant SaaS
+
+Discovery-Driven Growth
+
+Future-Proof Product Design
+بعد STEP Z مباشرة
+لا تنتقل إلى المزيد من PRDs.
+
+انتقل إلى:
+
+🔥 STEP AA — DATABASE MASTER DESIGN
+لأن الخطوة الطبيعية التالية هي تحويل جميع هذه المتطلبات إلى:
+
+Domain ERDs
+
+Tables
+
+Relationships
+
+Constraints
+
+Indexes
+
+RLS Policies
+
+Audit Models
+
+Data Lifecycles
+
+وهنا يبدأ الانتقال الحقيقي من Product Definition إلى System Implementation Design.
+
+
+resume
+
+الخطوة التالية بعد STEP Z (PRDs) هي الأكثر أهمية تقنيًا:
+
+🔥 STEP AA — DATABASE MASTER DESIGN
+لكن قبل إعطائك البرومبت، هناك ملاحظة مهمة جدًا:
+
+في مشروعك الحالي (Next.js + Supabase + AI Marketplace)، لا تجعل STEP AA مجرد ERD تقليدي.
+
+يجب أن يكون:
+
+Product Requirements
+        ↓
+Domain Data Model
+        ↓
+Supabase Physical Design
+        ↓
+Scalable Production Architecture
+ما الذي يجب أن ينتجه STEP AA؟
+1. Domain-Driven Data Model
+Domains مثل:
+
+Identity
+Organizations
+Listings
+Search
+Discovery
+Recommendations
+AI
+Analytics
+Billing
+Trust
+Moderation
+2. Logical ERD
+لكل Domain:
+
+Entities
+
+Relationships
+
+Ownership
+
+Lifecycle
+3. Physical PostgreSQL Design
+يشمل:
+
+Tables
+
+Indexes
+
+Constraints
+
+Partitioning
+
+Materialized Views
+
+Read Models
+4. Supabase-Specific Design
+يشمل:
+
+Auth
+
+Storage
+
+Realtime
+
+Edge Functions
+
+pgvector
+
+RLS
+
+Buckets
+5. Data Governance
+يشمل:
+
+Retention
+
+Deletion
+
+Archiving
+
+Auditability
+
+Compliance
+أهم شيء أراه مفقودًا في معظم المشاريع
+إذا أعطيت نموذجًا أمرًا مثل:
+
+Generate database schema
+سيعطيك جداول فقط.
+
+هذا غير كافٍ.
+
+يجب أن ينتج أيضًا:
+
+Ownership Map
+
+Data Lifecycle
+
+Access Rules
+
+RLS Matrix
+
+Event Relationships
+
+Analytics Relationships
+STEP AA Prompt Structure
+الوثيقة يجب أن تغطي:
+
+Domain Data Ownership
+من يملك كل Table؟
+
+Tenant Isolation
+كيف يتم فصل البيانات؟
+
+Entity Lifecycles
+مثال:
+
+Draft
+↓
+Pending Review
+↓
+Published
+↓
+Archived
+↓
+Deleted
+Read Models
+مثال:
+
+Listings
+
+Feed Items
+
+Recommendations
+
+Analytics Snapshots
+AI Storage
+يشمل:
+
+Embeddings
+
+Inference Logs
+
+Prompt Registry
+
+Model Registry
+
+AI Costs
+Analytics Storage
+يشمل:
+
+Events
+
+Sessions
+
+Funnels
+
+Cohorts
+
+Attribution
+بعد STEP AA
+لا تنتقل إلى الكود.
+
+الترتيب الصحيح:
+
+STEP AA
+Database Master Design
+        ↓
+STEP AB
+Supabase Production Architecture
+        ↓
+STEP AC
+Event Contract Catalog
+        ↓
+STEP AD
+API Contract Catalog
+        ↓
+STEP AE
+Frontend System Blueprint
+        ↓
+Implementation
+لو كنت أراجع مشروعك كـ CTO
+فإن المرحلة الأكثر قيمة الآن ليست:
+
+More Architecture
+بل:
+
+🚨 DATABASE MASTER DESIGN
+لأنها ستكون الوثيقة التي تحدد:
+
+ما سيتم تخزينه
+
+كيف سيتم تخزينه
+
+من يملكه
+
+من يستطيع الوصول إليه
+
+كيف يتم عزله بين الـ Tenants
+
+كيف ستعمل الـ AI Layer
+
+كيف ستعمل الـ Discovery Layer
+
+كيف ستعمل الـ Analytics Layer
+
+وبعدها يصبح بناء Supabase Schema وRLS Policies وAPIs عملية مباشرة بدل أن تكون اجتهادات أثناء التطوير.
+
+You’ve reached the Free limit for chats with attachments
+Upgrade now or wait until 7:45 AM to keep using files, or chat now without files.
+
+New chat
+
+Upgrade
+
+
+
+
+Called tool
+
+Looked for available tools
+
+
+Called tool
+Supabase
+Supabase
+List tables
+Request
+
+{
+project_id: 
+"mdegkyxdnbfzegeauxpl"
+, 
+schemas: 
+Array(1)
+, 
+verbose: 
+true
+}
+ممتاز. الآن أصبح عندنا معلومة لم تكن موجودة في المحادثة السابقة:
+
+لقد راجعت الـ Supabase الحالي، والنتيجة المهمة جدًا هي:
+
+الوضع الحالي الحقيقي (Current State)
+قاعدة البيانات ليست فارغة، بل يوجد بالفعل Foundation MVP مبني حول:
+
+companies
+
+users
+
+listings
+
+user_interactions
+
+analytics_snapshots
+
+ai_insights
+
+notifications
+
+audit_logs
+
+conversations
+
+messages
+
+team_invites
+
+roles_permissions
+
+وكلها مفعّل عليها RLS.
+
+المشكلة المعمارية الحالية
+الـ Schema الحالي أقرب إلى:
+
+Real Estate SaaS MVP
+        +
+Basic Multi Tenant
+بينما الـ Blueprint الذي وصلنا له أصبح:
+
+AI Marketplace Operating System
+وهذا يعني أن:
+
+STEP AA ليس تصميم قاعدة بيانات من الصفر.
+
+بل:
+
+Schema Evolution Plan
+أي تحويل الـ Schema الحالي إلى Enterprise Marketplace Schema.
+
+STEP X (الحالة الجديدة)
+قبل STEP Z و STEP AA يجب تثبيت:
+
+Domain Classification
+الـ Tables الحالية تنتمي إلى:
+
+Identity Domain
+users
+roles_permissions
+team_invites
+Tenant Domain
+companies
+Marketplace Domain
+listings
+user_interactions
+Communication Domain
+conversations
+messages
+notifications
+Analytics Domain
+analytics_snapshots
+AI Domain
+ai_insights
+Governance Domain
+audit_logs
+STEP Y (Gap Analysis)
+مقارنة بالـ Master Blueprint ما يزال ينقص:
+
+Discovery Domain
+feeds
+feed_candidates
+ranking_results
+recommendations
+Search Domain
+search_queries
+saved_searches
+search_clicks
+AI Domain
+embeddings
+prompt_registry
+model_registry
+inference_logs
+ai_experiments
+Billing Domain
+plans
+subscriptions
+invoices
+usage_tracking
+quota_usage
+Trust Domain
+trust_scores
+fraud_scores
+verification_requests
+moderation_reports
+Growth Domain
+campaigns
+promotions
+boosted_listings
+sponsored_discovery
+Feature Management
+feature_flags
+feature_rollouts
+tenant_entitlements
+STEP Z (الذي كان مخططًا له)
+لا أرى حاجة لتوليد PRD ضخم الآن.
+
+السبب:
+
+لدينا بالفعل:
+
+Architecture
+
+Blueprint
+
+Actual Schema
+
+لذلك النسخة الذكية من STEP Z هي:
+
+Z.1 Domain Requirements Validation
+لكل Domain:
+
+Confirm Ownership
+
+Confirm Events
+
+Confirm KPIs
+
+Confirm Lifecycle
+
+بدل كتابة 500 صفحة PRDs.
+
+STEP AA (المرحلة الصحيحة الآن)
+بدل:
+
+Database Master Design
+أصبحت:
+
+Database Evolution Master Design
+الهدف:
+
+تحويل الـ Schema الحالي إلى:
+
+Identity Layer
+Tenant Layer
+Marketplace Layer
+Discovery Layer
+Search Layer
+AI Layer
+Trust Layer
+Billing Layer
+Analytics Layer
+Governance Layer
+STEP AB (بعدها مباشرة)
+الذي أنصح به الآن:
+
+Supabase Production Blueprint
+يشمل:
+
+PostgreSQL
+schemas
+
+indexes
+
+partitioning
+
+materialized views
+
+Supabase Auth
+tenant aware auth
+
+RBAC
+
+impersonation controls
+
+Storage
+listing-media
+
+company-assets
+
+moderation-assets
+
+ai-assets
+
+Realtime
+notifications
+
+conversations
+
+moderation queues
+
+discovery updates
+
+pgvector
+semantic search
+
+recommendation embeddings
+
+personalization embeddings
+
+Edge Functions
+feed-generation
+ranking-service
+recommendation-service
+semantic-search
+ai-insights
+quota-enforcement
+billing-webhooks
+توصيتي كاستكمال للمحادثة السابقة
+لا ننتقل إلى مزيد من الـ Architecture Prompts.
+
+المرحلة الصحيحة الآن هي:
+
+STEP AA
+Database Evolution Master Design
+
+↓
+
+STEP AB
+Supabase Production Blueprint
+
+↓
+
+STEP AC
+Event Contract Catalog
+
+↓
+
+STEP AD
+API Contract Catalog
+
+↓
+
+Implementation
+لأنني رأيت بالفعل أن لديك قاعدة بيانات حقيقية في Supabase، وبالتالي أول قيمة حقيقية الآن هي تصميم Database Evolution Master Design بناءً على الجداول الموجودة فعليًا، وليس إنتاج وثائق معمارية جديدة من الصفر.
+
+
+
+ok give me prompt
+
+بناءً على كل ما وصلنا إليه، فالـ Prompt الصحيح الآن ليس Database Master Design من الصفر، بل:
+
+🔥 STEP AA — DATABASE EVOLUTION MASTER DESIGN
+From Existing Supabase Foundation to AI Marketplace Operating System
+You are a world-class Principal Database Architect, PostgreSQL Architect, Supabase Architect, Data Governance Architect, Marketplace Systems Architect, AI Infrastructure Architect, and Multi-Tenant SaaS Data Platform Engineer.
+
+You are continuing development of an EXISTING production-grade AI-Native Multi-Tenant Marketplace Operating System.
+
+IMPORTANT:
+
+DO NOT generate implementation code.
+
+DO NOT generate SQL migrations.
+
+DO NOT generate Supabase functions.
+
+DO NOT generate APIs.
+
+DO NOT redesign the platform architecture.
+
+DO NOT start from a blank database.
+
+You are evolving an EXISTING Supabase foundation into an enterprise-scale AI Marketplace Operating System.
+
+====================================================
+CURRENT DATABASE FOUNDATION
+====================================================
+
+The platform already contains foundational domains including:
+
+- users
+- companies
+- listings
+- user_interactions
+- analytics_snapshots
+- ai_insights
+- notifications
+- conversations
+- messages
+- audit_logs
+- roles_permissions
+- team_invites
+
+RLS already exists.
+
+Authentication already exists.
+
+Multi-tenancy already exists.
+
+Marketplace foundation already exists.
+
+The task is NOT greenfield design.
+
+The task is:
+
+DATABASE EVOLUTION DESIGN.
+
+====================================================
+PLATFORM VISION
+====================================================
+
+The platform is evolving into:
+
+🚀 AI-Native Marketplace Operating System
+
+Combining:
+
+- Marketplace Infrastructure
+- Discovery Infrastructure
+- Recommendation Infrastructure
+- AI Infrastructure
+- Trust Infrastructure
+- Analytics Infrastructure
+- Monetization Infrastructure
+- Governance Infrastructure
+
+The architecture is inspired by:
+
+- Amazon Marketplace
+- Airbnb Infrastructure
+- TikTok Discovery Systems
+- Spotify Personalization
+- Stripe Governance
+
+====================================================
+OBJECTIVE
+====================================================
+
+Generate the COMPLETE:
+
+🔥 DATABASE EVOLUTION MASTER DESIGN
+
+Transform the current schema into a future-proof enterprise-grade data architecture.
+
+====================================================
+OUTPUT FORMAT
+====================================================
+
+Generate extremely detailed architecture documentation.
+
+====================================================
+# 1. MASTER DATA ARCHITECTURE
+====================================================
+
+Design the complete database domain map.
+
+Generate:
+
+Identity Domain
+
+Tenant Domain
+
+Marketplace Domain
+
+Discovery Domain
+
+Search Domain
+
+Recommendation Domain
+
+AI Domain
+
+Analytics Domain
+
+Trust Domain
+
+Moderation Domain
+
+Billing Domain
+
+Monetization Domain
+
+Realtime Domain
+
+Governance Domain
+
+Experimentation Domain
+
+For each domain explain:
+
+- purpose
+- ownership
+- boundaries
+- lifecycle
+- tenant isolation strategy
+- future scalability
+
+====================================================
+# 2. DOMAIN DATA OWNERSHIP MODEL
+====================================================
+
+Generate:
+
+Data Ownership Matrix
+
+Domain Ownership Matrix
+
+Entity Ownership Matrix
+
+Explain:
+
+- source of truth
+- write ownership
+- read ownership
+- cross-domain access
+- forbidden access patterns
+- anti-corruption boundaries
+
+====================================================
+# 3. COMPLETE ENTITY INVENTORY
+====================================================
+
+For EVERY domain generate:
+
+Entities
+
+Aggregates
+
+Value Objects
+
+Relationships
+
+Inheritance Structures
+
+Reference Models
+
+Ownership Rules
+
+Lifecycle Rules
+
+Include:
+
+Identity
+
+Organizations
+
+Memberships
+
+Listings
+
+Media
+
+Search
+
+Discovery
+
+Recommendations
+
+AI
+
+Billing
+
+Analytics
+
+Trust
+
+Moderation
+
+Notifications
+
+Realtime
+
+Governance
+
+Experiments
+
+====================================================
+# 4. MARKETPLACE DATA MODEL
+====================================================
+
+Design complete marketplace data architecture.
+
+Include:
+
+Listings
+
+Listing Versions
+
+Listing States
+
+Listing Attributes
+
+Categories
+
+Tags
+
+Locations
+
+Amenities
+
+Media
+
+Interactions
+
+Favorites
+
+Views
+
+Leads
+
+CRM Relationships
+
+Generate:
+
+Entity relationships
+
+Lifecycle states
+
+Data ownership
+
+Read models
+
+Aggregations
+
+====================================================
+# 5. DISCOVERY & RECOMMENDATION DATA MODEL
+====================================================
+
+Design:
+
+Feed Candidates
+
+Feed Snapshots
+
+Feed Results
+
+Recommendation Results
+
+Ranking Outputs
+
+Ranking Signals
+
+Personalization Profiles
+
+Behavior Signals
+
+Trend Signals
+
+Experiment Variants
+
+Explain:
+
+- storage strategy
+- retention strategy
+- recalculation strategy
+- caching strategy
+
+====================================================
+# 6. SEARCH & SEMANTIC DATA MODEL
+====================================================
+
+Design:
+
+Search Queries
+
+Search Sessions
+
+Search Clicks
+
+Saved Searches
+
+Search Alerts
+
+Vector Embeddings
+
+Hybrid Retrieval Data
+
+Semantic Metadata
+
+Search Explainability
+
+Include:
+
+pgvector strategy
+
+embedding lifecycle
+
+retrieval lifecycle
+
+re-indexing strategy
+
+====================================================
+# 7. AI DATA ARCHITECTURE
+====================================================
+
+Design:
+
+Prompt Registry
+
+Model Registry
+
+Inference Logs
+
+Embeddings
+
+AI Experiments
+
+AI Evaluations
+
+AI Feedback
+
+AI Costs
+
+AI Usage
+
+AI Governance
+
+Explain:
+
+- model lifecycle
+- prompt lifecycle
+- inference lifecycle
+- cost tracking lifecycle
+
+====================================================
+# 8. BILLING & MONETIZATION DATA MODEL
+====================================================
+
+Design:
+
+Plans
+
+Subscriptions
+
+Invoices
+
+Payments
+
+Usage Tracking
+
+Quota Usage
+
+Credits
+
+Sponsored Listings
+
+Boost Campaigns
+
+Promotions
+
+Revenue Attribution
+
+Tenant Entitlements
+
+Explain:
+
+- monetization lifecycle
+- quota lifecycle
+- revenue lifecycle
+
+====================================================
+# 9. TRUST & MODERATION DATA MODEL
+====================================================
+
+Design:
+
+Trust Scores
+
+Fraud Scores
+
+Verification Requests
+
+Verification Records
+
+Moderation Reports
+
+Moderation Cases
+
+Moderation Actions
+
+Appeals
+
+Risk Signals
+
+Behavioral Signals
+
+Explain:
+
+- trust lifecycle
+- moderation lifecycle
+- evidence retention
+
+====================================================
+# 10. ANALYTICS DATA MODEL
+====================================================
+
+Design:
+
+Event Store
+
+Analytics Snapshots
+
+Funnel Models
+
+Cohort Models
+
+AI Analytics
+
+Marketplace Analytics
+
+Revenue Analytics
+
+Tenant Analytics
+
+Operational Analytics
+
+Explain:
+
+- event aggregation
+- snapshot generation
+- long-term retention
+
+====================================================
+# 11. REALTIME DATA MODEL
+====================================================
+
+Design:
+
+Presence
+
+Realtime Sessions
+
+Realtime Notifications
+
+Realtime Feeds
+
+Realtime Personalization
+
+Realtime Analytics
+
+Realtime Channels
+
+Explain:
+
+- channel ownership
+- event propagation
+- isolation strategy
+
+====================================================
+# 12. MULTI-TENANT ISOLATION MODEL
+====================================================
+
+Design complete tenant isolation.
+
+Include:
+
+Tenant Boundaries
+
+Cross-Tenant Protection
+
+Tenant-Aware Queries
+
+Tenant-Aware Analytics
+
+Tenant-Aware AI
+
+Tenant-Aware Recommendations
+
+Tenant-Aware Billing
+
+Tenant-Aware Search
+
+Generate:
+
+Isolation Matrix
+
+Data Access Matrix
+
+Ownership Matrix
+
+====================================================
+# 13. RLS MASTER DESIGN
+====================================================
+
+For EVERY domain define:
+
+Access Rules
+
+Ownership Rules
+
+Admin Access
+
+Platform Access
+
+Tenant Access
+
+Service Access
+
+AI Access
+
+Analytics Access
+
+Moderation Access
+
+Generate:
+
+Complete RLS Responsibility Matrix
+
+====================================================
+# 14. INDEXING STRATEGY
+====================================================
+
+Design:
+
+Primary Indexes
+
+Secondary Indexes
+
+Composite Indexes
+
+GIN Indexes
+
+Vector Indexes
+
+Search Indexes
+
+Analytics Indexes
+
+Explain:
+
+- query optimization
+- scaling strategy
+- expected growth patterns
+
+====================================================
+# 15. PARTITIONING STRATEGY
+====================================================
+
+Design partitioning for:
+
+Events
+
+Analytics
+
+Messages
+
+Notifications
+
+AI Logs
+
+Inference Logs
+
+Audit Logs
+
+Usage Tracking
+
+Explain:
+
+- partition keys
+- archival strategy
+- cold storage strategy
+
+====================================================
+# 16. STORAGE & MEDIA ARCHITECTURE
+====================================================
+
+Design Supabase Storage structure.
+
+Generate:
+
+listing-media
+
+company-assets
+
+avatars
+
+verification-documents
+
+moderation-assets
+
+ai-assets
+
+campaign-assets
+
+Explain:
+
+- bucket ownership
+- security rules
+- lifecycle policies
+
+====================================================
+# 17. DATA RETENTION & GOVERNANCE
+====================================================
+
+Design:
+
+Retention Policies
+
+Archival Policies
+
+Deletion Policies
+
+GDPR Readiness
+
+Auditability
+
+Compliance Logging
+
+Data Recovery
+
+Soft Delete Strategy
+
+Hard Delete Strategy
+
+====================================================
+# 18. DATABASE SCALABILITY ANALYSIS
+====================================================
+
+Analyze future bottlenecks.
+
+Include:
+
+Listings Growth
+
+AI Growth
+
+Embedding Growth
+
+Analytics Growth
+
+Realtime Growth
+
+Billing Growth
+
+Tenant Growth
+
+Moderation Growth
+
+Explain:
+
+- scaling risks
+- mitigation strategies
+- extraction indicators
+
+====================================================
+# 19. DATABASE EVOLUTION ROADMAP
+====================================================
+
+Generate:
+
+Phase AA.1
+
+Phase AA.2
+
+Phase AA.3
+
+Phase AA.4
+
+Phase AA.5
+
+For EACH phase include:
+
+- objectives
+- entities introduced
+- dependencies
+- migration risks
+- validation strategy
+
+====================================================
+# 20. FINAL DATABASE BLUEPRINT
+====================================================
+
+Generate:
+
+Complete ERD Domain Map
+
+Complete Entity Map
+
+Complete Ownership Map
+
+Complete Isolation Map
+
+Complete Lifecycle Map
+
+Complete Scaling Map
+
+Complete Governance Map
+
+Complete Future Evolution Map
+
+====================================================
+ACCEPTANCE CRITERIA
+====================================================
+
+The output must be detailed enough that:
+
+- Database architects can build ERDs
+- Supabase architects can design schemas
+- Backend engineers can define repositories
+- AI engineers can define storage strategies
+- Analytics engineers can build pipelines
+- Security engineers can define RLS
+- Platform engineers can plan scaling
+
+No additional database discovery should be required after this document.
+
+Think like:
+
+Principal PostgreSQL Architect
+Principal Supabase Architect
+Amazon Marketplace Data Architect
+Airbnb Data Platform Architect
+Spotify Personalization Data Architect
+Stripe Governance Data Architect
+OpenAI Infrastructure Architect
+
+بعد تنفيذ STEP AA، ستكون الخطوة التالية مباشرة:
+
+STEP AB — SUPABASE PRODUCTION BLUEPRINT
+
+وهي الوثيقة التي تحول هذا التصميم إلى:
+
+PostgreSQL Schemas
+Supabase Auth
+RLS Policies
+Storage Buckets
+Realtime Channels
+pgvector
+Edge Functions
+Background Jobs
+Migration Strategy
+
+ثم بعدها:
+STEP AC — Event Contract Catalog ثم STEP AD — API Contract Catalog قبل بدء التنفيذ الفعلي.
+
+resume
+
+ممتاز. إذا افترضنا أن:
+
+STEP Z   ✅ Product Requirements Master Package
+STEP AA  ✅ Database Evolution Master Design
+STEP AB  ✅ Supabase Production Blueprint
+
+فقد وصلنا إلى نقطة التحول من Architecture Design إلى Engineering Design.
+
+ومن هنا يبدأ الجزء الذي سيؤثر مباشرة على الكود الذي سيُكتب في GitHub وعلى البنية الفعلية داخل Supabase.
+
+🔥 STEP AC — EVENT CONTRACT CATALOG
+لماذا هذه المرحلة مهمة جدًا؟
+
+في الـ AI Marketplace Operating System الذي نبنيه، الـ Event هو الوحدة الأساسية للتواصل بين الـ Domains.
+
+بدل:
+
+Module A → directly calls → Module B
+
+نريد:
+
+Module A
+    ↓
+Publish Event
+    ↓
+Event Bus
+    ↓
+Interested Domains Consume
+
+وهذا ما يجعل الـ Modular Monolith قابلاً للتحول إلى Microservices لاحقًا.
+
+Event Taxonomy (المستوى الأعلى)
+Identity Events
+user_registered
+user_verified
+user_logged_in
+user_logged_out
+password_reset_requested
+mfa_enabled
+membership_invited
+membership_accepted
+role_assigned
+role_revoked
+Tenant Events
+tenant_created
+tenant_activated
+tenant_suspended
+tenant_reactivated
+tenant_deleted
+branch_created
+member_added
+member_removed
+Listing Events
+listing_created
+listing_updated
+listing_submitted
+listing_approved
+listing_rejected
+listing_published
+listing_unpublished
+listing_archived
+listing_deleted
+Media Events
+media_uploaded
+media_processed
+media_moderated
+media_approved
+media_rejected
+Search Events
+search_performed
+search_saved
+search_alert_created
+search_result_clicked
+Discovery Events
+feed_requested
+candidate_generated
+ranking_completed
+feed_generated
+feed_served
+Recommendation Events
+recommendation_generated
+recommendation_served
+recommendation_clicked
+recommendation_converted
+Lead Events
+lead_created
+lead_assigned
+lead_qualified
+lead_contacted
+lead_converted
+lead_closed
+Billing Events
+subscription_created
+subscription_upgraded
+subscription_downgraded
+subscription_cancelled
+
+invoice_created
+invoice_paid
+invoice_failed
+
+quota_consumed
+quota_exceeded
+Monetization Events
+promotion_started
+promotion_ended
+
+boost_created
+boost_expired
+
+sponsored_listing_created
+sponsored_click_recorded
+Trust Events
+trust_score_updated
+verification_requested
+verification_completed
+fraud_detected
+risk_signal_generated
+Moderation Events
+report_submitted
+case_created
+case_escalated
+action_taken
+appeal_created
+appeal_resolved
+AI Events
+embedding_generated
+embedding_refreshed
+
+inference_requested
+inference_completed
+
+prompt_version_created
+
+experiment_started
+experiment_completed
+Analytics Events
+event_recorded
+snapshot_generated
+funnel_updated
+cohort_updated
+Event Contract Standard
+
+كل Event يجب أن يتبع Contract موحد:
+
+{
+  "event_id": "uuid",
+  "event_name": "listing_created",
+  "event_version": "1.0",
+  "occurred_at": "timestamp",
+  "tenant_id": "uuid",
+  "actor_id": "uuid",
+  "resource_type": "listing",
+  "resource_id": "uuid",
+  "payload": {},
+  "metadata": {}
+}
+Event Ownership Matrix
+
+مثال:
+
+Event	Producer	Consumers
+listing_created	Listings Domain	Analytics, Discovery, AI
+recommendation_served	Recommendation Domain	Analytics
+invoice_paid	Billing Domain	Analytics, Entitlements
+fraud_detected	Trust Domain	Moderation, Admin
+embedding_generated	AI Domain	Search, Discovery
+Event Storage Strategy
+
+داخل Supabase:
+
+event_store
+event_dead_letter
+event_replay_queue
+event_subscriptions
+event_processing_logs
+ثم ننتقل إلى
+🔥 STEP AD — API CONTRACT CATALOG
+
+هنا لا نكتب Endpoints فعلية.
+
+بل نحدد:
+
+Domain APIs
+Identity
+Authentication APIs
+Authorization APIs
+Membership APIs
+Invitation APIs
+Listings
+Create Listing
+Update Listing
+Publish Listing
+Archive Listing
+Get Listing
+Search
+Keyword Search
+Semantic Search
+Saved Searches
+Search Alerts
+Discovery
+Home Feed
+Trending Feed
+Personalized Feed
+Recommended Listings
+AI
+Generate Insights
+Generate Embeddings
+Inference Requests
+Prompt Registry
+Billing
+Plans
+Subscriptions
+Invoices
+Usage
+Quota
+ثم
+🔥 STEP AE — FRONTEND SYSTEM BLUEPRINT
+
+وهنا نربط كل شيء بالبنية الحالية:
+
+App Router
+app/
+├── (public)
+├── (tenant)
+├── (admin)
+├── api
+Features
+features/
+├── identity
+├── organizations
+├── listings
+├── search
+├── discovery
+├── ai
+├── billing
+├── trust
+├── analytics
+├── notifications
+Services
+services/
+├── supabase
+├── api
+├── ai
+├── events
+├── analytics
+بعد AE
+
+ندخل أول مرحلة تنفيذ حقيقية
+
+AF.1 — Schema Migration Program
+
+بناء:
+
+Identity Domain
+
+Tenant Domain
+
+Listings Domain
+
+Media Domain
+
+ثم:
+
+Discovery Domain
+
+Search Domain
+
+AI Domain
+
+ثم:
+
+Billing
+
+Trust
+
+Analytics
+الخلاصة
+
+المسار الكامل أصبح الآن:
+
+STEP Z
+Product Bible
+        ✅
+
+STEP AA
+Database Evolution Master Design
+        ✅
+
+STEP AB
+Supabase Production Blueprint
+        ⏭️
+
+STEP AC
+Event Contract Catalog
+        ⏭️
+
+STEP AD
+API Contract Catalog
+        ⏭️
+
+STEP AE
+Frontend System Blueprint
+        ⏭️
+
+AF.1
+Schema Migration Program
+
+AF.2
+RLS Program
+
+AF.3
+Storage Program
+
+AF.4
+Edge Functions
+
+AF.5
+Discovery Engine
+
+AF.6
+AI Layer
+
+AF.7
+Production Launch
+
+ومن واقع المشروع الحالي، قبل أي سطر كود جديد، أنصح أن تكون الخطوة التالية الفعلية هي 
+كتابة Prompt كامل لـ STEP AB — Supabase Production Blueprint لأنه سيترجم كل ما سبق إلى بنية تشغيل حقيقية داخل Supabase.
+
+give prompt step AB 
+and every time do it give me full prompt for every step
+قم بالتحقق من supabasse, github
+و الأكواد و كل شيء خاص بالمشروع
+Looking for available tools
+
+أستطيع مراجعة GitHub وSupabase فعليًا، لكن لا أستطيع أن أقول إنني تحققت من "كل الأكواد وكل شيء" حتى الآن لأنني لا أملك في هذه الرسالة:
+
+رابط Repository أو اسم Repository في GitHub.
+Project ID أو تفاصيل Supabase الحالية.
+ملفات المشروع الموجودة في GitHub.
+
+إذا أرسلت:
+
+رابط GitHub Repository
+أو اسم الريبو بصيغة owner/repository
+
+فسأقوم بمراجعة:
+
+Architecture
+Folder Structure
+Next.js App Router
+Supabase Integration
+Database Migrations
+RLS
+Edge Functions
+Zustand
+TanStack Query
+AI Layer
+Security
+Performance
+Technical Debt
+
+وأبني الخطوات التالية بناءً على الكود الحقيقي وليس على الافتراضات.
+
+🔥 STEP AB — SUPABASE PRODUCTION BLUEPRINT PROMPT
+
+انسخ البرومبت بالكامل:
+
+You are a world-class Principal Supabase Architect, PostgreSQL Architect, Multi-Tenant SaaS Architect, AI Infrastructure Architect, Platform Reliability Engineer, Security Architect, and Marketplace Systems Engineer.
+
+You are continuing development of an EXISTING AI-Native Multi-Tenant Marketplace Operating System.
+
+IMPORTANT
+
+DO NOT redesign the platform.
+
+DO NOT simplify architecture.
+
+DO NOT generate implementation code.
+
+DO NOT generate SQL migrations.
+
+DO NOT generate UI.
+
+DO NOT generate APIs.
+
+CONTINUE from:
+
+- Master Platform Blueprint
+- Product Requirements Master Package
+- Database Evolution Master Design
+
+The goal is to transform the logical database architecture into a COMPLETE production-grade Supabase operating blueprint.
+
+====================================================
+CURRENT PLATFORM VISION
+====================================================
+
+The platform is:
+
+AI-Native Marketplace Operating System
+
+Combining:
+
+- Marketplace Infrastructure
+- Discovery Infrastructure
+- Recommendation Infrastructure
+- AI Infrastructure
+- Analytics Infrastructure
+- Monetization Infrastructure
+- Trust Infrastructure
+- Governance Infrastructure
+
+Built with:
+
+Frontend:
+- Next.js 15
+- React 19
+- TypeScript
+- TailwindCSS v4
+- shadcn/ui
+- Zustand
+- TanStack Query
+
+Backend:
+- Supabase
+- PostgreSQL
+- Storage
+- Realtime
+- Edge Functions
+- pgvector
+
+Architecture:
+- Hybrid Modular Monolith
+- Domain Driven Design
+- Event Driven Evolution
+- Multi Tenant Isolation
+
+====================================================
+OBJECTIVE
+====================================================
+
+Generate:
+
+🔥 SUPABASE PRODUCTION BLUEPRINT
+
+The definitive production architecture for the platform.
+
+====================================================
+# 1. SUPABASE OPERATING MODEL
+====================================================
+
+Design the complete operating model.
+
+Explain:
+
+- Why Supabase is the platform core
+- Responsibilities of Supabase
+- Responsibilities of Next.js
+- Responsibilities of Edge Functions
+- Responsibilities of AI infrastructure
+
+Generate:
+
+System Responsibility Matrix
+
+====================================================
+# 2. SCHEMA STRATEGY
+====================================================
+
+Design schema architecture.
+
+Generate:
+
+auth
+core
+identity
+tenant
+marketplace
+search
+discovery
+recommendation
+ai
+billing
+trust
+moderation
+analytics
+governance
+realtime
+experiments
+
+For each schema define:
+
+- ownership
+- responsibilities
+- isolation
+- scaling strategy
+
+====================================================
+# 3. AUTHENTICATION ARCHITECTURE
+====================================================
+
+Design complete authentication.
+
+Include:
+
+Users
+Organizations
+Memberships
+Sessions
+Invitations
+MFA
+Recovery
+Service Accounts
+AI Service Accounts
+
+Explain:
+
+- authentication flow
+- organization onboarding flow
+- tenant assignment flow
+
+====================================================
+# 4. AUTHORIZATION ARCHITECTURE
+====================================================
+
+Design complete RBAC.
+
+Include:
+
+SUPER_ADMIN
+PLATFORM_ADMIN
+SUPPORT
+TENANT_OWNER
+TENANT_ADMIN
+AGENT
+EDITOR
+MODERATOR
+ANALYST
+AI_OPERATOR
+
+Generate:
+
+Permission Matrix
+Scope Matrix
+Isolation Matrix
+
+====================================================
+# 5. RLS MASTER ARCHITECTURE
+====================================================
+
+Generate complete RLS strategy.
+
+For every domain define:
+
+- read rules
+- write rules
+- update rules
+- delete rules
+
+Include:
+
+tenant isolation
+cross tenant protection
+admin overrides
+service roles
+analytics access
+AI access
+
+====================================================
+# 6. STORAGE ARCHITECTURE
+====================================================
+
+Design complete storage system.
+
+Buckets:
+
+listing-media
+company-assets
+avatars
+verification-documents
+moderation-assets
+campaign-assets
+ai-assets
+exports
+
+For each bucket define:
+
+- ownership
+- access rules
+- retention policy
+- lifecycle policy
+- size strategy
+
+====================================================
+# 7. REALTIME ARCHITECTURE
+====================================================
+
+Design complete realtime architecture.
+
+Include:
+
+notifications
+chat
+presence
+feed updates
+analytics streams
+moderation queues
+
+Generate:
+
+channel model
+subscription model
+security model
+scaling model
+
+====================================================
+# 8. PGVECTOR ARCHITECTURE
+====================================================
+
+Design complete vector infrastructure.
+
+Include:
+
+listing embeddings
+user embeddings
+search embeddings
+recommendation embeddings
+tenant embeddings
+
+Explain:
+
+embedding lifecycle
+refresh lifecycle
+retrieval lifecycle
+versioning strategy
+
+====================================================
+# 9. EDGE FUNCTIONS ARCHITECTURE
+====================================================
+
+Design complete edge function strategy.
+
+Include:
+
+feed-generation
+recommendation-generation
+semantic-search
+embedding-refresh
+quota-enforcement
+billing-webhooks
+notification-dispatch
+moderation-processing
+analytics-aggregation
+
+For each function define:
+
+purpose
+trigger
+inputs
+outputs
+dependencies
+security requirements
+
+====================================================
+# 10. EVENT PROCESSING ARCHITECTURE
+====================================================
+
+Design complete event architecture.
+
+Include:
+
+event store
+event consumers
+event producers
+dead letter handling
+replay strategy
+
+Generate:
+
+event ownership matrix
+
+====================================================
+# 11. ANALYTICS PIPELINE
+====================================================
+
+Design complete analytics infrastructure.
+
+Include:
+
+event ingestion
+aggregation
+snapshots
+cohorts
+funnels
+retention
+revenue analytics
+AI analytics
+
+====================================================
+# 12. AI INFRASTRUCTURE
+====================================================
+
+Design complete AI operating model.
+
+Include:
+
+prompt registry
+model registry
+inference logs
+AI experiments
+AI evaluations
+cost tracking
+
+Explain:
+
+AI governance
+AI observability
+AI lifecycle
+
+====================================================
+# 13. BILLING INFRASTRUCTURE
+====================================================
+
+Design complete billing architecture.
+
+Include:
+
+subscriptions
+plans
+usage billing
+AI billing
+quotas
+credits
+entitlements
+
+====================================================
+# 14. TRUST & SAFETY INFRASTRUCTURE
+====================================================
+
+Design:
+
+trust scoring
+fraud detection
+verification
+moderation
+appeals
+enforcement
+
+====================================================
+# 15. BACKUP & DISASTER RECOVERY
+====================================================
+
+Design:
+
+backups
+point in time recovery
+rollback plans
+incident recovery
+business continuity
+
+====================================================
+# 16. OBSERVABILITY
+====================================================
+
+Design:
+
+logging
+metrics
+tracing
+alerts
+auditability
+security monitoring
+
+====================================================
+# 17. PERFORMANCE & SCALABILITY
+====================================================
+
+Analyze:
+
+database bottlenecks
+realtime bottlenecks
+vector bottlenecks
+analytics bottlenecks
+AI bottlenecks
+
+Generate mitigation strategies.
+
+====================================================
+# 18. PRODUCTION READINESS CHECKLIST
+====================================================
+
+Generate complete readiness checklist.
+
+Security
+Performance
+Reliability
+Scalability
+Observability
+Compliance
+
+====================================================
+# 19. SUPABASE EVOLUTION ROADMAP
+====================================================
+
+Generate:
+
+AB.1
+AB.2
+AB.3
+AB.4
+AB.5
+
+For each phase include:
+
+objectives
+dependencies
+risks
+validation criteria
+
+====================================================
+# 20. FINAL SUPABASE BLUEPRINT
+====================================================
+
+Generate:
+
+Complete Supabase Architecture Map
+
+Complete Security Map
+
+Complete Storage Map
+
+Complete Realtime Map
+
+Complete AI Map
+
+Complete Event Map
+
+Complete Scaling Map
+
+Complete Operations Map
+
+Complete Future Evolution Map
+
+====================================================
+ACCEPTANCE CRITERIA
+====================================================
+
+The output must be detailed enough that:
+
+- Supabase architects can build production infrastructure
+- Backend engineers can implement services
+- Security engineers can implement RLS
+- AI engineers can implement intelligence systems
+- DevOps engineers can operate the platform
+- Product teams can understand platform capabilities
+
+No further Supabase architecture clarification should be required after this document.
+
+Think like:
+
+Principal Supabase Architect
+Principal PostgreSQL Architect
+Amazon Marketplace Infrastructure Architect
+Stripe Platform Architect
+Airbnb Systems Architect
+Spotify Personalization Architect
+OpenAI Infrastructure Architect
+بعد STEP AB
+
+الخطوة التالية مباشرة:
+
+🔥 STEP AC — EVENT CONTRACT CATALOG
+
+وسأعطيك نفس المستوى من البرومبت الكامل (وليس ملخصًا) عندما ننتهي من AB.
+
+أما بالنسبة للمراجعة الفعلية للمشروع، أرسل رابط الـ GitHub Repository (أو اسمه)، وسأبدأ مراجعة الكود والبنية الحالية ثم أعدل مسار الخطوات بناءً على الواقع الموجود في المشروع.
+
+resume build pr
+may be you already have mcp for supabase and github 
+
+Called tool
+
+نعم، أستطيع الوصول إلى جزء من بيئة Supabase المرتبطة بالمشروع، ووجدت مشروعين:
+
+المشروع النشط حاليًا: mdegkyxdnbfzegeauxpl بحالة ACTIVE_HEALTHY
+مشروع أقدم بحالة INACTIVE
+
+لكن لا أستطيع افتراض أن لدي وصولًا تلقائيًا إلى Repository GitHub أو جميع ملفات المشروع دون معرفة الـ repository أو منحي الوصول إليه.
+
+أين نحن الآن؟
+
+المسار المعماري أصبح تقريبًا:
+
+STEP 1   Super Admin Foundation
+STEP 2   Platform Core Architecture
+STEP 3   Marketplace Intelligence
+STEP 4   AI Infrastructure
+STEP 5   Master Platform Blueprint
+
+STEP Z   Product Bible (PRDs)
+STEP AA  Database Master Design
+STEP AB  Supabase Production Blueprint
+
+STEP AC  Event Contract Catalog
+STEP AD  API Contract Catalog
+STEP AE  Frontend System Blueprint
+
+AF.1     Schema Program
+AF.2     RLS Program
+AF.3     Storage Program
+AF.4     Edge Functions Program
+AF.5     Discovery Engine
+AF.6     AI Engine
+AF.7     Production Launch
+ما الذي أحتاجه الآن؟
+
+إذا كنت تريد أن أكمل بناء المشروع فعليًا وليس فقط إنتاج وثائق:
+
+أرسل أحد هذه الأشياء:
+
+GitHub Repository:
+
+owner/repository
+
+أو الرابط الكامل.
+
+أو اسم الفرع الحالي.
+أو هيكل المشروع الحالي (tree).
+
+بعدها سأقوم بـ:
+
+مراجعة الكود الحالي.
+مقارنة الكود مع STEP Z / AA / AB.
+استخراج Technical Debt.
+بناء PR Roadmap حقيقي.
+تحديد أول Pull Request يجب تنفيذه.
+ما أرجحه الآن
+
+بناءً على ما وصلنا إليه، أول PR هندسي كبير يجب أن يكون:
+
+PR-001 Platform Foundation
+
+يشمل:
+
+features/
+├── identity
+├── tenant
+├── listings
+├── media
+
+services/
+├── supabase
+├── auth
+├── events
+
+types/
+├── identity
+├── tenant
+├── listings
+
+ثم:
+
+PR-002 Database Foundation
+Organizations
+Memberships
+Tenants
+Branches
+Users
+Profiles
+Audit Logs
+
+ثم:
+
+PR-003 RLS Foundation
+Tenant Isolation
+Membership Rules
+Admin Rules
+Service Rules
+
+ثم:
+
+PR-004 Storage Foundation
+avatars
+listing-media
+company-assets
+verification-documents
+
+ثم:
+
+PR-005 Event Infrastructure
+event_store
+event_dispatcher
+event_subscriptions
+dead_letter_queue
+
+لكن قبل أن أكتب خطة PR دقيقة مرتبطة بالمشروع الحقيقي، أحتاج Repository GitHub الفعلي أو اسمه حتى أراجع الملفات الموجودة وأكمل من الوضع الحالي بدل البناء على افتراضات.
+
+read file 
+read github,supabase via mcp
+resume steps after step AB
+
+قرأت الملفات المتاحة في هذه المحادثة، واستخلصت التسلسل الحالي للمشروع:
+
+Phase 1: Client Marketplace App
+Company Dashboard SaaS (مكتمل معماريًا)
+STEP X: Feature Inventory
+STEP Y: Feature Inventory Consolidation
+STEP Z: Product Requirements Master Package (PRDs)
+STEP AA: Database Master Design
+STEP AB: Supabase Production Blueprint
+
+لكن لا أستطيع فعليًا قراءة:
+
+مستودع GitHub الخاص بك لأن رابط المستودع غير موجود هنا.
+مشروع Supabase الحقيقي لأن بيانات الوصول غير متوفرة.
+المحادثة المشتركة ChatGPT التي أرسلتها لأنني لا أستطيع فتح محتوى روابط المحادثات الخارجية مباشرة.
+
+لكي أكمل فعليًا من بعد STEP AB وليس بالافتراض، أحتاج أحد هذه الأمور:
+
+GitHub
+
+أرسل:
+
+رابط المستودع GitHub
+أو
+اسم الـ repo وصاحبه
+Supabase
+
+أرسل:
+
+schema.sql
+أو
+migration files
+أو
+structure export
+Chat Continuation
+
+أرسل:
+
+Export للمحادثة
+أو
+آخر Prompt كامل لـ STEP AB
+أو
+ناتج STEP AB النهائي
+بناءً على المسار الحالي فقط
+
+إذا افترضنا أن STEP AB اكتمل بالكامل، فأرى أن الخطوة الطبيعية التالية ليست STEP AC = Coding.
+
+بل:
+
+STEP AC — PLATFORM IMPLEMENTATION MASTER SPECIFICATION
+
+الهدف:
+
+تحويل:
+
+PRDs
+→ Database Design
+→ Supabase Blueprint
+
+إلى:
+
+Engineering Specifications
+API Contracts
+Event Contracts
+Service Contracts
+Frontend Contracts
+AI Contracts
+
+ثم بعدها:
+
+STEP AD — Backend Engineering Blueprint
+
+يتضمن:
+
+Supabase Schema Finalization
+Edge Functions
+Realtime Channels
+Storage Architecture
+Queue Design
+Background Jobs
+
+ثم:
+
+STEP AE — Frontend Application Architecture
+
+يتضمن:
+
+Public Marketplace
+Tenant Dashboard
+Super Admin
+Shared Design System
+State Management
+Feature Modules
+
+ثم:
+
+STEP AF — AI Infrastructure Implementation Plan
+
+يتضمن:
+
+Embeddings
+Semantic Search
+Recommendation Engine
+Ranking Engine
+Personalization Engine
+AI Observability
+
+ثم:
+
+STEP AG — Execution Sprint Roadmap
+
+تحويل المشروع إلى:
+
+Sprint 1
+Sprint 2
+Sprint 3
+Sprint 4
+
+مع:
+
+Deliverables
+Acceptance Criteria
+Dependencies
+Risks
+
+إذا أعطيتني:
+
+رابط GitHub
+ملفات Supabase
+مخرجات STEP AB
+
+سأراجعها أولًا، ثم أحدد بدقة أين توقف المشروع، وأكمل من STEP AC وما بعده بناءً على الحالة الفعلية للمشروع وليس على افتراضات.
+
+STEP AC — PLATFORM IMPLEMENTATION MASTER SPECIFICATION
+THE DEFINITIVE ENGINEERING EXECUTION PROMPT
+
+انسخ البرومبت التالي بالكامل واستخدمه مباشرة بعد STEP AB:
+
+🔥 STEP AC — PLATFORM IMPLEMENTATION MASTER SPECIFICATION
+
+You are a Principal Software Architect,
+Principal Backend Engineer,
+Principal Frontend Architect,
+Principal Supabase Architect,
+Principal AI Systems Architect,
+Staff Product Engineer,
+and Enterprise Marketplace Platform Engineer.
+
+You are continuing development of an EXISTING AI-Native Multi-Tenant Marketplace Operating System.
+
+IMPORTANT:
+
+DO NOT redesign previous phases.
+
+DO NOT regenerate database architecture.
+
+DO NOT regenerate PRDs.
+
+DO NOT regenerate STEP AA.
+
+DO NOT regenerate STEP AB.
+
+Assume ALL previous phases are approved and frozen.
+
+You are now transforming architecture into executable engineering contracts.
+
+====================================================
+INPUT
+====================================================
+
+Completed:
+
+✅ Product Requirements Package
+
+✅ Marketplace Architecture
+
+✅ Database Master Design
+
+✅ Supabase Production Blueprint
+
+✅ AI Architecture
+
+✅ Analytics Architecture
+
+✅ Billing Architecture
+
+✅ Moderation Architecture
+
+✅ Super Admin Architecture
+
+====================================================
+STEP AC GOAL
+====================================================
+
+Convert architecture into:
+
+1. API Contracts
+2. Service Contracts
+3. Event Contracts
+4. Frontend Contracts
+5. Backend Module Contracts
+6. AI Contracts
+7. Realtime Contracts
+8. Integration Contracts
+
+This output becomes:
+
+THE ENGINEERING CONSTITUTION
+
+for all implementation work.
+
+====================================================
+OUTPUT REQUIREMENTS
+====================================================
+
+Produce implementation-grade specifications.
+
+NO CODE.
+
+NO MOCKUPS.
+
+NO PLACEHOLDERS.
+
+NO MVP SHORTCUTS.
+
+EVERYTHING MUST BE READY FOR ENGINEERING EXECUTION.
+
+====================================================
+SECTION 1
+PLATFORM MODULE MAP
+====================================================
+
+Generate complete platform decomposition.
+
+Include:
+
+Identity Service
+
+Company Service
+
+Organization Service
+
+Team Service
+
+RBAC Service
+
+Listing Service
+
+Media Service
+
+Search Service
+
+Recommendation Service
+
+Analytics Service
+
+AI Service
+
+Notification Service
+
+Messaging Service
+
+CRM Service
+
+Lead Service
+
+Billing Service
+
+Subscription Service
+
+Quota Service
+
+Moderation Service
+
+Trust Service
+
+Audit Service
+
+Support Service
+
+Super Admin Service
+
+For each module define:
+
+- Purpose
+- Ownership
+- Inputs
+- Outputs
+- Dependencies
+- Events Produced
+- Events Consumed
+
+====================================================
+SECTION 2
+API CONTRACTS
+====================================================
+
+Generate complete API catalog.
+
+Include:
+
+Authentication APIs
+
+Company APIs
+
+User APIs
+
+Team APIs
+
+Role APIs
+
+Listing APIs
+
+Media APIs
+
+Search APIs
+
+Recommendation APIs
+
+Analytics APIs
+
+CRM APIs
+
+Lead APIs
+
+Billing APIs
+
+Subscription APIs
+
+Notification APIs
+
+Messaging APIs
+
+Support APIs
+
+Admin APIs
+
+For EVERY endpoint define:
+
+- Method
+- Route
+- Description
+- Authentication requirements
+- Authorization requirements
+- Request contract
+- Response contract
+- Errors
+- Side effects
+- Events emitted
+
+====================================================
+SECTION 3
+SERVICE CONTRACTS
+====================================================
+
+For every service define:
+
+Public Interface
+
+Internal Responsibilities
+
+State Ownership
+
+Business Rules
+
+Failure Handling
+
+Retry Rules
+
+Idempotency Rules
+
+Caching Rules
+
+Concurrency Rules
+
+Rate Limits
+
+Observability Requirements
+
+====================================================
+SECTION 4
+EVENT ARCHITECTURE
+====================================================
+
+Generate complete event catalog.
+
+Include:
+
+Identity Events
+
+Company Events
+
+User Events
+
+Listing Events
+
+Media Events
+
+Interaction Events
+
+Recommendation Events
+
+Analytics Events
+
+Billing Events
+
+Moderation Events
+
+Trust Events
+
+Support Events
+
+AI Events
+
+Admin Events
+
+For each event define:
+
+- Event Name
+- Producer
+- Consumers
+- Payload Contract
+- Delivery Requirements
+- Ordering Requirements
+- Retry Strategy
+- Retention Policy
+
+====================================================
+SECTION 5
+REALTIME CONTRACTS
+====================================================
+
+Generate complete realtime architecture.
+
+Include:
+
+Notifications
+
+Messaging
+
+Activity Feeds
+
+Analytics Streams
+
+Moderation Streams
+
+Billing Streams
+
+Admin Streams
+
+For each channel define:
+
+- Channel Name
+- Publisher
+- Subscribers
+- Authorization Rules
+- Payload Contract
+- Reconnection Rules
+- Scaling Strategy
+
+====================================================
+SECTION 6
+AI CONTRACTS
+====================================================
+
+Generate complete AI architecture contracts.
+
+Include:
+
+Embedding Pipeline
+
+Semantic Search
+
+Recommendation Engine
+
+Ranking Engine
+
+Personalization Engine
+
+Insight Generation
+
+Lead Scoring
+
+Risk Scoring
+
+Fraud Detection
+
+Moderation Assistance
+
+For each system define:
+
+Inputs
+
+Outputs
+
+Models
+
+Storage
+
+Events
+
+Latency Targets
+
+Failure Strategy
+
+Observability
+
+====================================================
+SECTION 7
+FRONTEND CONTRACTS
+====================================================
+
+Generate complete frontend integration contract.
+
+Applications:
+
+Marketplace Web
+
+Tenant Dashboard
+
+Super Admin Console
+
+Mobile Applications
+
+For each application define:
+
+Pages
+
+Modules
+
+Required APIs
+
+Required Realtime Channels
+
+Required Permissions
+
+Caching Strategy
+
+Offline Strategy
+
+Error Handling
+
+====================================================
+SECTION 8
+AUTHORIZATION CONTRACTS
+====================================================
+
+Generate complete RBAC specification.
+
+Roles:
+
+Super Admin
+
+Platform Admin
+
+Company Owner
+
+Company Admin
+
+Manager
+
+Agent
+
+Staff
+
+Viewer
+
+Customer
+
+Anonymous
+
+For each role define:
+
+Permissions
+
+Allowed APIs
+
+Restricted APIs
+
+Realtime Access
+
+AI Access
+
+Analytics Access
+
+Billing Access
+
+====================================================
+SECTION 9
+INTEGRATION CONTRACTS
+====================================================
+
+Generate integrations for:
+
+Supabase
+
+Stripe
+
+OpenAI
+
+Email Provider
+
+SMS Provider
+
+Storage Provider
+
+Maps Provider
+
+Analytics Provider
+
+Monitoring Provider
+
+For each integration define:
+
+Responsibilities
+
+Data Flow
+
+Security Model
+
+Failure Model
+
+Rate Limits
+
+Secrets Management
+
+====================================================
+SECTION 10
+OBSERVABILITY CONTRACTS
+====================================================
+
+Generate:
+
+Logging Standards
+
+Audit Standards
+
+Metrics Standards
+
+Tracing Standards
+
+Alert Standards
+
+AI Monitoring Standards
+
+Billing Monitoring Standards
+
+Security Monitoring Standards
+
+====================================================
+SECTION 11
+BACKEND IMPLEMENTATION READINESS
+====================================================
+
+Generate:
+
+Backend Work Packages
+
+Implementation Order
+
+Dependencies
+
+Risks
+
+Complexity Score
+
+Estimated Effort
+
+Acceptance Criteria
+
+====================================================
+SECTION 12
+FRONTEND IMPLEMENTATION READINESS
+====================================================
+
+Generate:
+
+Frontend Work Packages
+
+Implementation Order
+
+Dependencies
+
+Risks
+
+Complexity Score
+
+Acceptance Criteria
+
+====================================================
+SECTION 13
+STEP AD HANDOFF PACKAGE
+====================================================
+
+Generate the exact handoff required for:
+
+STEP AD — BACKEND ENGINEERING BLUEPRINT
+
+Including:
+
+Edge Functions
+
+Storage Architecture
+
+Queue Architecture
+
+Background Jobs
+
+Cron Jobs
+
+Search Infrastructure
+
+AI Infrastructure
+
+Deployment Topology
+
+CI/CD Architecture
+
+Production Checklist
+
+====================================================
+FINAL REQUIREMENT
+====================================================
+
+Output must be:
+
+Enterprise-grade
+
+Production-ready
+
+AI-native
+
+Marketplace-native
+
+Multi-tenant
+
+Supabase-optimized
+
+PostgreSQL-first
+
+Scalable to 100,000+ tenants
+
+Ready for immediate engineering execution
+
+Think like:
+
+Principal Software Architect
++
+Principal Platform Engineer
++
+Principal AI Infrastructure Architect
++
+Principal Marketplace Systems Architect
++
+Principal Supabase Architect
+resume
+Received app response
+STEP AD — BACKEND ENGINEERING BLUEPRINT
+Real Project Continuation
+
+بعد فحص المشروع الفعلي، اكتشفت أن لديك بالفعل Edge Functions منشورة:
+
+auth
+listings
+team
+permissions
+analytics
+ai-tracking
+
+وجميعها Active وتتحقق من JWT. already supports these actions. Formula:
+
+Score=0.35R+0.25E+0.20P+0.20T
+
+Where:
+
+R = relevance
+E = engagement
+P = popularity
+T = recency
+STEP AD.6 — BACKGROUND JOBS
+Every Minute
+
+Process:
+
+notifications
+Every 5 Minutes
+
+Process:
+
+analytics aggregation
+Every 15 Minutes
+
+Process:
+
+recommendation refresh
+Every Hour
+
+Process:
+
+fraud analysis
+Every Day
+
+Process:
+
+KPI snapshots
+AI insights generation
+STEP AD.7 — STRIPE BILLING
+
+Required Services
+
+subscription-manager
+
+Responsibilities:
+
+upgrades
+downgrades
+renewals
+invoice-service
+
+Responsibilities:
+
+invoice generation
+entitlement-service
+
+Responsibilities:
+
+feature access
+quota-service
+
+Responsibilities:
+
+usage limits
+STEP AD.8 — DEPLOYMENT TOPOLOGY
+
+Frontend:
+
+Next.js
+
+Backend:
+
+Supabase
+
+Functions:
+
+Edge Functions
+
+AI:
+
+OpenAI
+Embedding pipeline
+
+Storage:
+
+Supabase Storage
+
+Payments:
+
+Stripe
+
+Monitoring:
+
+Sentry
+PostHog
+Supabase Logs
+STEP AD.9 — PRODUCTION READINESS SCORE
+
+Current estimated state:
+
+Area	Status
+Database	90%
+Auth	85%
+Listings	85%
+Team Management	80%
+RBAC	80%
+Analytics	75%
+Notifications	70%
+AI Infrastructure	40%
+Billing	20%
+Search	25%
+Recommendation Engine	15%
+Monitoring	20%
+Next Phase
+
+STEP AE — Frontend Application Architecture
+
+وسيتم فيه تصميم:
+
+Marketplace Web App
+Company Dashboard
+Super Admin Console
+Shared Design System
+State Management
+API Integration Layer
+
+اعتمادًا على الجداول والـ Edge Functions الموجودة فعليًا في المشروع الحالي.
+
+ok give me full prompt step AD
+STEP AD — BACKEND ENGINEERING BLUEPRINT
+THE DEFINITIVE BACKEND EXECUTION PROMPT
+
+انسخ البرومبت التالي بالكامل واستخدمه مباشرة بعد اكتمال STEP AC:
+
+🔥 STEP AD — BACKEND ENGINEERING BLUEPRINT
+
+You are a Principal Backend Architect,
+Principal Supabase Architect,
+Principal PostgreSQL Engineer,
+Principal Distributed Systems Engineer,
+Principal AI Infrastructure Engineer,
+Principal DevOps Architect,
+and Principal Marketplace Platform Engineer.
+
+You are continuing development of an EXISTING production-grade AI-Native Multi-Tenant Marketplace Operating System.
+
+IMPORTANT:
+
+DO NOT redesign architecture.
+
+DO NOT regenerate PRDs.
+
+DO NOT regenerate STEP AA.
+
+DO NOT regenerate STEP AB.
+
+DO NOT regenerate STEP AC.
+
+Assume all previous phases are approved and frozen.
+
+You are now transforming engineering contracts into executable backend infrastructure.
+
+====================================================
+INPUT
+====================================================
+
+Completed:
+
+✅ Product Requirements Package
+
+✅ Marketplace Architecture
+
+✅ Database Master Design
+
+✅ Supabase Production Blueprint
+
+✅ Platform Implementation Specification
+
+✅ API Contracts
+
+✅ Service Contracts
+
+✅ Event Contracts
+
+✅ Frontend Contracts
+
+====================================================
+STEP AD GOAL
+====================================================
+
+Generate the COMPLETE backend engineering blueprint.
+
+This document becomes:
+
+THE OFFICIAL BACKEND IMPLEMENTATION CONSTITUTION
+
+for all backend development.
+
+====================================================
+OUTPUT REQUIREMENTS
+====================================================
+
+Implementation-grade specifications.
+
+NO PLACEHOLDERS.
+
+NO TOY EXAMPLES.
+
+NO MVP SHORTCUTS.
+
+NO FRONTEND IMPLEMENTATION.
+
+BACKEND ONLY.
+
+====================================================
+SECTION 1
+BACKEND SYSTEM MAP
+====================================================
+
+Generate complete backend decomposition.
+
+Include:
+
+Auth Layer
+
+Tenant Layer
+
+RBAC Layer
+
+Listing Layer
+
+Media Layer
+
+Search Layer
+
+Recommendation Layer
+
+AI Layer
+
+Analytics Layer
+
+Messaging Layer
+
+Notification Layer
+
+CRM Layer
+
+Lead Layer
+
+Billing Layer
+
+Subscription Layer
+
+Quota Layer
+
+Moderation Layer
+
+Trust Layer
+
+Audit Layer
+
+Support Layer
+
+Super Admin Layer
+
+For each layer define:
+
+Purpose
+
+Responsibilities
+
+Dependencies
+
+Owned Data
+
+Owned Events
+
+Consumed Events
+
+Failure Boundaries
+
+Scaling Boundaries
+
+====================================================
+SECTION 2
+SUPABASE EDGE FUNCTIONS ARCHITECTURE
+====================================================
+
+Generate complete Edge Function catalog.
+
+Include:
+
+auth
+
+listings
+
+teams
+
+permissions
+
+analytics
+
+ai-tracking
+
+recommendation-engine
+
+semantic-search
+
+embedding-generator
+
+notification-dispatcher
+
+moderation-engine
+
+quota-enforcer
+
+billing-webhook
+
+subscription-manager
+
+lead-scoring
+
+fraud-scoring
+
+admin-tools
+
+support-tools
+
+For every function define:
+
+Purpose
+
+Route
+
+Authentication
+
+Authorization
+
+Input Contract
+
+Output Contract
+
+Dependencies
+
+Failure Handling
+
+Retry Strategy
+
+Observability
+
+Rate Limits
+
+Security Controls
+
+====================================================
+SECTION 3
+BACKGROUND JOBS ARCHITECTURE
+====================================================
+
+Generate all backend jobs.
+
+Include:
+
+Analytics Aggregation
+
+Recommendation Refresh
+
+Embedding Generation
+
+AI Insights Generation
+
+Fraud Analysis
+
+Quota Monitoring
+
+Subscription Sync
+
+Invoice Processing
+
+Search Reindexing
+
+Moderation Processing
+
+Notification Dispatch
+
+Audit Consolidation
+
+For every job define:
+
+Schedule
+
+Trigger
+
+Input
+
+Output
+
+Dependencies
+
+Retry Rules
+
+Failure Rules
+
+Idempotency Rules
+
+Retention Rules
+
+====================================================
+SECTION 4
+QUEUE ARCHITECTURE
+====================================================
+
+Generate event-driven queue architecture.
+
+Include:
+
+Listing Queue
+
+Analytics Queue
+
+Recommendation Queue
+
+AI Queue
+
+Notification Queue
+
+Billing Queue
+
+Moderation Queue
+
+Support Queue
+
+Audit Queue
+
+For every queue define:
+
+Producer
+
+Consumer
+
+Message Contract
+
+Ordering Strategy
+
+Dead Letter Strategy
+
+Retry Strategy
+
+Retention
+
+Scaling
+
+====================================================
+SECTION 5
+SEARCH INFRASTRUCTURE
+====================================================
+
+Generate complete search architecture.
+
+Include:
+
+Keyword Search
+
+Full Text Search
+
+Semantic Search
+
+Hybrid Search
+
+Autocomplete
+
+Faceted Search
+
+Ranking
+
+Filtering
+
+Geo Search
+
+For each define:
+
+Data Sources
+
+Indexes
+
+Refresh Strategy
+
+Ranking Logic
+
+Latency Targets
+
+Scaling Strategy
+
+Failure Handling
+
+====================================================
+SECTION 6
+VECTOR DATABASE ARCHITECTURE
+====================================================
+
+Design complete pgvector architecture.
+
+Include:
+
+Embedding Storage
+
+Embedding Lifecycle
+
+Embedding Refresh
+
+Similarity Search
+
+Vector Indexes
+
+Vector Maintenance
+
+Cold Storage
+
+Versioning
+
+Monitoring
+
+Cost Controls
+
+For each define:
+
+Inputs
+
+Outputs
+
+Events
+
+Retention
+
+Failure Recovery
+
+====================================================
+SECTION 7
+RECOMMENDATION ENGINE ARCHITECTURE
+====================================================
+
+Generate complete recommendation infrastructure.
+
+Include:
+
+Content-Based Recommendations
+
+Behavioral Recommendations
+
+Collaborative Filtering
+
+Trending Engine
+
+Cold Start Strategy
+
+Personalization Engine
+
+Ranking Engine
+
+For each define:
+
+Inputs
+
+Outputs
+
+Signals
+
+Models
+
+Events
+
+Storage
+
+Latency Targets
+
+Monitoring
+
+====================================================
+SECTION 8
+REALTIME BACKEND ARCHITECTURE
+====================================================
+
+Generate realtime backend design.
+
+Include:
+
+Notifications
+
+Messaging
+
+Presence
+
+Activity Feeds
+
+Analytics Streams
+
+Moderation Streams
+
+Admin Streams
+
+Billing Streams
+
+For each define:
+
+Channel Names
+
+Publishers
+
+Subscribers
+
+Authorization
+
+Payload Contracts
+
+Reconnect Strategy
+
+Scaling Strategy
+
+====================================================
+SECTION 9
+STORAGE ARCHITECTURE
+====================================================
+
+Generate complete storage blueprint.
+
+Buckets:
+
+avatars
+
+company-assets
+
+listing-media
+
+documents
+
+support-attachments
+
+moderation-evidence
+
+ai-artifacts
+
+exports
+
+backups
+
+For each bucket define:
+
+Purpose
+
+Folder Structure
+
+Access Policies
+
+Retention Policies
+
+Lifecycle Rules
+
+Size Limits
+
+Security Controls
+
+====================================================
+SECTION 10
+BILLING BACKEND ARCHITECTURE
+====================================================
+
+Generate billing backend.
+
+Include:
+
+Stripe Integration
+
+Subscription Lifecycle
+
+Invoices
+
+Payments
+
+Refunds
+
+Quota Enforcement
+
+Entitlements
+
+Usage Metering
+
+AI Usage Billing
+
+For each define:
+
+Events
+
+Tables
+
+Services
+
+Webhooks
+
+Failure Recovery
+
+Audit Requirements
+
+====================================================
+SECTION 11
+SECURITY ARCHITECTURE
+====================================================
+
+Generate backend security model.
+
+Include:
+
+JWT Validation
+
+RLS Enforcement
+
+Tenant Isolation
+
+Secret Management
+
+API Security
+
+Webhook Security
+
+Storage Security
+
+Admin Security
+
+Audit Security
+
+AI Security
+
+For each define:
+
+Threats
+
+Controls
+
+Detection
+
+Response
+
+Recovery
+
+====================================================
+SECTION 12
+OBSERVABILITY ARCHITECTURE
+====================================================
+
+Generate:
+
+Structured Logging
+
+Tracing
+
+Metrics
+
+Health Checks
+
+SLOs
+
+SLIs
+
+Alerts
+
+Error Tracking
+
+Performance Monitoring
+
+Security Monitoring
+
+AI Monitoring
+
+Billing Monitoring
+
+For each define:
+
+Collection
+
+Storage
+
+Retention
+
+Dashboards
+
+Alert Thresholds
+
+Escalation
+
+====================================================
+SECTION 13
+DEPLOYMENT TOPOLOGY
+====================================================
+
+Generate production topology.
+
+Include:
+
+Frontend
+
+Supabase
+
+Postgres
+
+Edge Functions
+
+Storage
+
+Realtime
+
+Stripe
+
+OpenAI
+
+Monitoring Stack
+
+CI/CD
+
+Environment Separation
+
+Secrets Management
+
+Release Strategy
+
+Rollback Strategy
+
+Disaster Recovery
+
+====================================================
+SECTION 14
+BACKEND IMPLEMENTATION ROADMAP
+====================================================
+
+Generate execution plan.
+
+Phase 1:
+Core Backend
+
+Phase 2:
+Marketplace Engine
+
+Phase 3:
+Realtime Infrastructure
+
+Phase 4:
+AI Infrastructure
+
+Phase 5:
+Billing Infrastructure
+
+Phase 6:
+Trust & Safety
+
+Phase 7:
+Observability
+
+Phase 8:
+Production Hardening
+
+For each phase define:
+
+Deliverables
+
+Dependencies
+
+Risks
+
+Acceptance Criteria
+
+Complexity
+
+Estimated Effort
+
+====================================================
+SECTION 15
+PRODUCTION READINESS REPORT
+====================================================
+
+Evaluate:
+
+Auth
+
+Database
+
+Storage
+
+Realtime
+
+Search
+
+AI
+
+Recommendations
+
+Billing
+
+Moderation
+
+Analytics
+
+Security
+
+Observability
+
+Deployment
+
+For each provide:
+
+Readiness Score
+
+Risks
+
+Gaps
+
+Blockers
+
+Recommended Actions
+
+====================================================
+SECTION 16
+STEP AE HANDOFF PACKAGE
+====================================================
+
+Generate exact handoff package required for:
+
+STEP AE — FRONTEND APPLICATION ARCHITECTURE
+
+Including:
+
+Marketplace Web App
+
+Company Dashboard
+
+Super Admin Console
+
+Mobile Applications
+
+Design System Integration
+
+API Consumption Layer
+
+Realtime Integration Layer
+
+State Management Layer
+
+Offline Layer
+
+Caching Layer
+
+Authentication Layer
+
+====================================================
+FINAL REQUIREMENT
+====================================================
+
+Output must be:
+
+Enterprise-grade
+
+Production-ready
+
+AI-native
+
+Marketplace-native
+
+Multi-tenant
+
+Supabase-optimized
+
+PostgreSQL-first
+
+Event-driven
+
+Scalable to 100,000+ tenants
+
+Ready for immediate backend engineering execution
+
+Think like:
+
+Principal Backend Architect
++
+Principal Platform Engineer
++
+Principal Supabase Architect
++
+Principal Distributed Systems Engineer
++
+Principal AI Infrastructure Architect
++
+Principal Marketplace Systems Architect
+
+بعد STEP AD تكون المرحلة التالية رسميًا:
+
+STEP AE — Frontend Application Architecture.
+STEP AF — AI INFRASTRUCTURE BLUEPRINT
+
+You are a Principal Frontend Architect,
+Staff Frontend Engineer,
+UX Architect,
+Design Systems Architect,
+Next.js Expert,
+TypeScript Expert,
+Accessibility Expert,
+Enterprise SaaS Architect,
+and AI-First Product Designer.
+
+====================================================
+MISSION
+====================================================
+
+Using the approved:
+
+1. Product Requirements
+2. Feature Inventory
+3. Database Design
+4. Supabase Blueprint
+5. Platform Implementation Specification
+6. Backend Engineering Blueprint
+
+Generate the COMPLETE Frontend Engineering Blueprint.
+
+This document will be used by:
+
+- Frontend Teams
+- AI Coding Agents
+- UX Teams
+- Design Teams
+
+Do NOT generate code.
+
+Generate architecture,
+contracts,
+UI specifications,
+flows,
+states,
+and implementation standards.
+
+====================================================
+PLATFORM
+====================================================
+
+AI Adaptive Marketplace
+
+Domains:
+
+- Real Estate
+- Products
+- Services
+- Offers
+
+Users:
+
+- Guest
+- User
+- Vendor
+- Agency
+- Admin
+- Super Admin
+
+Frontend Stack:
+
+- Next.js App Router
+- TypeScript
+- Tailwind
+- Shadcn UI
+- Supabase Client
+- TanStack Query
+- Zustand
+- React Hook Form
+- Zod
+
+====================================================
+SECTION 1
+FRONTEND ARCHITECTURE
+====================================================
+
+Generate:
+
+Application Architecture
+
+Feature Architecture
+
+Component Architecture
+
+Data Flow
+
+State Flow
+
+Navigation Flow
+
+Rendering Strategy
+
+Define:
+
+SSR
+
+SSG
+
+ISR
+
+CSR
+
+Hybrid Rendering
+
+====================================================
+SECTION 2
+APPLICATION STRUCTURE
+====================================================
+
+Design complete folder structure.
+
+Include:
+
+app/
+
+components/
+
+features/
+
+modules/
+
+hooks/
+
+services/
+
+repositories/
+
+stores/
+
+types/
+
+validators/
+
+providers/
+
+lib/
+
+config/
+
+styles/
+
+====================================================
+SECTION 3
+ROUTING ARCHITECTURE
+====================================================
+
+Generate complete route map.
+
+Public:
+
+Home
+
+Search
+
+Listing
+
+Product
+
+Service
+
+Offer
+
+Vendor Profile
+
+Agency Profile
+
+Authenticated:
+
+Dashboard
+
+Favorites
+
+Saved Searches
+
+Notifications
+
+Profile
+
+Vendor:
+
+Assets
+
+Analytics
+
+Leads
+
+Subscriptions
+
+Admin:
+
+Moderation
+
+Users
+
+Reports
+
+Settings
+
+Analytics
+
+====================================================
+SECTION 4
+AUTHENTICATION UI
+====================================================
+
+Generate:
+
+Login Flow
+
+Signup Flow
+
+OTP Flow
+
+OAuth Flow
+
+Recovery Flow
+
+Account Verification
+
+Session Handling
+
+Permission Guards
+
+Role Guards
+
+====================================================
+SECTION 5
+LAYOUT SYSTEM
+====================================================
+
+Design:
+
+Public Layout
+
+User Layout
+
+Vendor Layout
+
+Admin Layout
+
+Mobile Layout
+
+Tablet Layout
+
+Desktop Layout
+
+====================================================
+SECTION 6
+DESIGN SYSTEM
+====================================================
+
+Generate:
+
+Colors
+
+Typography
+
+Spacing
+
+Grid System
+
+Breakpoints
+
+Shadows
+
+Elevation
+
+Icons
+
+Animations
+
+Tokens
+
+Accessibility Rules
+
+====================================================
+SECTION 7
+COMPONENT LIBRARY
+====================================================
+
+Generate full catalog.
+
+Atoms
+
+Buttons
+
+Inputs
+
+Badges
+
+Tags
+
+Avatars
+
+Icons
+
+Loaders
+
+Molecules
+
+Cards
+
+Search Bars
+
+Filters
+
+Forms
+
+Ratings
+
+Carousels
+
+Organisms
+
+Listing Grid
+
+Product Grid
+
+Vendor Dashboard
+
+Analytics Panels
+
+Tables
+
+Moderation Panels
+
+====================================================
+SECTION 8
+FORMS ARCHITECTURE
+====================================================
+
+Generate:
+
+Validation Strategy
+
+Form State
+
+Error Handling
+
+Submission Flow
+
+Autosave
+
+Drafts
+
+File Uploads
+
+Multi Step Forms
+
+====================================================
+SECTION 9
+DATA ACCESS ARCHITECTURE
+====================================================
+
+Design:
+
+Supabase Client Layer
+
+Repository Pattern
+
+Caching
+
+Optimistic Updates
+
+Offline Support
+
+Retry Logic
+
+Error Recovery
+
+====================================================
+SECTION 10
+STATE MANAGEMENT
+====================================================
+
+Generate:
+
+Global State
+
+Feature State
+
+Session State
+
+Notification State
+
+Search State
+
+Recommendation State
+
+Analytics State
+
+Define ownership and lifecycle.
+
+====================================================
+SECTION 11
+SEARCH EXPERIENCE
+====================================================
+
+Design:
+
+Global Search
+
+Property Search
+
+Product Search
+
+Service Search
+
+Offer Search
+
+Filters
+
+Facets
+
+Sorting
+
+Autocomplete
+
+History
+
+Suggestions
+
+Saved Searches
+
+====================================================
+SECTION 12
+REALTIME UX
+====================================================
+
+Generate:
+
+Realtime Notifications
+
+Realtime Favorites
+
+Realtime Recommendations
+
+Realtime Inventory
+
+Realtime Chat
+
+Realtime Admin Monitoring
+
+====================================================
+SECTION 13
+MARKETPLACE EXPERIENCES
+====================================================
+
+Design:
+
+Listing Detail
+
+Product Detail
+
+Service Detail
+
+Offer Detail
+
+Vendor Profile
+
+Agency Profile
+
+Review Flow
+
+Contact Flow
+
+Lead Flow
+
+====================================================
+SECTION 14
+DASHBOARD EXPERIENCE
+====================================================
+
+Generate:
+
+User Dashboard
+
+Vendor Dashboard
+
+Agency Dashboard
+
+Admin Dashboard
+
+Super Admin Dashboard
+
+====================================================
+SECTION 15
+ANALYTICS UX
+====================================================
+
+Design:
+
+KPI Cards
+
+Funnels
+
+Retention Charts
+
+Heatmaps
+
+Performance Charts
+
+Recommendation Metrics
+
+====================================================
+SECTION 16
+AI EXPERIENCE
+====================================================
+
+Generate:
+
+Personalized Home
+
+Recommendations
+
+Trending Content
+
+Interest Profiles
+
+Behavior Feedback
+
+AI Search
+
+Semantic Suggestions
+
+====================================================
+SECTION 17
+ERROR HANDLING
+====================================================
+
+Design:
+
+Error Boundaries
+
+Fallback Pages
+
+Network Errors
+
+Realtime Failures
+
+Permission Errors
+
+Upload Errors
+
+====================================================
+SECTION 18
+PERFORMANCE ENGINEERING
+====================================================
+
+Generate:
+
+Code Splitting
+
+Lazy Loading
+
+Image Optimization
+
+Caching
+
+Prefetching
+
+Streaming
+
+Virtualization
+
+Bundle Optimization
+
+====================================================
+SECTION 19
+ACCESSIBILITY
+====================================================
+
+Generate:
+
+WCAG Compliance
+
+Keyboard Navigation
+
+Focus Management
+
+ARIA Standards
+
+Screen Reader Support
+
+Color Contrast Rules
+
+====================================================
+SECTION 20
+TESTING ARCHITECTURE
+====================================================
+
+Generate:
+
+Unit Tests
+
+Component Tests
+
+Integration Tests
+
+E2E Tests
+
+Visual Regression Tests
+
+Accessibility Tests
+
+====================================================
+SECTION 21
+FRONTEND IMPLEMENTATION ROADMAP
+====================================================
+
+Phase 1
+Foundation
+
+Phase 2
+Marketplace
+
+Phase 3
+Search
+
+Phase 4
+Dashboards
+
+Phase 5
+AI Features
+
+Phase 6
+Admin
+
+Phase 7
+Optimization
+
+For each phase:
+
+Deliverables
+
+Dependencies
+
+Risks
+
+Acceptance Criteria
+
+====================================================
+FINAL DELIVERABLE
+====================================================
+
+Produce:
+
+1. Frontend Architecture
+2. Folder Structure
+3. Route Map
+4. Design System
+5. Component Catalog
+6. Forms Architecture
+7. State Architecture
+8. Data Architecture
+9. Search UX Architecture
+10. Realtime UX Architecture
+11. Marketplace UX
+12. Dashboard UX
+13. Analytics UX
+14. AI UX
+15. Error Handling Architecture
+16. Performance Architecture
+17. Accessibility Architecture
+18. Testing Architecture
+19. Implementation Roadmap
+
+The result must be enterprise-grade,
+production-ready,
+developer-ready,
+AI-agent-ready,
+and code-generation-ready.
+
+
+You are a Principal AI Architect, Staff Machine Learning Engineer, Recommendation Systems Architect, Search Infrastructure Engineer, Data Platform Architect, and AI Operations Specialist.
+
+Your task is to design the COMPLETE AI INFRASTRUCTURE for the project.
+
+Project:
+
+AI Marketplace Platform
+
+Current completed phases:
+
+STEP AA Database Master Design
+STEP AB Supabase Production Blueprint
+STEP AC Platform Implementation Master Specification
+STEP AD Backend Engineering Blueprint
+STEP AE Frontend Engineering Blueprint
+
+Do NOT redesign previous phases.
+
+Your responsibility is ONLY the AI Layer.
+
+====================================================
+OBJECTIVE
+====================================================
+
+Create a complete AI Infrastructure Blueprint that can operate at production scale.
+
+The system must support:
+
+- AI Marketplace
+- Company Dashboard SaaS
+- Multi-Tenant Architecture
+- Search
+- Recommendations
+- Personalization
+- Analytics
+- Future AI Agents
+
+The output must be implementation-ready.
+
+====================================================
+AI SYSTEMS TO DESIGN
+====================================================
+
+Design ALL of the following:
+
+1. User Intelligence Layer
+2. Company Intelligence Layer
+3. Recommendation Engine
+4. Search Intelligence Layer
+5. Embedding Infrastructure
+6. Vector Database Architecture
+7. Personalization Engine
+8. Ranking Engine
+9. Behavioral Analytics Engine
+10. AI Agent Readiness Layer
+11. Model Management Layer
+12. AI Observability Layer
+13. Feedback Loop Architecture
+14. Feature Store Architecture
+15. Data Pipeline Architecture
+
+====================================================
+USER INTELLIGENCE LAYER
+====================================================
+
+Design:
+
+AI User Profile
+
+Behavior Profile
+
+Interest Profile
+
+Intent Profile
+
+Skill Profile
+
+Engagement Profile
+
+Lifecycle Profile
+
+For each profile define:
+
+- inputs
+- outputs
+- update triggers
+- storage strategy
+- refresh frequency
+
+====================================================
+COMPANY INTELLIGENCE LAYER
+====================================================
+
+Design:
+
+Company Profile
+
+Category Intelligence
+
+Market Positioning
+
+Performance Profile
+
+Growth Signals
+
+Engagement Signals
+
+Reputation Signals
+
+Quality Signals
+
+For each define:
+
+- data sources
+- update strategy
+- scoring system
+- storage model
+
+====================================================
+RECOMMENDATION ENGINE
+====================================================
+
+Design complete recommendation architecture.
+
+Must support:
+
+Personalized Recommendations
+
+Trending Recommendations
+
+Collaborative Filtering
+
+Content-Based Filtering
+
+Hybrid Recommendations
+
+Cold Start Strategy
+
+Warm User Strategy
+
+Power User Strategy
+
+Company Recommendations
+
+Listing Recommendations
+
+Category Recommendations
+
+For every recommendation type define:
+
+- inputs
+- ranking logic
+- scoring formula
+- update frequency
+- caching strategy
+
+====================================================
+SEARCH INTELLIGENCE
+====================================================
+
+Design:
+
+Keyword Search
+
+Full Text Search
+
+Semantic Search
+
+Hybrid Search
+
+Autocomplete
+
+Query Expansion
+
+Intent Detection
+
+Search Ranking
+
+Search Personalization
+
+Search Analytics
+
+For each define:
+
+- architecture
+- ranking signals
+- latency targets
+- storage requirements
+
+====================================================
+EMBEDDING INFRASTRUCTURE
+====================================================
+
+Design:
+
+Embedding Pipeline
+
+Batch Embeddings
+
+Realtime Embeddings
+
+Incremental Updates
+
+Embedding Versioning
+
+Embedding Refresh
+
+Embedding Storage
+
+Design support for:
+
+OpenAI Embeddings
+
+Gemini Embeddings
+
+Open Source Embeddings
+
+Provider Abstraction Layer
+
+====================================================
+VECTOR DATABASE
+====================================================
+
+Design:
+
+Vector Schema
+
+Indexing Strategy
+
+Similarity Search
+
+ANN Search
+
+Hybrid Retrieval
+
+Chunking Strategy
+
+Metadata Strategy
+
+Filtering Strategy
+
+Retention Strategy
+
+Disaster Recovery Strategy
+
+====================================================
+PERSONALIZATION ENGINE
+====================================================
+
+Design:
+
+Home Feed Personalization
+
+Search Personalization
+
+Recommendation Personalization
+
+Notification Personalization
+
+Content Personalization
+
+Company Personalization
+
+Define:
+
+- ranking signals
+- scoring functions
+- weighting system
+- update frequency
+
+====================================================
+RANKING ENGINE
+====================================================
+
+Design complete ranking architecture.
+
+Ranking signals:
+
+Relevance
+
+CTR
+
+Engagement
+
+Conversions
+
+Recency
+
+Popularity
+
+Quality
+
+Reputation
+
+Personalization
+
+Behavioral Similarity
+
+Company Trust Score
+
+User Affinity Score
+
+Create:
+
+Ranking Formula
+
+Weighting Strategy
+
+Adaptive Ranking
+
+Online Ranking
+
+Offline Ranking
+
+====================================================
+BEHAVIORAL ANALYTICS ENGINE
+====================================================
+
+Track:
+
+Page Views
+
+Searches
+
+Clicks
+
+Favorites
+
+Bookmarks
+
+Purchases
+
+Messages
+
+Reviews
+
+Sessions
+
+Retention
+
+Funnels
+
+Cohorts
+
+Design:
+
+event architecture
+
+event schema
+
+aggregation strategy
+
+analytics storage
+
+====================================================
+AI AGENT READINESS
+====================================================
+
+Design infrastructure for future AI Agents.
+
+Support:
+
+Marketplace Assistant
+
+Company Assistant
+
+Search Assistant
+
+Recommendation Assistant
+
+Customer Support Agent
+
+Admin Agent
+
+Design:
+
+tool architecture
+
+memory architecture
+
+context architecture
+
+agent orchestration
+
+multi-agent readiness
+
+====================================================
+MODEL MANAGEMENT
+====================================================
+
+Design:
+
+Provider Management
+
+Model Registry
+
+Prompt Registry
+
+Prompt Versioning
+
+A/B Testing
+
+Model Evaluation
+
+Fallback Models
+
+Cost Controls
+
+Rate Limiting
+
+Provider Failover
+
+====================================================
+FEATURE STORE
+====================================================
+
+Design:
+
+Online Features
+
+Offline Features
+
+Feature Computation
+
+Feature Refresh
+
+Feature Validation
+
+Feature Versioning
+
+Feature Ownership
+
+====================================================
+DATA PIPELINES
+====================================================
+
+Design:
+
+Event Ingestion
+
+Processing Layer
+
+Streaming Layer
+
+Batch Layer
+
+Feature Generation
+
+Embedding Generation
+
+Recommendation Updates
+
+Analytics Updates
+
+====================================================
+AI OBSERVABILITY
+====================================================
+
+Design:
+
+AI Metrics
+
+Latency Metrics
+
+Quality Metrics
+
+Recommendation Metrics
+
+Search Metrics
+
+Cost Metrics
+
+Model Metrics
+
+Provider Metrics
+
+Drift Detection
+
+Anomaly Detection
+
+====================================================
+FEEDBACK LOOPS
+====================================================
+
+Design:
+
+Explicit Feedback
+
+Implicit Feedback
+
+Recommendation Feedback
+
+Search Feedback
+
+User Satisfaction Signals
+
+Model Improvement Signals
+
+Retraining Signals
+
+====================================================
+MULTI-TENANT AI
+====================================================
+
+Design:
+
+Tenant Isolation
+
+Shared Models
+
+Tenant-Specific Models
+
+Tenant Features
+
+Tenant Analytics
+
+Tenant Recommendations
+
+Tenant Personalization
+
+====================================================
+SECURITY
+====================================================
+
+Design:
+
+PII Protection
+
+Embedding Security
+
+Vector Security
+
+Prompt Security
+
+Model Security
+
+Data Governance
+
+AI Audit Logs
+
+Compliance Readiness
+
+====================================================
+SCALABILITY
+====================================================
+
+Design for:
+
+10K Users
+
+100K Users
+
+1M Users
+
+10M Users
+
+Provide:
+
+capacity planning
+
+cost estimation strategy
+
+bottleneck analysis
+
+horizontal scaling strategy
+
+====================================================
+OUTPUT FORMAT
+====================================================
+
+Generate:
+
+1. AI Architecture Overview
+
+2. AI Components Diagram Description
+
+3. User Intelligence Blueprint
+
+4. Company Intelligence Blueprint
+
+5. Recommendation Engine Blueprint
+
+6. Search Intelligence Blueprint
+
+7. Embedding Architecture Blueprint
+
+8. Vector Database Blueprint
+
+9. Personalization Blueprint
+
+10. Ranking Engine Blueprint
+
+11. Analytics Engine Blueprint
+
+12. AI Agent Readiness Blueprint
+
+13. Model Management Blueprint
+
+14. Feature Store Blueprint
+
+15. Data Pipeline Blueprint
+
+16. AI Observability Blueprint
+
+17. Feedback Loop Blueprint
+
+18. Multi-Tenant AI Blueprint
+
+19. AI Security Blueprint
+
+20. Scalability Blueprint
+
+21. Production Readiness Checklist
+
+22. AI Roadmap (Phase 1 → Phase 5)
+
+The result must be detailed enough for direct implementation by AI engineers, ML engineers, backend engineers, and platform engineers.
+
+هذا الـ AF Prompt يرفع المشروع من مجرد Marketplace يعتمد على البحث والتوصيات إلى منصة AI-native جاهزة لإضافة Agents وRAG وPersonalization متقدم وMulti-Tenant AI مستقبلاً دون إعادة تصميم البنية.
+
+resume
+
+بعد STEP AF — AI Infrastructure Blueprint يكون التسلسل المنطقي الذي ذكرته:
+
+AA ✅ Database Master Design
+AB ✅ Supabase Production Blueprint
+AC ✅ Platform Implementation Master Specification
+AD ✅ Backend Engineering Blueprint
+AE ✅ Frontend Engineering Blueprint
+AF ✅ AI Infrastructure Blueprint
+
+ثم:
+
+STEP AG — CI/CD + DEVOPS BLUEPRINT
+
+الهدف:
+تحويل كل ما سبق إلى منصة قابلة للنشر والإدارة والتوسع والإسترجاع والتعافي من الكوارث.
+
+STEP AG — FULL PROMPT
+You are a Principal DevOps Architect, Site Reliability Engineer (SRE), Cloud Infrastructure Architect, Platform Engineer, Security Engineer, and CI/CD Specialist.
+
+Project:
+
+AI Marketplace Platform
+
+Completed:
+
+STEP AA Database Master Design
+STEP AB Supabase Production Blueprint
+STEP AC Platform Implementation Master Specification
+STEP AD Backend Engineering Blueprint
+STEP AE Frontend Engineering Blueprint
+STEP AF AI Infrastructure Blueprint
+
+Your task is to design the COMPLETE PRODUCTION DEVOPS PLATFORM.
+
+This is NOT code generation.
+
+This is infrastructure architecture.
+
+====================================================
+OBJECTIVE
+====================================================
+
+Design a production-grade DevOps ecosystem.
+
+The platform must support:
+
+- Marketplace
+- Company Dashboard SaaS
+- Multi-Tenant Architecture
+- AI Infrastructure
+- Search
+- Recommendations
+- Realtime Features
+
+Must support:
+
+10K Users
+100K Users
+1M Users
+10M Users
+
+====================================================
+DESIGN ALL LAYERS
+====================================================
+
+1. Source Control Strategy
+2. Branching Strategy
+3. CI Pipelines
+4. CD Pipelines
+5. Infrastructure Architecture
+6. Environment Strategy
+7. Secrets Management
+8. Observability
+9. Monitoring
+10. Logging
+11. Alerting
+12. Security Operations
+13. Disaster Recovery
+14. Backup Strategy
+15. Scaling Strategy
+16. Cost Optimization
+17. Reliability Engineering
+18. Incident Response
+19. Compliance Readiness
+
+====================================================
+SOURCE CONTROL
+====================================================
+
+Design:
+
+Repository Structure
+
+Mono Repo vs Multi Repo
+
+Branching Model
+
+Release Strategy
+
+Versioning Strategy
+
+Tagging Strategy
+
+Hotfix Strategy
+
+====================================================
+CI/CD
+====================================================
+
+Design:
+
+Pull Request Validation
+
+Automated Tests
+
+Linting
+
+Type Checking
+
+Security Scanning
+
+Dependency Scanning
+
+Build Pipelines
+
+Deployment Pipelines
+
+Rollback Pipelines
+
+====================================================
+ENVIRONMENTS
+====================================================
+
+Design:
+
+Local
+
+Development
+
+Staging
+
+UAT
+
+Production
+
+For each define:
+
+purpose
+
+deployment strategy
+
+access controls
+
+data strategy
+
+====================================================
+INFRASTRUCTURE
+====================================================
+
+Design:
+
+Frontend Hosting
+
+API Hosting
+
+Edge Functions
+
+Supabase Infrastructure
+
+Storage Infrastructure
+
+CDN
+
+Caching Layer
+
+Queue Infrastructure
+
+Background Jobs
+
+AI Services
+
+Analytics Services
+
+====================================================
+SECRETS MANAGEMENT
+====================================================
+
+Design:
+
+API Keys
+
+Database Secrets
+
+OAuth Secrets
+
+JWT Secrets
+
+AI Provider Secrets
+
+Rotation Policies
+
+Access Policies
+
+====================================================
+OBSERVABILITY
+====================================================
+
+Design:
+
+Metrics
+
+Tracing
+
+Logs
+
+Dashboards
+
+Health Checks
+
+SLIs
+
+SLOs
+
+SLAs
+
+====================================================
+MONITORING
+====================================================
+
+Design monitoring for:
+
+Frontend
+
+Backend
+
+Database
+
+Supabase
+
+Storage
+
+AI Services
+
+Search
+
+Recommendation Engine
+
+Realtime
+
+====================================================
+ALERTING
+====================================================
+
+Design:
+
+Critical Alerts
+
+Warning Alerts
+
+Security Alerts
+
+Business Alerts
+
+Escalation Strategy
+
+On-call Strategy
+
+====================================================
+DISASTER RECOVERY
+====================================================
+
+Design:
+
+Backup Policies
+
+Restore Procedures
+
+Point-In-Time Recovery
+
+Failover Strategy
+
+Region Failure Handling
+
+Recovery Targets
+
+RTO
+
+RPO
+
+====================================================
+SCALING
+====================================================
+
+Design scaling plans for:
+
+10K Users
+
+100K Users
+
+1M Users
+
+10M Users
+
+Identify:
+
+bottlenecks
+
+upgrade paths
+
+capacity triggers
+
+====================================================
+SECURITY OPERATIONS
+====================================================
+
+Design:
+
+Vulnerability Management
+
+Security Monitoring
+
+Threat Detection
+
+Audit Logging
+
+Access Reviews
+
+Compliance Readiness
+
+====================================================
+COST OPTIMIZATION
+====================================================
+
+Design:
+
+Cost Centers
+
+Resource Optimization
+
+Caching Strategy
+
+AI Cost Controls
+
+Storage Optimization
+
+Monitoring Costs
+
+====================================================
+OUTPUT FORMAT
+====================================================
+
+Generate:
+
+1. DevOps Architecture Overview
+
+2. Repository Strategy
+
+3. Branching Strategy
+
+4. CI Pipeline Blueprint
+
+5. CD Pipeline Blueprint
+
+6. Environment Blueprint
+
+7. Infrastructure Blueprint
+
+8. Secrets Management Blueprint
+
+9. Monitoring Blueprint
+
+10. Observability Blueprint
+
+11. Alerting Blueprint
+
+12. Disaster Recovery Blueprint
+
+13. Scaling Blueprint
+
+14. Security Operations Blueprint
+
+15. Cost Optimization Blueprint
+
+16. Production Readiness Checklist
+
+17. Go-Live Checklist
+
+18. Operations Runbook
+
+19. Incident Response Playbook
+
+20. DevOps Roadmap
+
+The result must be detailed enough for direct implementation.
+STEP AH — Sprint Execution Plan
+
+بعد اكتمال كل الـ Blueprints.
+
+المخرجات:
+
+Sprint 0 → Setup
+Sprint 1 → Foundation
+Sprint 2 → Marketplace Core
+Sprint 3 → Company Dashboard
+Sprint 4 → AI Layer
+Sprint 5 → Billing
+Sprint 6 → Search & Recommendations
+Sprint 7 → Admin Platform
+Sprint 8 → Hardening
+Sprint 9 → Production Launch
+
+مع:
+
+Tasks
+Story Points
+Dependencies
+Risks
+Acceptance Criteria
+Definition of Done
+STEP AI — Full Code Generation Prompt Pack
+
+هذه المرحلة تحول جميع المراحل السابقة إلى حزم توليد كود جاهزة:
+
+Backend Pack
+Supabase SQL
+RLS
+Edge Functions
+APIs
+Queues
+Frontend Pack
+Next.js
+React
+Tailwind
+shadcn/ui
+AI Pack
+Embeddings
+Search
+Recommendations
+Personalization
+DevOps Pack
+GitHub Actions
+Docker
+Monitoring
+STEP AJ — Production Launch Package
+
+الحزمة النهائية للإطلاق:
+
+Technical Launch
+Infrastructure Checklist
+Security Checklist
+Performance Checklist
+Business Launch
+Pricing
+Plans
+Billing
+Operations
+Support Runbooks
+Incident Playbooks
+Growth
+Analytics
+KPIs
+Activation Funnels
+Retention Funnels
+Executive Package
+Architecture Summary
+Cost Forecast
+Scaling Forecast
+12-Month Roadmap
+
+وبذلك يكون المسار الكامل من AA → AJ مكتملًا كمنهجية Enterprise لبناء منصة AI Marketplace متعددة المستأجرين وقابلة للتوسع للإنتاج.
+
+You are a Chief Technology Officer (CTO), Principal Product Manager, Agile Program Director, Technical Delivery Manager, Staff Software Architect, and Enterprise Transformation Consultant.
+
+Project:
+
+AI Marketplace Platform
+
+Completed Architecture:
+
+STEP AA Database Master Design
+STEP AB Supabase Production Blueprint
+STEP AC Platform Implementation Master Specification
+STEP AD Backend Engineering Blueprint
+STEP AE Frontend Engineering Blueprint
+STEP AF AI Infrastructure Blueprint
+STEP AG CI/CD + DevOps Blueprint
+
+Your task is NOT to redesign the platform.
+
+Your task is to convert all approved blueprints into a complete execution roadmap.
+
+====================================================
+OBJECTIVE
+====================================================
+
+Generate the MASTER EXECUTION PLAN.
+
+Transform architecture into:
+
+- Epics
+- Features
+- User Stories
+- Tasks
+- Sprints
+- Milestones
+- Releases
+
+The output must be executable by:
+
+- Product Managers
+- Scrum Masters
+- Backend Engineers
+- Frontend Engineers
+- AI Engineers
+- DevOps Engineers
+- QA Engineers
+
+====================================================
+PLANNING RULES
+====================================================
+
+Create a realistic implementation roadmap.
+
+Assume:
+
+Team Size:
+
+- 1 Product Manager
+- 1 UI/UX Designer
+- 2 Frontend Engineers
+- 2 Backend Engineers
+- 1 AI Engineer
+- 1 DevOps Engineer
+- 1 QA Engineer
+
+Sprint Length:
+
+2 Weeks
+
+Planning Horizon:
+
+20–30 Weeks
+
+====================================================
+EXECUTION PHASES
+====================================================
+
+Create the roadmap using:
+
+PHASE 0
+Foundation
+
+PHASE 1
+Core Platform
+
+PHASE 2
+Marketplace
+
+PHASE 3
+Company Dashboard
+
+PHASE 4
+Admin Platform
+
+PHASE 5
+Billing & Subscription
+
+PHASE 6
+Search & Discovery
+
+PHASE 7
+Recommendations & Personalization
+
+PHASE 8
+AI Layer
+
+PHASE 9
+Hardening & Security
+
+PHASE 10
+Production Launch
+
+====================================================
+SPRINT STRUCTURE
+====================================================
+
+For EVERY sprint define:
+
+Sprint Name
+
+Sprint Goal
+
+Business Value
+
+Deliverables
+
+Dependencies
+
+Risk Level
+
+Team Allocation
+
+====================================================
+SPRINT 0
+====================================================
+
+Project Setup
+
+Repository Setup
+
+CI/CD Setup
+
+Environment Setup
+
+Supabase Setup
+
+Branching Strategy
+
+Design System Setup
+
+Monitoring Setup
+
+Developer Tooling
+
+====================================================
+SPRINT 1
+====================================================
+
+Authentication
+
+Authorization
+
+User Profiles
+
+Tenant Management
+
+Roles
+
+Permissions
+
+RLS Validation
+
+====================================================
+SPRINT 2
+====================================================
+
+Marketplace Foundation
+
+Categories
+
+Tags
+
+Listings
+
+Media
+
+Public Pages
+
+SEO Foundation
+
+====================================================
+SPRINT 3
+====================================================
+
+Marketplace Discovery
+
+Search
+
+Filters
+
+Sorting
+
+Favorites
+
+Saved Searches
+
+====================================================
+SPRINT 4
+====================================================
+
+Company Dashboard
+
+Company Profiles
+
+Company Settings
+
+Listing Management
+
+Analytics Overview
+
+====================================================
+SPRINT 5
+====================================================
+
+Company Operations
+
+Team Management
+
+Members
+
+Roles
+
+Activity Logs
+
+Notifications
+
+====================================================
+SPRINT 6
+====================================================
+
+Admin Platform
+
+User Management
+
+Company Management
+
+Moderation
+
+Reporting
+
+Platform Analytics
+
+====================================================
+SPRINT 7
+====================================================
+
+Billing System
+
+Plans
+
+Subscriptions
+
+Invoices
+
+Payments
+
+Trials
+
+Stripe Integration
+
+====================================================
+SPRINT 8
+====================================================
+
+Search Infrastructure
+
+Full Text Search
+
+Semantic Search
+
+Hybrid Search
+
+Search Analytics
+
+====================================================
+SPRINT 9
+====================================================
+
+Recommendation Engine
+
+User Recommendations
+
+Company Recommendations
+
+Listing Recommendations
+
+Ranking System
+
+====================================================
+SPRINT 10
+====================================================
+
+Personalization
+
+User Profiles
+
+Behavior Tracking
+
+Affinity Scores
+
+Feed Personalization
+
+====================================================
+SPRINT 11
+====================================================
+
+AI Layer Foundation
+
+Embeddings
+
+Vector Database
+
+AI Profiles
+
+Feature Store
+
+====================================================
+SPRINT 12
+====================================================
+
+AI Intelligence
+
+Recommendation Intelligence
+
+Search Intelligence
+
+Behavior Intelligence
+
+====================================================
+SPRINT 13
+====================================================
+
+Notifications
+
+Realtime
+
+Email
+
+Push
+
+Digest
+
+====================================================
+SPRINT 14
+====================================================
+
+Performance Optimization
+
+Caching
+
+Query Optimization
+
+CDN
+
+Storage Optimization
+
+====================================================
+SPRINT 15
+====================================================
+
+Security Hardening
+
+Penetration Testing
+
+Audit Logs
+
+Security Monitoring
+
+Compliance Validation
+
+====================================================
+SPRINT 16
+====================================================
+
+QA & Stabilization
+
+Regression Testing
+
+Load Testing
+
+UAT
+
+Bug Fixing
+
+====================================================
+SPRINT 17
+====================================================
+
+Production Readiness
+
+Runbooks
+
+Monitoring
+
+Alerts
+
+Backups
+
+Disaster Recovery
+
+====================================================
+SPRINT 18
+====================================================
+
+Soft Launch
+
+Internal Users
+
+Beta Companies
+
+Beta Customers
+
+Feedback Collection
+
+====================================================
+SPRINT 19
+====================================================
+
+Production Launch
+
+Public Release
+
+Marketing Readiness
+
+Support Readiness
+
+Operations Readiness
+
+====================================================
+EPICS
+====================================================
+
+Create complete epics.
+
+Examples:
+
+Authentication Epic
+
+Marketplace Epic
+
+Company Dashboard Epic
+
+Admin Epic
+
+Billing Epic
+
+Search Epic
+
+Recommendation Epic
+
+AI Epic
+
+Notification Epic
+
+Analytics Epic
+
+====================================================
+USER STORIES
+====================================================
+
+For every Epic create:
+
+User Story ID
+
+Story Name
+
+Description
+
+Persona
+
+Acceptance Criteria
+
+Dependencies
+
+Priority
+
+Story Points
+
+====================================================
+TASK BREAKDOWN
+====================================================
+
+For every User Story generate:
+
+Backend Tasks
+
+Frontend Tasks
+
+Database Tasks
+
+AI Tasks
+
+DevOps Tasks
+
+QA Tasks
+
+====================================================
+RELEASE PLAN
+====================================================
+
+Define:
+
+Release Alpha
+
+Release Beta
+
+Release RC
+
+Release Production
+
+For every release define:
+
+Features Included
+
+Exit Criteria
+
+Risk Assessment
+
+Rollback Plan
+
+====================================================
+DEPENDENCY MAPPING
+====================================================
+
+Create:
+
+Feature Dependencies
+
+System Dependencies
+
+Cross-Team Dependencies
+
+Critical Path Analysis
+
+====================================================
+RESOURCE PLANNING
+====================================================
+
+For every sprint estimate:
+
+Frontend Capacity
+
+Backend Capacity
+
+AI Capacity
+
+QA Capacity
+
+DevOps Capacity
+
+====================================================
+RISK MANAGEMENT
+====================================================
+
+Identify:
+
+Technical Risks
+
+Product Risks
+
+AI Risks
+
+Infrastructure Risks
+
+Security Risks
+
+For each risk define:
+
+Probability
+
+Impact
+
+Mitigation
+
+Owner
+
+====================================================
+QUALITY FRAMEWORK
+====================================================
+
+Define:
+
+Definition of Ready
+
+Definition of Done
+
+QA Gates
+
+Release Gates
+
+Security Gates
+
+Performance Gates
+
+====================================================
+SUCCESS METRICS
+====================================================
+
+For every phase define:
+
+KPIs
+
+Delivery Metrics
+
+Engineering Metrics
+
+Business Metrics
+
+Adoption Metrics
+
+====================================================
+OUTPUT FORMAT
+====================================================
+
+Generate:
+
+1. Executive Delivery Overview
+
+2. Phase Roadmap
+
+3. Sprint Roadmap
+
+4. Epic Breakdown
+
+5. User Story Breakdown
+
+6. Task Breakdown
+
+7. Release Plan
+
+8. Dependency Map
+
+9. Capacity Plan
+
+10. Risk Register
+
+11. Quality Framework
+
+12. Success Metrics
+
+13. Launch Readiness Checklist
+
+14. 6-Month Delivery Timeline
+
+15. Executive Gantt-Style Roadmap
+
+The result must be detailed enough for immediate execution by engineering, product, AI, QA, and DevOps teams.
+
+resume with full prompt AI
+STEP AI — FULL CODE GENERATION PROMPT PACK (MASTER PROMPT)
+
+هذه المرحلة هي نقطة التحول من Architecture → Actual Code.
+
+كل ما سبق (AA → AH) كان تخطيطًا وتصميمًا.
+
+STEP AI هدفه:
+
+Blueprints
+↓
+Specifications
+↓
+Production Code
+You are a Principal Software Architect, Staff Full-Stack Engineer, Principal Supabase Engineer, AI Platform Engineer, DevOps Engineer, and Technical Lead.
+
+Project:
+
+AI Marketplace Platform
+
+Completed:
+
+STEP AA Database Master Design
+STEP AB Supabase Production Blueprint
+STEP AC Platform Implementation Master Specification
+STEP AD Backend Engineering Blueprint
+STEP AE Frontend Engineering Blueprint
+STEP AF AI Infrastructure Blueprint
+STEP AG CI/CD + DevOps Blueprint
+STEP AH Sprint Execution Plan
+
+Your task is to generate the COMPLETE CODE GENERATION PROMPT PACK.
+
+This is NOT implementation.
+
+This is the MASTER PROMPT SYSTEM that will generate all production code.
+
+====================================================
+OBJECTIVE
+====================================================
+
+Create a complete prompt library capable of generating:
+
+- Database Code
+- Backend Code
+- Frontend Code
+- AI Code
+- Infrastructure Code
+- Testing Code
+
+The generated code must be:
+
+Production Ready
+
+Enterprise Grade
+
+Type Safe
+
+Secure
+
+Scalable
+
+Maintainable
+
+====================================================
+TECH STACK
+====================================================
+
+Frontend
+
+Next.js 15
+
+React 19
+
+TypeScript
+
+Tailwind CSS
+
+shadcn/ui
+
+React Hook Form
+
+Zod
+
+TanStack Query
+
+Backend
+
+Supabase
+
+PostgreSQL
+
+Edge Functions
+
+Realtime
+
+Storage
+
+Authentication
+
+AI
+
+OpenAI
+
+Gemini
+
+Vector Search
+
+Embeddings
+
+Recommendations
+
+Personalization
+
+DevOps
+
+GitHub Actions
+
+Docker
+
+Monitoring
+
+Observability
+
+====================================================
+CODE PACKAGES
+====================================================
+
+Generate prompts for:
+
+1 Database Package
+
+2 Auth Package
+
+3 Backend Package
+
+4 Frontend Package
+
+5 Dashboard Package
+
+6 Admin Package
+
+7 AI Package
+
+8 Billing Package
+
+9 Search Package
+
+10 Recommendation Package
+
+11 Notification Package
+
+12 Analytics Package
+
+13 Testing Package
+
+14 DevOps Package
+
+====================================================
+DATABASE PACKAGE
+====================================================
+
+Generate prompts for:
+
+Schemas
+
+Tables
+
+Indexes
+
+Constraints
+
+Relationships
+
+Views
+
+Triggers
+
+Functions
+
+Policies
+
+Migrations
+
+Seed Data
+
+Output:
+
+SQL
+
+Supabase Migration Files
+
+====================================================
+AUTH PACKAGE
+====================================================
+
+Generate prompts for:
+
+Signup
+
+Login
+
+Logout
+
+Password Reset
+
+Magic Links
+
+Google OAuth
+
+Apple OAuth
+
+Sessions
+
+Role Management
+
+Permissions
+
+Tenant Memberships
+
+Output:
+
+Supabase Auth Code
+
+Middleware
+
+Guards
+
+Policies
+
+====================================================
+BACKEND PACKAGE
+====================================================
+
+Generate prompts for:
+
+API Layer
+
+Services
+
+Repositories
+
+Validators
+
+Error Handling
+
+Logging
+
+Auditing
+
+Output:
+
+TypeScript
+
+Edge Functions
+
+Supabase Services
+
+====================================================
+FRONTEND PACKAGE
+====================================================
+
+Generate prompts for:
+
+Landing Pages
+
+Marketplace Pages
+
+Listing Pages
+
+Search Pages
+
+Profile Pages
+
+Settings Pages
+
+Output:
+
+Next.js Code
+
+React Components
+
+Hooks
+
+Forms
+
+====================================================
+COMPANY DASHBOARD PACKAGE
+====================================================
+
+Generate prompts for:
+
+Company Management
+
+Listings
+
+Media
+
+Analytics
+
+Members
+
+Roles
+
+Notifications
+
+Subscriptions
+
+Output:
+
+Complete Dashboard Code
+
+====================================================
+ADMIN PACKAGE
+====================================================
+
+Generate prompts for:
+
+User Management
+
+Company Management
+
+Moderation
+
+Billing Management
+
+Analytics
+
+Audit Logs
+
+System Monitoring
+
+Output:
+
+Admin Portal Code
+
+====================================================
+AI PACKAGE
+====================================================
+
+Generate prompts for:
+
+Embeddings
+
+Vector Search
+
+Recommendation Engine
+
+Ranking Engine
+
+Personalization Engine
+
+Behavior Tracking
+
+Feature Store
+
+AI Profiles
+
+Output:
+
+Production AI Code
+
+====================================================
+SEARCH PACKAGE
+====================================================
+
+Generate prompts for:
+
+Full Text Search
+
+Semantic Search
+
+Hybrid Search
+
+Autocomplete
+
+Search Analytics
+
+Output:
+
+Search Infrastructure Code
+
+====================================================
+RECOMMENDATION PACKAGE
+====================================================
+
+Generate prompts for:
+
+User Recommendations
+
+Listing Recommendations
+
+Company Recommendations
+
+Trending Engine
+
+Affinity Engine
+
+Output:
+
+Recommendation Services
+
+====================================================
+BILLING PACKAGE
+====================================================
+
+Generate prompts for:
+
+Stripe Integration
+
+Plans
+
+Subscriptions
+
+Invoices
+
+Payments
+
+Trials
+
+Usage Tracking
+
+Output:
+
+Billing Code
+
+====================================================
+NOTIFICATION PACKAGE
+====================================================
+
+Generate prompts for:
+
+Realtime
+
+Email
+
+Push
+
+Digest
+
+Preferences
+
+Output:
+
+Notification Services
+
+====================================================
+ANALYTICS PACKAGE
+====================================================
+
+Generate prompts for:
+
+Event Tracking
+
+Funnels
+
+Cohorts
+
+Retention
+
+Business Metrics
+
+AI Metrics
+
+Output:
+
+Analytics Infrastructure
+
+====================================================
+TESTING PACKAGE
+====================================================
+
+Generate prompts for:
+
+Unit Tests
+
+Integration Tests
+
+E2E Tests
+
+Performance Tests
+
+Security Tests
+
+Load Tests
+
+Output:
+
+Complete Test Suites
+
+====================================================
+DEVOPS PACKAGE
+====================================================
+
+Generate prompts for:
+
+Docker
+
+GitHub Actions
+
+Deployments
+
+Monitoring
+
+Logging
+
+Alerts
+
+Backups
+
+Recovery
+
+Output:
+
+Infrastructure Code
+
+====================================================
+CODE QUALITY RULES
+====================================================
+
+All prompts must enforce:
+
+TypeScript Strict Mode
+
+SOLID Principles
+
+Clean Architecture
+
+Feature Based Structure
+
+Dependency Injection
+
+Reusable Components
+
+Security Best Practices
+
+Performance Optimization
+
+Accessibility
+
+SEO
+
+====================================================
+OUTPUT FORMAT
+====================================================
+
+Generate:
+
+1 Master Prompt Architecture
+
+2 Database Prompt Pack
+
+3 Auth Prompt Pack
+
+4 Backend Prompt Pack
+
+5 Frontend Prompt Pack
+
+6 Dashboard Prompt Pack
+
+7 Admin Prompt Pack
+
+8 AI Prompt Pack
+
+9 Search Prompt Pack
+
+10 Recommendation Prompt Pack
+
+11 Billing Prompt Pack
+
+12 Notification Prompt Pack
+
+13 Analytics Prompt Pack
+
+14 Testing Prompt Pack
+
+15 DevOps Prompt Pack
+
+16 Code Quality Checklist
+
+17 Production Readiness Checklist
+
+18 Code Generation Roadmap
+
+The result must allow an AI coding agent to generate the entire platform from architecture documents with minimal human intervention.
+بعد STEP AI
+
+المرحلة التالية مباشرة:
+
+STEP AJ — Production Launch Package
+
+وهي آخر مرحلة قبل التشغيل الرسمي للمنصة في بيئة الإنتاج (Production).
+
+resume with full prompt AJ
+STEP AJ — PRODUCTION LAUNCH PACKAGE (FULL ENTERPRISE PROMPT)
+You are a Chief Technology Officer (CTO), Principal Solutions Architect, Site Reliability Engineer (SRE), Product Launch Director, Security Architect, Growth Strategist, and Operations Lead.
+
+Project:
+
+AI Marketplace Platform
+
+Completed:
+
+STEP AA Database Master Design
+STEP AB Supabase Production Blueprint
+STEP AC Platform Implementation Master Specification
+STEP AD Backend Engineering Blueprint
+STEP AE Frontend Engineering Blueprint
+STEP AF AI Infrastructure Blueprint
+STEP AG CI/CD + DevOps Blueprint
+STEP AH Sprint Execution Plan
+STEP AI Full Code Generation Prompt Pack
+
+Your task is to create the COMPLETE PRODUCTION LAUNCH PACKAGE.
+
+This is NOT architecture design.
+
+This is NOT code generation.
+
+This is the final production readiness and launch framework.
+
+====================================================
+OBJECTIVE
+====================================================
+
+Prepare the platform for:
+
+Production Deployment
+
+Public Launch
+
+Operational Readiness
+
+Business Readiness
+
+Growth Readiness
+
+Scale Readiness
+
+The platform must be able to launch with confidence.
+
+====================================================
+LAUNCH SCOPE
+====================================================
+
+Prepare launch plans for:
+
+1. Marketplace Platform
+
+2. Company Dashboard SaaS
+
+3. Super Admin Platform
+
+4. AI Infrastructure
+
+5. Billing Infrastructure
+
+6. Search Infrastructure
+
+7. Recommendation Infrastructure
+
+8. Analytics Infrastructure
+
+====================================================
+TECHNICAL LAUNCH READINESS
+====================================================
+
+Create complete launch checklists.
+
+Cover:
+
+Infrastructure
+
+Frontend
+
+Backend
+
+Database
+
+Storage
+
+Realtime
+
+Edge Functions
+
+Monitoring
+
+AI Services
+
+Billing
+
+Notifications
+
+====================================================
+DATABASE READINESS
+====================================================
+
+Validate:
+
+Schema Completion
+
+Indexes
+
+Constraints
+
+Foreign Keys
+
+Performance
+
+Backups
+
+PITR
+
+RLS Policies
+
+Tenant Isolation
+
+Audit Logging
+
+Create:
+
+Database Go-Live Checklist
+
+====================================================
+SECURITY READINESS
+====================================================
+
+Validate:
+
+Authentication
+
+Authorization
+
+RLS
+
+Secrets
+
+Encryption
+
+Audit Logs
+
+Monitoring
+
+Penetration Testing
+
+OWASP Controls
+
+Rate Limiting
+
+Bot Protection
+
+Create:
+
+Security Launch Checklist
+
+Security Sign-Off Package
+
+====================================================
+PERFORMANCE READINESS
+====================================================
+
+Validate:
+
+Frontend Performance
+
+Backend Latency
+
+Database Performance
+
+Search Performance
+
+Recommendation Performance
+
+Realtime Performance
+
+AI Performance
+
+Define:
+
+SLIs
+
+SLOs
+
+SLAs
+
+Performance Targets
+
+====================================================
+AI READINESS
+====================================================
+
+Validate:
+
+Embeddings
+
+Vector Search
+
+Recommendation Engine
+
+Personalization Engine
+
+Ranking Engine
+
+Behavior Tracking
+
+Feature Store
+
+Observability
+
+Cost Controls
+
+Fallback Models
+
+Create:
+
+AI Launch Checklist
+
+====================================================
+OBSERVABILITY
+====================================================
+
+Validate:
+
+Logging
+
+Tracing
+
+Metrics
+
+Dashboards
+
+Alerts
+
+Health Checks
+
+Error Tracking
+
+Create:
+
+Operations Monitoring Package
+
+====================================================
+DISASTER RECOVERY
+====================================================
+
+Validate:
+
+Backups
+
+Restore Testing
+
+PITR
+
+Incident Procedures
+
+Failover Procedures
+
+Runbooks
+
+Create:
+
+Disaster Recovery Package
+
+====================================================
+BUSINESS READINESS
+====================================================
+
+Validate:
+
+Pricing
+
+Subscription Plans
+
+Feature Gates
+
+Billing Rules
+
+Terms of Service
+
+Privacy Policy
+
+Customer Support
+
+Refund Policy
+
+Create:
+
+Business Launch Package
+
+====================================================
+SUPPORT OPERATIONS
+====================================================
+
+Design:
+
+Tier 1 Support
+
+Tier 2 Support
+
+Engineering Escalation
+
+AI Incident Escalation
+
+Billing Escalation
+
+Customer Success Workflow
+
+Create:
+
+Support Playbook
+
+====================================================
+GROWTH READINESS
+====================================================
+
+Validate:
+
+Analytics
+
+Tracking
+
+Funnels
+
+Activation
+
+Retention
+
+Referral Systems
+
+Recommendation Loops
+
+Growth Dashboards
+
+Create:
+
+Growth Launch Package
+
+====================================================
+SOFT LAUNCH
+====================================================
+
+Design:
+
+Internal Launch
+
+Friends & Family Launch
+
+Beta Companies
+
+Beta Customers
+
+Feedback Collection
+
+Bug Reporting
+
+Success Criteria
+
+Rollback Strategy
+
+====================================================
+PUBLIC LAUNCH
+====================================================
+
+Design:
+
+Launch Day Operations
+
+War Room Procedures
+
+Monitoring Plan
+
+Communication Plan
+
+Support Plan
+
+Rollback Plan
+
+Create:
+
+Launch Day Playbook
+
+====================================================
+POST LAUNCH OPERATIONS
+====================================================
+
+Create:
+
+Day 1 Plan
+
+Week 1 Plan
+
+Month 1 Plan
+
+Quarter 1 Plan
+
+Measure:
+
+Adoption
+
+Engagement
+
+Retention
+
+Revenue
+
+System Stability
+
+====================================================
+KPI FRAMEWORK
+====================================================
+
+Marketplace KPIs
+
+GMV
+
+Listings
+
+Conversions
+
+Search Success
+
+Recommendation CTR
+
+Retention
+
+Company KPIs
+
+Company Activations
+
+Paid Companies
+
+Expansion Revenue
+
+Admin KPIs
+
+Moderation Efficiency
+
+Support Efficiency
+
+Platform KPIs
+
+Availability
+
+Latency
+
+Errors
+
+AI KPIs
+
+Recommendation Accuracy
+
+Search Quality
+
+Personalization Quality
+
+AI Cost Efficiency
+
+====================================================
+EXECUTIVE PACKAGE
+====================================================
+
+Generate:
+
+Executive Summary
+
+Architecture Summary
+
+Risk Summary
+
+Cost Forecast
+
+Revenue Forecast
+
+Scaling Forecast
+
+12-Month Roadmap
+
+====================================================
+OUTPUT FORMAT
+====================================================
+
+Generate:
+
+1. Production Readiness Assessment
+
+2. Technical Launch Checklist
+
+3. Database Launch Checklist
+
+4. Security Launch Checklist
+
+5. Performance Launch Checklist
+
+6. AI Launch Checklist
+
+7. Monitoring & Observability Package
+
+8. Disaster Recovery Package
+
+9. Business Launch Package
+
+10. Support Operations Playbook
+
+11. Growth Readiness Package
+
+12. Soft Launch Plan
+
+13. Public Launch Plan
+
+14. Launch Day Playbook
+
+15. Post Launch Operations Plan
+
+16. KPI Framework
+
+17. Executive Risk Register
+
+18. Executive Summary
+
+19. Go / No-Go Decision Framework
+
+20. Final Production Sign-Off Package
+
+The result must be detailed enough for a real-world production launch of the complete AI Marketplace Platform.
+ما بعد AJ
+
+إذا اكتمل AJ فأنت خرجت من مرحلة Build Phase ودخلت Operate & Scale Phase.
+
+التسلسل التالي يكون:
+
+AK Growth & Analytics Operating System
+
+AL Marketplace Optimization System
+
+AM Advanced AI Evolution Roadmap
+
+AN Enterprise Expansion Blueprint
+
+AO Global Scale Architecture
+
+AP Data Platform & BI Blueprint
+
+AQ Security & Compliance Enterprise Package
+
+AR Investor & Board Package
+
+AS Autonomous Platform Roadmap
+
+بمعنى أن AJ هو آخر Prompt مطلوب لبناء وإطلاق المنصة، وما بعده يركز على النمو، التوسع، الاستثمار، والتحول إلى منصة AI Enterprise واسعة النطاق.
+

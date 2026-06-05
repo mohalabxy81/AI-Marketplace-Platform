@@ -816,6 +816,7 @@ Beyond the foundational engineering phases, the long-term strategic evolution of
 *   **[Data Platform & BI Blueprint](file:///home/mohal665544/pr1/docs/specs/43-STEP-AP-DATA-PLATFORM-BI-BLUEPRINT.md)**: A complete design for the real-time event analytics platform, ClickHouse OLAP databases, materialized views, and business intelligence frameworks.
 *   **[Security & Compliance Enterprise Package](file:///home/mohal665544/pr1/docs/specs/44-STEP-AQ-SECURITY-COMPLIANCE-ENTERPRISE-PACKAGE.md)**: A 34-section board-grade zero-trust security operating model, vulnerability patching pipelines, and compliance audit frameworks (SOC 2, ISO 27001, GDPR, EU AI Act).
 *   **[Capital & Governance Enterprise Package](file:///home/mohal665544/pr1/docs/specs/45-STEP-AR-CAPITAL-GOVERNANCE-ENTERPRISE-PACKAGE.md)**: A board-grade enterprise operating model, board of directors committees, venture fundraising roadmaps, M&A readiness playbooks, regional tax entity setups, and IPO/SOX compliance programs.
+*   **[Autonomous Platform Roadmap](file:///home/mohal665544/pr1/docs/specs/46-STEP-AS-AUTONOMOUS-PLATFORM-ROADMAP.md)**: A 10-year evolutionary roadmap detailing the transition of the company and platform into a self-improving, autonomous software ecosystem with specialized multi-agent systems and governance safeguards.
 
 ---
 

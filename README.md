@@ -89,8 +89,7 @@ AP [Data Platform & BI Blueprint](file:///home/mohal665544/pr1/docs/specs/43-STE
 AQ [Security & Compliance Package](file:///home/mohal665544/pr1/docs/specs/44-STEP-AQ-SECURITY-COMPLIANCE-ENTERPRISE-PACKAGE.md)
  
 AR [Investor & Board Package](file:///home/mohal665544/pr1/docs/specs/45-STEP-AR-CAPITAL-GOVERNANCE-ENTERPRISE-PACKAGE.md)
- 
-AS Autonomous Platform Roadmap
+AS [Autonomous Platform Roadmap](file:///home/mohal665544/pr1/docs/specs/46-STEP-AS-AUTONOMOUS-PLATFORM-ROADMAP.md)
 
 باختصار شديد جدًا:
 

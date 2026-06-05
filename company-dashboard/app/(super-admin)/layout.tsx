@@ -39,6 +39,29 @@ export default function SuperAdminLayout({
             <LineChart className="h-4 w-4" />
             Analytics
           </Link>
+
+          {/* Autonomous Enterprise Navigation */}
+          <div className="pt-4 mt-4 border-t border-neutral-800">
+            <h3 className="px-3 text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-2">Autonomous Ent.</h3>
+            <div className="space-y-1">
+              <Link href="/super-admin/autonomous/executive" className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-amber-500 hover:bg-neutral-800 hover:text-amber-400 transition-colors">
+                <BrainCircuit className="h-4 w-4" />
+                Executive Copilot
+              </Link>
+              <Link href="/super-admin/autonomous/autonomy" className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-teal-500 hover:bg-neutral-800 hover:text-teal-400 transition-colors">
+                <LineChart className="h-4 w-4" />
+                Autonomy Metrics
+              </Link>
+              <Link href="/super-admin/autonomous/revenue" className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-emerald-500 hover:bg-neutral-800 hover:text-emerald-400 transition-colors">
+                <CreditCard className="h-4 w-4" />
+                Revenue Agents
+              </Link>
+              <Link href="/super-admin/autonomous/risk" className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-red-500 hover:bg-neutral-800 hover:text-red-400 transition-colors">
+                <ShieldAlert className="h-4 w-4" />
+                Risk Forecast
+              </Link>
+            </div>
+          </div>
         </nav>
         <div className="absolute bottom-0 w-64 border-t border-neutral-800 p-4">
           <Link href="/super-admin/settings" className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-neutral-300 hover:bg-neutral-800 hover:text-white transition-colors">
