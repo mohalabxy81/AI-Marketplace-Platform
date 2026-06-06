@@ -38,7 +38,7 @@ export class RealtimeStreamingService {
   /**
    * Broadcasts a system-wide metric update to super admins.
    */
-  public broadcastSystemMetric(metricName: string, value: any) {
+  public broadcastSystemMetric(metricName: string, value: unknown) {
     const supabase = this.getClient();
     supabase.channel("admin:analytics:system").send({
       type: "broadcast",

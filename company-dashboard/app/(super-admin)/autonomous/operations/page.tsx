@@ -218,7 +218,7 @@ export default function OperationsAutonomyPage() {
                 <div style={{ fontWeight: 700, color: '#F59E0B' }}>{(c.forecast_30d * 100).toFixed(0)}%</div>
                 <div style={{ fontSize: '11px', color: '#6B7280' }}>Forecast</div>
               </div>
-              <span style={{ background: 'rgba(0,229,160,0.1)', color: '#00E5A0', borderRadius: '6px', padding: '6px 10px', textAlign: 'center', fontSize: '12px', fontWeight: 600' }}>OK</span>
+              <span style={{ background: 'rgba(0,229,160,0.1)', color: '#00E5A0', borderRadius: '6px', padding: '6px 10px', textAlign: 'center', fontSize: '12px', fontWeight: 600 }}>OK</span>
             </div>
           ))}
         </div>

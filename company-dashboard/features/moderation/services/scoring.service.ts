@@ -4,7 +4,9 @@ import { type FraudScore } from "@/types/super-admin/trust";
 import { logAdminAction } from "@/features/platform-core";
 
 export const scoringService = {
-  "fraud_scores")
+  async getFraudScores(minScore: number = 0): Promise<FraudScore[]> {
+    const { data, error } = await supabase
+      .from("fraud_scores")
       .select("*")
       .gte("score", minScore)
       .order("score", { ascending: false });

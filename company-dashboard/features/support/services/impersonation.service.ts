@@ -4,7 +4,9 @@ import { type ImpersonationSession } from "@/types/super-admin/support";
 import { logAdminAction } from "@/features/platform-core";
 
 export const impersonationService = {
-  "impersonation_sessions")
+  async createSession(adminId: string, targetUserId: string, targetCompanyId: string, justification: string): Promise<ImpersonationSession> {
+    const { data, error } = await supabase
+      .from("impersonation_sessions")
       .insert({
         admin_id: adminId,
         target_user_id: targetUserId,
