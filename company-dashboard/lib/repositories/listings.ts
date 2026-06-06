@@ -1,5 +1,5 @@
 import { createClient, type SupabaseClient } from '@supabase/supabase-js'
-import type { Database } from '@/types/database.types'
+import type { Database } from '@/types/database'
 
 /**
  * Type-Safe Listings Repository
@@ -140,8 +140,8 @@ export class ListingsRepository {
    * Create a new listing (auto-assigns tenant_id from session via RLS)
    */
   async create(input: ListingInsert): Promise<ListingResult<ListingRow>> {
-    const { data, error } = await this.client
-      .from('marketplace_listings')
+    const { data, error } = await (this.client
+      .from('marketplace_listings') as any)
       .insert(input)
       .select()
       .single()
@@ -185,8 +185,8 @@ export class ListingsRepository {
    * Update a listing by ID (tenant-scoped via RLS — can only update own tenant's listings)
    */
   async update(listingId: string, updates: ListingUpdate): Promise<ListingResult<ListingRow>> {
-    const { data, error } = await this.client
-      .from('marketplace_listings')
+    const { data, error } = await (this.client
+      .from('marketplace_listings') as any)
       .update({ ...updates, updated_at: new Date().toISOString() })
       .eq('id', listingId)
       .select()

@@ -135,7 +135,7 @@ export class PreScreeningService {
    * Risk Scoring Engine.
    * Analyzes listing content to generate a risk score (0-100).
    */
-  private calculateRiskScore(listing: unknown): { riskScore: number; flags: string[] } {
+  private calculateRiskScore(listing: { title: string; description: string | null; price: number | null }): { riskScore: number; flags: string[] } {
     let score = 10; // Base score
     const flags: string[] = [];
 

@@ -30,11 +30,12 @@ export class RealtimeService {
    * Broadcasts a global platform alert (e.g. system maintenance).
    */
   private async handlePlatformAlert(event: unknown) {
+    const typedEvent = event as { payload?: unknown };
     const supabase = this.getClient();
     await supabase.channel("platform:global").send({
       type: "broadcast",
       event: "alert",
-      payload: event.payload
+      payload: typedEvent.payload
     });
   }
 

@@ -159,3 +159,52 @@ export type UpdateUser = Partial<InsertUser>;
 export type UpdateCompany = Partial<InsertCompany>;
 export type UpdateListing = Partial<InsertListing>;
 export type UpdateNotification = Partial<InsertNotification>;
+
+export interface DbMarketplaceListing {
+  id: string;
+  company_id: string;
+  title: string;
+  description: string | null;
+  price: number | null;
+  category: string;
+  type: string;
+  status: 'draft' | 'pending_review' | 'active' | 'paused' | 'archived' | 'rejected';
+  location: string | null;
+  images: string[];
+  tags: string[];
+  created_by: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export type InsertMarketplaceListing = Omit<DbMarketplaceListing, "id" | "created_at" | "updated_at"> & {
+  created_at?: string;
+  updated_at?: string;
+};
+
+export type UpdateMarketplaceListing = Partial<Omit<DbMarketplaceListing, "id">>;
+
+export interface Database {
+  public: {
+    Tables: {
+      marketplace_listings: {
+        Row: DbMarketplaceListing;
+        Insert: InsertMarketplaceListing;
+        Update: UpdateMarketplaceListing;
+        Relationships: [];
+      };
+      listings: {
+        Row: DbListing;
+        Insert: InsertListing;
+        Update: UpdateListing;
+        Relationships: [];
+      };
+    };
+    Views: Record<never, never>;
+    Functions: Record<never, never>;
+    Enums: Record<never, never>;
+    CompositeTypes: Record<never, never>;
+  };
+}
+
+
