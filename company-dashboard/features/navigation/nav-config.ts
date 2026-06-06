@@ -8,6 +8,7 @@ import {
   Palette,
   Settings,
   Activity,
+  CreditCard,
 } from "lucide-react";
 import type { SidebarConfig } from "@/types/navigation";
 
@@ -111,6 +112,13 @@ export const sidebarConfig: SidebarConfig = {
           href: "/ui-customization",
           icon: Palette,
           requiredPermission: "view_ui_customization",
+        },
+        {
+          id: "billing",
+          label: "Billing",
+          href: "/billing",
+          icon: CreditCard,
+          requiredPermission: "view_settings",
         },
         {
           id: "settings",

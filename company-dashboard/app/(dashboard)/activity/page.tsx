@@ -1,14 +1,31 @@
+"use client";
+
 import { ActivityFeed } from "@/features/activity";
+import {
+  PageContainer,
+  PageHeader,
+  PageTitle,
+  PageDescription,
+  PageContent,
+} from "@/components/layout/page-container";
 
 export default function ActivityPage() {
   return (
-    <div className="p-8 max-w-4xl mx-auto">
-      <div className="mb-8 border-b border-gray-100 pb-6">
-        <h1 className="text-2xl font-bold text-gray-900">Company Activity</h1>
-        <p className="text-gray-500 mt-1">Realtime timeline of actions across your team.</p>
-      </div>
+    <PageContainer>
+      <PageHeader>
+        <div>
+          <PageTitle>System Audit Log</PageTitle>
+          <PageDescription>
+            Real-time chronological log of actions and configuration changes performed across your company workspace.
+          </PageDescription>
+        </div>
+      </PageHeader>
 
-      <ActivityFeed />
-    </div>
+      <PageContent>
+        <div className="max-w-3xl">
+          <ActivityFeed />
+        </div>
+      </PageContent>
+    </PageContainer>
   );
 }

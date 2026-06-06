@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { LayoutDashboard, Users, CreditCard, BrainCircuit, ShieldAlert, LineChart, Settings } from "lucide-react";
 
 export default function SuperAdminLayout({
@@ -7,6 +10,8 @@ export default function SuperAdminLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const router = useRouter();
+
   return (
     <div className="flex min-h-screen bg-neutral-950 text-white">
       {/* Sidebar */}
@@ -31,6 +36,10 @@ export default function SuperAdminLayout({
             <BrainCircuit className="h-4 w-4" />
             AI Orchestration
           </Link>
+          <Link href="/super-admin/analytics" className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-neutral-300 hover:bg-neutral-800 hover:text-white transition-colors">
+            <LineChart className="h-4 w-4" />
+            Analytics & Telemetry
+          </Link>
           <Link href="/super-admin/moderation" className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-neutral-300 hover:bg-neutral-800 hover:text-white transition-colors">
             <ShieldAlert className="h-4 w-4" />
             Moderation & Trust
@@ -41,18 +50,24 @@ export default function SuperAdminLayout({
           <div className="pt-4 mt-4 border-t border-neutral-800">
             <h3 className="px-3 text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-2">Autonomous Ent.</h3>
             <div className="space-y-1">
-              <Link href="/super-admin/autonomous/executive" className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-teal-500 hover:bg-neutral-800 hover:text-teal-400 transition-colors">
+              <button
+                onClick={() => router.push("/super-admin/autonomous/executive")}
+                className="w-full flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-teal-500 hover:bg-neutral-800 hover:text-teal-400 transition-colors text-left cursor-pointer"
+              >
                 <BrainCircuit className="h-4 w-4" />
                 Autonomous Hub
-              </Link>
+              </button>
             </div>
           </div>
         </nav>
         <div className="absolute bottom-0 w-64 border-t border-neutral-800 p-4">
-          <Link href="/super-admin/settings" className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-neutral-300 hover:bg-neutral-800 hover:text-white transition-colors">
+          <button
+            onClick={() => router.push("/super-admin/settings")}
+            className="w-full flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-neutral-300 hover:bg-neutral-800 hover:text-white transition-colors text-left cursor-pointer"
+          >
             <Settings className="h-4 w-4" />
             Settings
-          </Link>
+          </button>
         </div>
       </aside>
 
