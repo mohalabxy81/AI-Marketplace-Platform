@@ -2,6 +2,8 @@
 
 Welcome to the central repository for the AI-Native Multi-Tenant Marketplace Infrastructure Platform. This repository is structured as a multi-project workspace combining robust enterprise core systems with a modern administrative control interface.
 
+---
+
 ## 🏛️ Platform Architecture & Constitution
 
 For the unified architecture design, system ownership rules, tenant isolation strategies, event taxonomy, and long-term scaling guidelines, refer to the:
@@ -32,6 +34,27 @@ This project consists of the following components:
 * **[GLOBAL_SCALE_ARCHITECTURE.md](file:///home/mohal665544/pr1/GLOBAL_SCALE_ARCHITECTURE.md)**: Outlines the planet-scale operational architecture, Anycast BGP routing, active-active PostgreSQL database sharding, and edge AI orchestration.
 * **[.agent/](file:///home/mohal665544/pr1/.agent)**: Custom workspace agents, workflows (like `/brainstorm` and `/ui-ux-pro-max`), and validation scripts used to enforce code standards.
 
+### 📋 Blueprint References
+- **AA** - Database Master Design
+- **AB** - Supabase Production Blueprint
+- **AC** - Platform Implementation Master Specification
+- **AD** - Backend Engineering Blueprint
+- **AE** - Frontend Engineering Blueprint
+- **AF** - AI Infrastructure Blueprint
+- **AG** - CI/CD + DevOps Blueprint
+- **AH** - Sprint Execution Plan
+- **AI** - Full Code Generation Prompt Pack
+- **AJ** - Production Launch Package
+- **AK** - Growth & Analytics OS
+- **AL** - Marketplace Optimization System
+- **AM** - Advanced AI Evolution Roadmap
+- **AN** - Enterprise Expansion Blueprint
+- **AO** - Global Scale Architecture
+- **AP** - [Data Platform & BI Blueprint](file:///home/mohal665544/pr1/docs/specs/43-STEP-AP-DATA-PLATFORM-BI-BLUEPRINT.md)
+- **AQ** - [Security & Compliance Package](file:///home/mohal665544/pr1/docs/specs/44-STEP-AQ-SECURITY-COMPLIANCE-ENTERPRISE-PACKAGE.md)
+- **AR** - [Investor & Board Package](file:///home/mohal665544/pr1/docs/specs/45-STEP-AR-CAPITAL-GOVERNANCE-ENTERPRISE-PACKAGE.md)
+- **AS** - [Autonomous Platform Roadmap](file:///home/mohal665544/pr1/docs/specs/46-STEP-AS-AUTONOMOUS-PLATFORM-ROADMAP.md)
+
 ---
 
 ## 🚀 Getting Started
@@ -51,167 +74,48 @@ python .agent/scripts/checklist.py .
 python .agent/scripts/verify_all.py . --url http://localhost:3000
 ```
 
-../
+---
 
+## 🎯 Platform Objectives
 
-AA Database Master Design
-
-AB Supabase Production Blueprint
-
-AC Platform Implementation Master Specification
-
-AD Backend Engineering Blueprint
-
-AE Frontend Engineering Blueprint
-
-AF AI Infrastructure Blueprint
-
-AG CI/CD + DevOps Blueprint
-
-AH Sprint Execution Plan
-
-AI Full Code Generation Prompt Pack
-
-AJ Production Launch Package
-
-AK Growth & Analytics OS
-
-AL Marketplace Optimization System
-
-AM Advanced AI Evolution Roadmap
-
-AN Enterprise Expansion Blueprint
-
-AO Global Scale Architecture
-
-AP [Data Platform & BI Blueprint](file:///home/mohal665544/pr1/docs/specs/43-STEP-AP-DATA-PLATFORM-BI-BLUEPRINT.md)
- 
-AQ [Security & Compliance Package](file:///home/mohal665544/pr1/docs/specs/44-STEP-AQ-SECURITY-COMPLIANCE-ENTERPRISE-PACKAGE.md)
- 
-AR [Investor & Board Package](file:///home/mohal665544/pr1/docs/specs/45-STEP-AR-CAPITAL-GOVERNANCE-ENTERPRISE-PACKAGE.md)
-AS [Autonomous Platform Roadmap](file:///home/mohal665544/pr1/docs/specs/46-STEP-AS-AUTONOMOUS-PLATFORM-ROADMAP.md)
-
-باختصار شديد جدًا:
-
-## الهدف من السلسلة كلها
-
-تحويل الفكرة إلى نظام جاهز للإنتاج بدون ترك أي جزء غير مخطط.
-
-يعني:
+Our ultimate target is transforming the initial marketplace concept into a production-ready, enterprise-grade, multi-tenant system with complete engineering coverage.
 
 ```text
-فكرة
-↓
-متطلبات
-↓
-قاعدة بيانات
-↓
-Backend
-↓
-Frontend
-↓
-AI
-↓
-DevOps
-↓
-تنفيذ
-↓
-إطلاق
-↓
-نمو وتوسع
+Concept Idea
+     ↓
+Requirements Specifications
+     ↓
+Database Schemas & Migrations
+     ↓
+Kotlin Backend Services
+     ↓
+Next.js Dynamic Dashboard UI
+     ↓
+AI Insights & Integrations
+     ↓
+DevOps Pipelines & Infrastructure
+     ↓
+Real-World Execution & Verification
+     ↓
+Production Deployment & Scaling
+     ↓
+Growth, Analytics, & Multi-Tenancy
 ```
 
 ---
 
-## هل هي خاصة بالموقع أم لوحة الشركة أم الأدمن؟
+## 🏬 Core Product Planes
 
-**الثلاثة معًا.**
+The system consolidates three unified platforms into a single multi-tenant infrastructure:
 
-المشروع عندك عبارة عن 3 منتجات داخل منصة واحدة:
+### 1. Public Marketplace
+* **Target User**: End clients, AI buyers, search engines.
+* **Core Capabilities**: Category search & filters, listing discovery, interactive favorites, detailed reviews, subscription-based lead/service acquisition.
 
-### 1. Marketplace (الموقع العام)
+### 2. Company Dashboard SaaS
+* **Target User**: Tenants, service providers, companies.
+* **Core Capabilities**: Service/profile management, user administration, subscription packages, realtime customer chat, AI-powered usage & quota insights.
 
-للعميل النهائي
-
-مثال:
-
-* البحث عن الشركات
-* مشاهدة الخدمات
-* التوصيات
-* المفضلة
-* التقييمات
-* الاشتراك
-
----
-
-### 2. Company Dashboard
-
-لوحة تحكم الشركة
-
-مثال:
-
-* إدارة البروفايل
-* إدارة الخدمات
-* العملاء
-* الاشتراكات
-* الإحصائيات
-* AI Insights
-
----
-
-### 3. Super Admin Platform
-
-لوحة الإدارة الرئيسية
-
-مثال:
-
-* إدارة الشركات
-* إدارة المستخدمين
-* إدارة الخطط
-* مراقبة النظام
-* Analytics
-* Billing
-
----
-
-## كل مرحلة بتخدم إيه؟
-
-| المرحلة | Marketplace    | Company Dashboard | Admin |
-| ------- | -------------- | ----------------- | ----- |
-| AA      | ✅              | ✅                 | ✅     |
-| AB      | ✅              | ✅                 | ✅     |
-| AC      | ✅              | ✅                 | ✅     |
-| AD      | ✅              | ✅                 | ✅     |
-| AE      | ✅              | ✅                 | ✅     |
-| AF      | ✅              | ✅                 | ✅     |
-| AG      | ✅              | ✅                 | ✅     |
-| AH      | تنفيذ الكل     |                   |       |
-| AI      | توليد كود الكل |                   |       |
-| AJ      | إطلاق الكل     |                   |       |
-
----
-
-## عمليًا المشروع الحقيقي عندك
-
-```text
-AI Marketplace Platform
-│
-├── Public Marketplace
-│
-├── Company Dashboard SaaS
-│
-├── Super Admin Platform
-│
-├── AI Engine
-│
-├── Search Engine
-│
-├── Recommendation Engine
-│
-├── Billing System
-│
-└── Analytics System
-```
-
-يعني **AA → AJ ليست للموقع فقط**، بل هي المعمارية الكاملة للمنصة كلها بكل أجزائها (العميل + الشركة + الأدمن + الذكاء الاصطناعي + الفوترة + التشغيل).
-/..
+### 3. Super Admin Control Platform
+* **Target User**: Platform administrators & super operators.
+* **Core Capabilities**: Multi-tenant billing controls, global case moderation queue, system health metrics, feature flag configuration, organization audits.

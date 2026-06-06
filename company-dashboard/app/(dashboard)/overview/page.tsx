@@ -127,7 +127,7 @@ export default function OverviewPage() {
   const { data: trendData, isLoading: trendLoading } = useInteractionTrend(14);
 
   const recentListings = listings?.slice(0, 5) ?? [];
-  const activeCount  = listings?.filter((l) => l.status === "published" || l.status === "active").length ?? 0;
+  const activeCount  = listings?.filter((l) => l.status === "published").length ?? 0;
   const draftCount   = listings?.filter((l) => l.status === "draft").length ?? 0;
   const unreadInsights = insights?.filter((i) => !i.is_read).length ?? 0;
 

@@ -56,6 +56,8 @@ async function getPublicStats() {
   };
 }
 
+const CustomLink = Link;
+
 // ── Category pills ─────────────────────────────────────────────
 
 const CATEGORIES = [
@@ -226,12 +228,12 @@ export default async function MarketplacePage() {
                 className="flex-1 bg-transparent text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:outline-none"
               />
             </div>
-            <Link
+            <CustomLink
               href="/marketplace/search"
               className="flex items-center gap-2 rounded-[var(--radius-xs)] bg-[var(--color-accent)] px-5 py-3 text-sm font-semibold text-black hover:bg-amber-400 transition-colors whitespace-nowrap"
             >
               Search <ArrowRight className="h-4 w-4" />
-            </Link>
+            </CustomLink>
           </div>
 
           {/* Stats Row */}
@@ -277,12 +279,12 @@ export default async function MarketplacePage() {
               Top-rated and recently published on the platform
             </p>
           </div>
-          <Link
+          <CustomLink
             href="/marketplace/search"
             className="flex items-center gap-1.5 text-sm text-[var(--color-accent)] hover:underline"
           >
             Browse all <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
+          </CustomLink>
         </div>
 
         {listings.length === 0 ? (
@@ -294,12 +296,12 @@ export default async function MarketplacePage() {
             <p className="text-xs text-[var(--color-text-subtle)] mt-1">
               The marketplace is open for new AI services and agents.
             </p>
-            <Link
+            <CustomLink
               href="/listings/create"
               className="mt-5 flex items-center gap-2 rounded-[var(--radius-xs)] bg-[var(--color-accent)] px-4 py-2 text-sm font-semibold text-black hover:bg-amber-400 transition-colors"
             >
               List Your Service <ArrowRight className="h-4 w-4" />
-            </Link>
+            </CustomLink>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
@@ -332,12 +334,12 @@ export default async function MarketplacePage() {
                 intent, not just keywords — surfacing the exact agent or tool you need within
                 milliseconds.
               </p>
-              <Link
+              <CustomLink
                 href="/marketplace/search"
                 className="mt-6 inline-flex items-center gap-2 rounded-[var(--radius-xs)] bg-[var(--color-accent)] px-5 py-2.5 text-sm font-semibold text-black hover:bg-amber-400 transition-colors"
               >
                 Start Exploring <ArrowRight className="h-4 w-4" />
-              </Link>
+              </CustomLink>
             </div>
             <div className="space-y-6">
               <FeatureBlock
@@ -383,18 +385,18 @@ export default async function MarketplacePage() {
             automation solutions.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Link
+            <CustomLink
               href="/listings/create"
               className="flex items-center gap-2 rounded-[var(--radius-xs)] bg-[var(--color-accent)] px-6 py-2.5 text-sm font-semibold text-black hover:bg-amber-400 transition-colors"
             >
               List Your Service <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
+            </CustomLink>
+            <CustomLink
               href="/marketplace/search"
               className="flex items-center gap-2 rounded-[var(--radius-xs)] border border-[var(--color-border)] px-6 py-2.5 text-sm font-medium text-[var(--color-text)] hover:border-[var(--color-accent)] transition-colors"
             >
               Browse Listings
-            </Link>
+            </CustomLink>
           </div>
         </div>
       </section>
