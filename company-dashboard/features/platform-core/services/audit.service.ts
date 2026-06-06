@@ -1,5 +1,4 @@
-import { createServerClient } from "@supabase/ssr";
-import { cookies } from "next/headers";
+import { createClient } from "@supabase/supabase-js";
 
 export interface AuditRecord {
   actor_id: string;             // User ID performing the action
@@ -13,26 +12,22 @@ export interface AuditRecord {
   user_agent?: string;
 }
 
+// Isomorphic singleton client — safe in both Server Components and Client Components.
+// RLS policies on platform_audit_logs guard write access at the DB level.
+function getAuditClient() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
+}
+
 export class AuditService {
   /**
    * Records an audit log entry securely into platform_audit_logs.
+   * Uses an isomorphic Supabase client — safe to call from Server or Client context.
    */
   public async record(entry: AuditRecord): Promise<void> {
-    const cookieStore = await cookies();
-    const supabase = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-      {
-        cookies: {
-          getAll() {
-            return cookieStore.getAll();
-          },
-          setAll(_cookiesToSet) {
-            // Handled safely in read-only environments
-          },
-        },
-      }
-    );
+    const supabase = getAuditClient();
 
     const { error } = await supabase
       .from("platform_audit_logs")

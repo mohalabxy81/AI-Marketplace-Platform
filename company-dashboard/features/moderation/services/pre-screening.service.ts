@@ -1,7 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { eventBus } from "@/features/platform-core";
 import { randomUUID } from "crypto";
-import { ListingCreatedEvent, ListingUpdatedEvent } from "@";
+import { ListingCreatedEvent, ListingUpdatedEvent } from "@/types/platform-contracts";
 import { ModerationPriority, ModerationStatus } from "@/types/super-admin/trust";
 
 export class PreScreeningService {

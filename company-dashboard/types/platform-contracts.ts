@@ -225,6 +225,42 @@ export interface DomainEvent<T = Record<string, unknown>> {
   occurredAt: string;
 }
 
+// ─── Typed Domain Events ──────────────────────────────────────────────────────
+
+export interface ListingCreatedEvent {
+  eventId: string;
+  eventType: "listing.created";
+  schemaVersion: number;
+  producerDomain: string;
+  tenantId: string | null;
+  actorId: string | null;
+  timestamp: string;
+  correlationId: string;
+  payload: {
+    listingId: string;
+    tenantId: string;
+    title: string;
+  };
+  metadata: Record<string, unknown>;
+}
+
+export interface ListingUpdatedEvent {
+  eventId: string;
+  eventType: "listing.updated";
+  schemaVersion: number;
+  producerDomain: string;
+  tenantId: string | null;
+  actorId: string | null;
+  timestamp: string;
+  correlationId: string;
+  payload: {
+    listingId: string;
+    tenantId: string;
+    changedFields: string[];
+  };
+  metadata: Record<string, unknown>;
+}
+
 // ─── Shared Utility Types ─────────────────────────────────────────────────────
 
 export interface PaginationOpts {

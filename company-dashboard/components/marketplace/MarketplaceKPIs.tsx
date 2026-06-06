@@ -1,13 +1,16 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
+import { useState, useEffect, useMemo } from "react"
+import { createBrowserClient } from "@supabase/ssr"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Activity, Users, ShoppingCart, TrendingUp } from "lucide-react"
 
 export function MarketplaceKPIs() {
   const [kpis, setKpis] = useState<any>(null)
-  const supabase = createClientComponentClient()
+  const supabase = useMemo(() => createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  ), [])
 
   useEffect(() => {
     const fetchKPIs = async () => {

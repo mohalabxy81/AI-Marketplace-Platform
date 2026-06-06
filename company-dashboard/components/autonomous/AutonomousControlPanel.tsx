@@ -1,14 +1,17 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
+import { useState, useEffect, useMemo } from "react"
+import { createBrowserClient } from "@supabase/ssr"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Activity, Power, ShieldAlert, Bot } from "lucide-react"
 
 export function AutonomousControlPanel() {
   const [agents, setAgents] = useState<any[]>([])
   const [globalKillSwitch, setGlobalKillSwitch] = useState(false)
-  const supabase = createClientComponentClient()
+  const supabase = useMemo(() => createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  ), [])
 
   useEffect(() => {
     const fetchData = async () => {
