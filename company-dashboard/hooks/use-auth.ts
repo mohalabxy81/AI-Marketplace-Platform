@@ -6,6 +6,18 @@ import { supabase } from "@/lib/supabase/client";
 import { useAuthStore } from "@/store/auth.store";
 import type { DbUser, DbCompany, UserRole } from "@/types/database";
 
+// ── Platform admin check ──────────────────────────────────────
+
+async function fetchPlatformAdmin(userId: string) {
+  const { data, error } = await supabase
+    .from("platform_admins")
+    .select("role, is_active")
+    .eq("user_id", userId)
+    .single();
+  if (error || !data?.is_active) return null;
+  return data;
+}
+
 // ── Fetch helpers (client-side) ───────────────────────────────
 
 async function fetchUserProfile(userId: string): Promise<DbUser | null> {
@@ -46,8 +58,26 @@ export function useAuth() {
       }
 
       const profile = await fetchUserProfile(session.user.id);
+
       if (!profile) {
-        clearAuth();
+        // Not a tenant user — check if this is a platform admin
+        const adminRecord = await fetchPlatformAdmin(session.user.id);
+        if (!adminRecord) {
+          clearAuth();
+          return;
+        }
+        // Platform admins don't have a users-table profile — synthesise one
+        // so the auth store marks them as authenticated.
+        setAuth({
+          user: {
+            id: session.user.id,
+            email: session.user.email ?? "",
+            role: adminRecord.role as UserRole,
+            company_id: null,
+          } as unknown as DbUser,
+          company: null,
+          role: adminRecord.role as UserRole,
+        });
         return;
       }
 

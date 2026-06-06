@@ -13,6 +13,7 @@ import {
   CardContent,
 } from "@/components/ui/card";
 import { signIn } from "@/services/auth/auth.service";
+import { supabase } from "@/lib/supabase/client";
 
 function LoginContent() {
   const router = useRouter();
@@ -30,9 +31,25 @@ function LoginContent() {
     const password = formData.get("password") as string;
 
     try {
-      await signIn(email, password);
-      const redirectTo = searchParams.get("redirectTo") || "/overview";
-      router.push(redirectTo);
+      const result = await signIn(email, password);
+
+      // Determine where to redirect based on user type
+      let destination = searchParams.get("redirectTo") || "/overview";
+
+      // Check if this user is a platform admin
+      if (result?.user?.id) {
+        const { data: adminRecord } = await supabase
+          .from("platform_admins")
+          .select("role, is_active")
+          .eq("user_id", result.user.id)
+          .single();
+
+        if (adminRecord?.is_active) {
+          destination = "/super-admin/dashboard";
+        }
+      }
+
+      router.push(destination);
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Failed to sign in");
       setIsLoading(false);
