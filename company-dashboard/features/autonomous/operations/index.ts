@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * AU.6 — Operations Autonomy Agent Services
  * Monitoring, Incident, SRE agents

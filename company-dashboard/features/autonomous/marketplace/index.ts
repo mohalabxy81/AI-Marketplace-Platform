@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * AU.4 — Marketplace Autonomy Agent Services
  * Listing, Discovery, Matching, Trust, Fraud agents

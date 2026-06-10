@@ -17,3 +17,4 @@ CREATE SCHEMA IF NOT EXISTS governance;
 CREATE SCHEMA IF NOT EXISTS notifications;
 
 -- (The 'auth' schema is managed by Supabase, and 'public' is the default but we will avoid it for domain models)
+CREATE OR REPLACE FUNCTION public.update_updated_at_column() RETURNS TRIGGER AS $$ BEGIN NEW.updated_at = NOW(); RETURN NEW; END; $$ language 'plpgsql';

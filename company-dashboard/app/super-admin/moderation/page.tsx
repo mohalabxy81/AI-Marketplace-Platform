@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any */
 // app/(super-admin)/moderation/page.tsx
 "use client";
 

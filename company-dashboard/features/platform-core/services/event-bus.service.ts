@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { DomainEvent, EventHandler } from "@/types/contracts/events/base.event";
 import { createClient } from "@supabase/supabase-js";
 

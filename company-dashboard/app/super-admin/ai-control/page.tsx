@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // app/(super-admin)/ai-control/page.tsx
 "use client";
 

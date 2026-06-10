@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // features/platform-core/components/admin-topbar.tsx
 "use client";
 

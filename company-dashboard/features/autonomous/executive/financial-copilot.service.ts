@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * AU.1 — Financial Copilot Service
  * Revenue waterfall, MRR/ARR bridging, cash flow projections

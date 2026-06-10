@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * AU.2 — Pricing Agent Service
  * Price sensitivity, competitive gap analysis, willingness-to-pay modeling

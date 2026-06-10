@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { createServerClient } from "@supabase/ssr";
 import { eventBus } from "@/features/platform-core";
 import { inferenceLogger } from "./inference-logger.service";

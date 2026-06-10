@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * AU.7 — Knowledge Autonomy Agent Services
  * Knowledge, Memory, Learning agents

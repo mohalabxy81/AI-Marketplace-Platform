@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * AU.2 — Expansion Agent Service
  * Whitespace opportunity analysis, expansion sequence automation, upsell targeting

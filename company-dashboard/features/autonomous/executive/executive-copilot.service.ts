@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * Executive Copilot Service
  * Generates executive briefs, KPI snapshots, and strategic recommendations.

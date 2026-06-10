@@ -17,7 +17,7 @@ import { signOut } from "@/services/auth/auth.service";
 import { useRouter } from "next/navigation";
 import { CompanySwitcher } from "./company-switcher";
 import { CommandSearch } from "./command-search";
-import { NotificationDropdown } from "@/features/notifications/components/notification-dropdown";
+import { NotificationDropdown } from "@/features/notifications";
 
 export function TopHeader() {
   const pathname = usePathname();

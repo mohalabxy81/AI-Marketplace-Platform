@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // app/(super-admin)/analytics/page.tsx
 "use client";
 

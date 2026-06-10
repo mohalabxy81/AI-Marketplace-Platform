@@ -4,7 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, LogOut, Hexagon } from "lucide-react";
-import { sidebarConfig } from "@/features/navigation/nav-config";
+import { sidebarConfig } from "@/features/navigation";
 import { SidebarNavItem } from "./sidebar-nav-item";
 import { useSidebar } from "@/hooks/use-sidebar";
 import { useAuth } from "@/hooks/use-auth";

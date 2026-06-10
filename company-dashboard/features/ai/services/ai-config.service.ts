@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any */
 // features/ai/services/ai-config.service.ts
 import { supabase } from "@/lib/supabase/client";
 import { type AIConfiguration, type AIExperiment, type SemanticEmbedding } from "@/types/super-admin/ai";

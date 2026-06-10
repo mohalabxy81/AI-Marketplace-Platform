@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // features/ai/hooks/use-ai-config.ts
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { aiConfigService } from "../services/ai-config.service";

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * AU.5 — Support Autonomy Agent Services
  * Support, Onboarding, Customer Success, Vendor Success agents

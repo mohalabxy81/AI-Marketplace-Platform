@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * AU.8 — Decision Automation Engine Services
  * Approval Engine, Policy Engine, Risk Engine

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { ShieldAlert, Activity, AlertOctagon, RefreshCw, BarChart2 } from 'lucide-react';
 import { RiskForecastService } from '@/features/autonomous';

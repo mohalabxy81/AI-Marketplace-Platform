@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS ai_ops.embeddings (
     id               UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     entity_type      TEXT NOT NULL CHECK (entity_type IN ('listing', 'user_profile', 'search_query', 'lead')),
     entity_id        UUID NOT NULL,
-    tenant_id        UUID NOT NULL REFERENCES tenant_config.tenants(id) ON DELETE CASCADE,
+    tenant_id        UUID NOT NULL REFERENCES marketplace.companies(id) ON DELETE CASCADE,
     model_name       TEXT NOT NULL DEFAULT 'text-embedding-3-small',
     model_version    TEXT NOT NULL DEFAULT '1.0',
     dimensions       INTEGER NOT NULL DEFAULT 1536,
@@ -113,7 +113,7 @@ ON CONFLICT (plan_key) DO NOTHING;
 -- Tenant Subscriptions
 CREATE TABLE IF NOT EXISTS billing.subscriptions (
     id                    UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    tenant_id             UUID NOT NULL REFERENCES tenant_config.tenants(id) ON DELETE CASCADE,
+    tenant_id             UUID NOT NULL REFERENCES marketplace.companies(id) ON DELETE CASCADE,
     plan_id               UUID NOT NULL REFERENCES billing.plans(id),
     stripe_subscription_id TEXT UNIQUE,
     stripe_customer_id    TEXT,
@@ -136,7 +136,7 @@ CREATE TRIGGER billing_subscriptions_updated_at
 -- Usage Tracking — metered billing events (write-only ledger pattern)
 CREATE TABLE IF NOT EXISTS billing.usage_events (
     id               UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    tenant_id        UUID NOT NULL REFERENCES tenant_config.tenants(id) ON DELETE CASCADE,
+    tenant_id        UUID NOT NULL REFERENCES marketplace.companies(id) ON DELETE CASCADE,
     subscription_id  UUID REFERENCES billing.subscriptions(id),
     resource_type    TEXT NOT NULL CHECK (resource_type IN ('ai_tokens', 'storage_bytes', 'api_calls', 'listings', 'leads')),
     quantity         BIGINT NOT NULL DEFAULT 1,
@@ -167,7 +167,7 @@ CREATE TABLE IF NOT EXISTS billing.usage_events_2026_08
 -- Quota Usage tracking (aggregated counters — reset per billing cycle)
 CREATE TABLE IF NOT EXISTS billing.quota_usage (
     id               UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    tenant_id        UUID NOT NULL REFERENCES tenant_config.tenants(id) ON DELETE CASCADE,
+    tenant_id        UUID NOT NULL REFERENCES marketplace.companies(id) ON DELETE CASCADE,
     resource_type    TEXT NOT NULL,
     current_usage    BIGINT NOT NULL DEFAULT 0,
     limit_amount     BIGINT NOT NULL DEFAULT 0,       -- Copied from plan at cycle start

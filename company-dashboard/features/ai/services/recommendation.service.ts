@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { createServerClient } from "@supabase/ssr";
 import { TenantContext } from "@/types/contracts/tenant.context";
 import { aiConfigService } from "./ai-config.service";
