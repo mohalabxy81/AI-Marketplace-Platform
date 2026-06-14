@@ -1,0 +1,254 @@
+
+> company-dashboard@0.1.0 lint
+> eslint
+
+
+/home/mohal665544/pr1/company-dashboard/app/(dashboard)/listings/[id]/edit/page.tsx
+  16:1  error  '@/features/listings/components/listing-form' import is restricted from being used by a pattern. Please do not import internal feature files. Only import from the feature's index file  no-restricted-imports
+
+/home/mohal665544/pr1/company-dashboard/app/(dashboard)/listings/create/page.tsx
+  15:1  error  '@/features/listings/components/listing-form' import is restricted from being used by a pattern. Please do not import internal feature files. Only import from the feature's index file  no-restricted-imports
+
+/home/mohal665544/pr1/company-dashboard/app/(super-admin)/autonomous/autonomy/page.tsx
+  2:38  warning  'Settings' is defined but never used  @typescript-eslint/no-unused-vars
+  2:48  warning  'Shield' is defined but never used    @typescript-eslint/no-unused-vars
+
+/home/mohal665544/pr1/company-dashboard/app/(super-admin)/autonomous/board/page.tsx
+  24:11  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/home/mohal665544/pr1/company-dashboard/app/(super-admin)/autonomous/risk/page.tsx
+  2:47  warning  'RefreshCw' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/mohal665544/pr1/company-dashboard/app/api/webhooks/stripe/route.ts
+  25:17  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  58:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/mohal665544/pr1/company-dashboard/app/super-admin/ai-control/page.tsx
+   8:3   warning  'Cpu' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        @typescript-eslint/no-unused-vars
+   8:23  warning  'Check' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+   9:3   warning  'HelpCircle' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 @typescript-eslint/no-unused-vars
+   9:25  warning  'BarChart2' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  @typescript-eslint/no-unused-vars
+  30:7   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/mohal665544/pr1/company-dashboard/app/super-admin/ai-control/page.tsx:30:7
+  28 |   React.useEffect(() => {
+  29 |     if (config) {
+> 30 |       setModelName(config.active_model_name);
+     |       ^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  31 |       setSemanticWeight(Number(config.semantic_weight));
+  32 |       setKeywordWeight(Number(config.keyword_weight));
+  33 |       setBm25Weight(Number(config.bm25_weight));  react-hooks/set-state-in-effect
+
+/home/mohal665544/pr1/company-dashboard/app/super-admin/analytics/page.tsx
+   9:3   warning  'BarChart3' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                @typescript-eslint/no-unused-vars
+   9:14  warning  'Cpu' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+  31:5   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/mohal665544/pr1/company-dashboard/app/super-admin/analytics/page.tsx:31:5
+  29 |
+  30 |   React.useEffect(() => {
+> 31 |     setMounted(true);
+     |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  32 |   }, []);
+  33 |
+  34 |   if (!hasCapability("view_analytics_snapshots")) {  react-hooks/set-state-in-effect
+
+/home/mohal665544/pr1/company-dashboard/app/super-admin/audit/page.tsx
+    8:3   warning  'History' is defined but never used       @typescript-eslint/no-unused-vars
+    8:20  warning  'ShieldCheck' is defined but never used   @typescript-eslint/no-unused-vars
+   34:49  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   54:41  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  149:38  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/mohal665544/pr1/company-dashboard/app/super-admin/billing/page.tsx
+   9:3   warning  'CreditCard' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-unused-vars
+   9:15  warning  'DollarSign' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-unused-vars
+  10:18  warning  'ArrowDownRight' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        @typescript-eslint/no-unused-vars
+  10:34  warning  'ArrowUpRight' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          @typescript-eslint/no-unused-vars
+  37:5   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/mohal665544/pr1/company-dashboard/app/super-admin/billing/page.tsx:37:5
+  35 |
+  36 |   React.useEffect(() => {
+> 37 |     setMounted(true);
+     |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  38 |   }, []);
+  39 |
+  40 |   if (!hasCapability("override_billing_limits")) {  react-hooks/set-state-in-effect
+
+/home/mohal665544/pr1/company-dashboard/app/super-admin/feature-flags/page.tsx
+   11:3   warning  'Trash2' is defined but never used        @typescript-eslint/no-unused-vars
+   11:26  warning  'Play' is defined but never used          @typescript-eslint/no-unused-vars
+   11:32  warning  'HelpCircle' is defined but never used    @typescript-eslint/no-unused-vars
+   11:51  warning  'Settings' is defined but never used      @typescript-eslint/no-unused-vars
+  139:53  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/mohal665544/pr1/company-dashboard/app/super-admin/moderation/page.tsx
+    9:16  warning  'ShieldCheck' is defined but never used                   @typescript-eslint/no-unused-vars
+    9:29  warning  'HelpCircle' is defined but never used                    @typescript-eslint/no-unused-vars
+   10:26  warning  'Eye' is defined but never used                           @typescript-eslint/no-unused-vars
+   11:3   warning  'ChevronsUp' is defined but never used                    @typescript-eslint/no-unused-vars
+   14:15  warning  'ModerationPriority' is defined but never used            @typescript-eslint/no-unused-vars
+   14:40  warning  'ModerationStatus' is defined but never used              @typescript-eslint/no-unused-vars
+   26:5   warning  'setTargetTypeFilter' is assigned a value but never used  @typescript-eslint/no-unused-vars
+   34:54  error    Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
+   50:34  error    Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
+  157:55  error    Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
+  177:53  error    Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
+
+/home/mohal665544/pr1/company-dashboard/app/super-admin/overview/page.tsx
+    6:38  warning  'usePlanDistributionQuery' is defined but never used             @typescript-eslint/no-unused-vars
+    8:33  warning  'useInvoicesQuery' is defined but never used                     @typescript-eslint/no-unused-vars
+    8:51  warning  'useOverrideQuotaMutation' is defined but never used             @typescript-eslint/no-unused-vars
+   22:26  warning  'admin' is assigned a value but never used                       @typescript-eslint/no-unused-vars
+   27:17  warning  'subscriptions' is assigned a value but never used               @typescript-eslint/no-unused-vars
+  295:40  error    Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  348:53  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  348:65  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+/home/mohal665544/pr1/company-dashboard/app/super-admin/settings/page.tsx
+  8:3   warning  'Settings' is defined but never used   @typescript-eslint/no-unused-vars
+  9:3   warning  'Trash2' is defined but never used     @typescript-eslint/no-unused-vars
+  9:11  warning  'Plus' is defined but never used       @typescript-eslint/no-unused-vars
+  9:17  warning  'Terminal' is defined but never used   @typescript-eslint/no-unused-vars
+  9:27  warning  'RefreshCw' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/mohal665544/pr1/company-dashboard/app/super-admin/support/page.tsx
+   30:7   error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/mohal665544/pr1/company-dashboard/app/super-admin/support/page.tsx:30:7
+  28 |   React.useEffect(() => {
+  29 |     if (tickets && tickets.length > 0 && !selectedTicketId) {
+> 30 |       setSelectedTicketId(tickets[0].id);
+     |       ^^^^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  31 |     }
+  32 |   }, [tickets, selectedTicketId]);
+  33 |  react-hooks/set-state-in-effect
+  123:58  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-explicit-any
+
+/home/mohal665544/pr1/company-dashboard/app/super-admin/tenants/[id]/page.tsx
+   7:10  warning  'useSubscriptionsQuery' is defined but never used  @typescript-eslint/no-unused-vars
+  10:26  warning  'ShieldCheck' is defined but never used            @typescript-eslint/no-unused-vars
+  10:39  warning  'AlertTriangle' is defined but never used          @typescript-eslint/no-unused-vars
+  86:51  error    Unexpected any. Specify a different type           @typescript-eslint/no-explicit-any
+
+/home/mohal665544/pr1/company-dashboard/app/super-admin/tenants/page.tsx
+    6:33  warning  'useOverrideQuotaMutation' is defined but never used  @typescript-eslint/no-unused-vars
+   11:11  warning  'ShieldAlert' is defined but never used               @typescript-eslint/no-unused-vars
+   12:3   warning  'Settings' is defined but never used                  @typescript-eslint/no-unused-vars
+   12:13  warning  'User' is defined but never used                      @typescript-eslint/no-unused-vars
+   12:19  warning  'Plus' is defined but never used                      @typescript-eslint/no-unused-vars
+  135:58  error    Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
+  155:54  error    Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
+  185:23  warning  'sub' is assigned a value but never used              @typescript-eslint/no-unused-vars
+
+/home/mohal665544/pr1/company-dashboard/components/layout/mobile-sidebar.tsx
+  12:1  error  '@/features/navigation/nav-config' import is restricted from being used by a pattern. Please do not import internal feature files. Only import from the feature's index file  no-restricted-imports
+
+/home/mohal665544/pr1/company-dashboard/components/layout/sidebar.tsx
+  7:1  error  '@/features/navigation/nav-config' import is restricted from being used by a pattern. Please do not import internal feature files. Only import from the feature's index file  no-restricted-imports
+
+/home/mohal665544/pr1/company-dashboard/components/layout/top-header.tsx
+  20:1  error  '@/features/notifications/components/notification-dropdown' import is restricted from being used by a pattern. Please do not import internal feature files. Only import from the feature's index file  no-restricted-imports
+
+/home/mohal665544/pr1/company-dashboard/features/ai/hooks/use-ai-config.ts
+  50:9  warning  'queryClient' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/mohal665544/pr1/company-dashboard/features/ai/services/ai-config.service.ts
+   3:56  warning  'SemanticEmbedding' is defined but never used  @typescript-eslint/no-unused-vars
+  36:47  error    Unexpected any. Specify a different type       @typescript-eslint/no-explicit-any
+
+/home/mohal665544/pr1/company-dashboard/features/ai/services/embedding.service.ts
+  112:35  warning  '_text' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/mohal665544/pr1/company-dashboard/features/ai/services/recommendation.service.ts
+  3:10  warning  'aiConfigService' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/mohal665544/pr1/company-dashboard/features/analytics/services/realtime-streaming.service.ts
+  41:59  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/mohal665544/pr1/company-dashboard/features/autonomous/executive/executive-copilot.service.ts
+  179:35  warning  'snapshot' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/mohal665544/pr1/company-dashboard/features/autonomous/index.ts
+  2:55  error  Parsing error: ';' expected
+
+/home/mohal665544/pr1/company-dashboard/features/billing/services/quota.service.ts
+  4:10  warning  'PLATFORM_PRICING_PLANS' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/mohal665544/pr1/company-dashboard/features/marketplace/services/category.service.ts
+  19:29  warning  '_context' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/mohal665544/pr1/company-dashboard/features/marketplace/services/feed.service.ts
+  58:5  warning  '_recentInteractions' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/mohal665544/pr1/company-dashboard/features/moderation/services/pre-screening.service.ts
+  125:33  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  138:39  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/mohal665544/pr1/company-dashboard/features/moderation/services/scoring.service.ts
+  7:16  error  Parsing error: ':' expected
+
+/home/mohal665544/pr1/company-dashboard/features/moderation/services/trust-verification.service.ts
+  4:10  warning  'VerificationStatus' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/mohal665544/pr1/company-dashboard/features/platform-core";
+
+export const impersonationService = {
+  /index.ts
+  1:19  error  Parsing error: Unterminated string literal
+
+/home/mohal665544/pr1/company-dashboard/features/platform-core";
+
+export const scoringService = {
+  /index.ts
+  1:19  error  Parsing error: Unterminated string literal
+
+/home/mohal665544/pr1/company-dashboard/features/platform-core/components/admin-topbar.tsx
+   5:52  warning  'ImpersonateIcon' is defined but never used            @typescript-eslint/no-unused-vars
+  12:19  warning  'sidebarCollapsed' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/mohal665544/pr1/company-dashboard/features/platform-core/services/audit.service.ts
+  30:18  warning  '_cookiesToSet' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/mohal665544/pr1/company-dashboard/features/platform-core/services/event-bus.service.ts
+  75:72  warning  '_isFromRealtime' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/mohal665544/pr1/company-dashboard/features/platform-core/services/profiler.service.ts
+  1:10  warning  'randomUUID' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/mohal665544/pr1/company-dashboard/features/platform-core/services/realtime.service.ts
+  32:44  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/mohal665544/pr1/company-dashboard/features/support/services/impersonation.service.ts
+  7:26  error  Parsing error: ':' expected
+
+/home/mohal665544/pr1/company-dashboard/lib/repositories/listings.ts
+  1:10  warning  'createClient' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 97 problems (36 errors, 61 warnings)
+

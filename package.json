@@ -1,0 +1,19 @@
+{
+  "name": "ai-marketplace-platform",
+  "private": true,
+  "version": "1.0.0",
+  "description": "AI-Native Multi-Tenant Marketplace Operating System",
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @marketplace/web dev",
+    "build": "pnpm --filter @marketplace/web build",
+    "start": "pnpm --filter @marketplace/web start",
+    "lint": "pnpm -r lint",
+    "type-check": "pnpm -r type-check",
+    "clean": "pnpm -r exec rm -rf .next node_modules/.cache"
+  }
+}

@@ -1,0 +1,158 @@
+/* ============================================================
+   COMPANY DASHBOARD — Global Design Tokens & Base Styles
+   Design System: "Precision Ink" — Sharp Swiss-Grid
+   ============================================================ */
+
+@import "tailwindcss";
+
+/* ── Color Tokens ─────────────────────────────────────────── */
+:root {
+  /* Surface */
+  --color-bg:           #0A0A0A;
+  --color-surface:      #111111;
+  --color-surface-alt:  #191919;
+  --color-border:       #2A2A2A;
+  --color-border-focus: #F59E0B;
+
+  /* Accent — Signal Amber */
+  --color-accent:       #F59E0B;
+  --color-accent-muted: #78450A;
+  --color-accent-dim:   #1C1200;
+
+  /* Text */
+  --color-text:         #F5F5F5;
+  --color-text-muted:   #888888;
+  --color-text-subtle:  #555555;
+
+  /* Status */
+  --color-success:      #22C55E;
+  --color-warning:      #F59E0B;
+  --color-error:        #EF4444;
+  --color-info:         #3B82F6;
+
+  /* Sidebar */
+  --sidebar-width:      248px;
+  --sidebar-collapsed:  64px;
+  --header-height:      56px;
+
+  /* Geometry — ZERO rounded corners on structural elements */
+  --radius-none:  0px;
+  --radius-xs:    2px;
+  --radius-sm:    4px;
+  --radius-full:  9999px;
+
+  /* Typography */
+  --font-sans: "Geist", "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "Geist Mono", "JetBrains Mono", monospace;
+
+  /* Motion */
+  --ease-spring:   cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth:   cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 120ms;
+  --duration-mid:  220ms;
+  --duration-slow: 380ms;
+
+  /* Z-index scale */
+  --z-sidebar:  40;
+  --z-header:   50;
+  --z-modal:    100;
+  --z-toast:    200;
+}
+
+/* ── Base Reset ───────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 14px;
+  font-family: var(--font-sans);
+  background: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+/* ── Scrollbar Styling ────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-text-subtle); }
+
+/* ── Selection ────────────────────────────────────────────── */
+::selection {
+  background: var(--color-accent);
+  color: #000;
+}
+
+/* ── Focus Ring ───────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ── Utility Classes ──────────────────────────────────────── */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  grid-template-rows: var(--header-height) 1fr;
+  min-height: 100vh;
+  transition: grid-template-columns var(--duration-mid) var(--ease-smooth);
+}
+
+.dashboard-grid.collapsed {
+  grid-template-columns: var(--sidebar-collapsed) 1fr;
+}
+
+/* Skeleton animation */
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-surface) 25%,
+    var(--color-surface-alt) 50%,
+    var(--color-surface) 75%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+/* Page fade-in */
+@keyframes page-enter {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.page-enter {
+  animation: page-enter var(--duration-mid) var(--ease-smooth) both;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Typography Scale ─────────────────────────────────────── */
+.text-display  { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.04em; line-height: 1.1; }
+.text-heading  { font-size: 1.5rem;  font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; }
+.text-title    { font-size: 1.125rem; font-weight: 600; letter-spacing: -0.01em; line-height: 1.3; }
+.text-body     { font-size: 0.875rem; font-weight: 400; line-height: 1.5; }
+.text-caption  { font-size: 0.75rem;  font-weight: 400; line-height: 1.4; }
+.text-label    { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
